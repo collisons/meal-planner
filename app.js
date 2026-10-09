@@ -394,8 +394,9 @@ function fmtNum(n) {
     }
     return String(Math.round(n * 10) / 10);
 }
-function fmtQty(qty, unit) {
-    const v = COUNT_UNITS.has(unit) ? Math.max(1, Math.ceil(qty - 1e-9)) : Math.max(0.1, qty);
+// Shopping rounds whole things up (you can't buy half an onion). "exact" shows the recipe's own amount instead.
+function fmtQty(qty, unit, exact) {
+    const v = COUNT_UNITS.has(unit) && !exact ? Math.max(1, Math.ceil(qty - 1e-9)) : Math.max(0.1, qty);
     const n = fmtNum(v);
     return unit ? `${n} ${unit}` : n;
 }
@@ -409,8 +410,12 @@ function cleanSource(s) {
     }
 }
 function cleanImage(s) {
+    // A photo kept in this site's own "images" folder, such as "images/skillet-baked-ziti.jpg".
+    const v = String(s || "");
+    if (/^images\/[A-Za-z0-9][A-Za-z0-9._-]{0,80}\.(?:jpe?g|png|webp)$/i.test(v))
+        return v;
     try {
-        const u = new URL(String(s || ""));
+        const u = new URL(v);
         return u.protocol === "https:" ? u.href.slice(0, 500) : "";
     }
     catch (e) {
@@ -427,6 +432,7 @@ function cleanIngredient(i) {
         qty: num(i?.qty, 0.05, 999, 1),
         unit: UNITS.includes(i?.unit) ? i.unit : "",
         aisle: AISLES.includes(i?.aisle) ? i.aisle : "Other",
+        prep: clampStr(i?.prep, 140), // how to prepare it, e.g. "finely diced" or "drained and rinsed"
     };
 }
 // The recipe fields only. Used for imported (untrusted) recipes and stored meals alike.
@@ -1107,6 +1113,7 @@ const CSS = `
 .warn{margin-bottom:14px;padding:10px 12px;border-radius:12px;background:var(--lemon-soft);font-size:13px;font-weight:700}
 .loading{display:grid;place-items:center;flex:1;color:var(--muted);font-weight:700}
 
+.ings .prep{font-style:normal;font-weight:500;color:var(--muted)}
 .head.sticky{position:sticky;top:calc(var(--pt) * -1);z-index:6;margin:0 calc(var(--px) * -1);padding:0 var(--px) 10px;background:var(--paper);border-bottom:1px solid var(--line)}
 .main>.head.sticky:first-child{margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) * .6)}
 .toast.undo{display:flex;align-items:center;gap:14px;padding:6px 6px 6px 18px;max-width:92%;white-space:nowrap}
@@ -1548,7 +1555,7 @@ function MealDetail({ meal, kids, inWeek, locked, onToggleWeek, onUpdate, onEdit
                                             onUpdate({ lastMade: null });
                                         else if (parseDay(v) && v <= today)
                                             onUpdate({ lastMade: v });
-                                    } }), meal.timesMade > 0 ? _jsxs("p", { className: "muted small", style: { marginTop: 8 }, children: ["Made ", meal.timesMade, " ", meal.timesMade === 1 ? "time" : "times", " with this app"] }) : null] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Ratings" }), kids.map((k, i) => (_jsxs("div", { className: "kid", children: [_jsx("span", { className: "who", children: kidName(k, i) }), _jsx(Stars, { value: meal.ratings[k.id] || 0, onChange: (v) => setRating(k, v), label: `Rating from ${kidName(k, i)}` })] }, k.id)))] })] }), _jsxs("div", { className: "detail-main", children: [_jsxs("div", { className: "block", children: [_jsx("h3", { children: "Ingredients" }), _jsxs("p", { className: "muted small", children: ["Serves ", meal.servings] }), _jsx("ul", { className: "ings", children: meal.ingredients.map((i, idx) => (_jsxs("li", { children: [_jsx("span", { children: i.name }), _jsx("b", { children: fmtQty(i.qty, i.unit) })] }, idx))) })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Instructions" }), meal.instructions.length ? (_jsx("ol", { className: "steps", children: meal.instructions.map((s, i) => _jsx("li", { children: s }, i)) })) : (_jsx("p", { className: "muted small", children: "No instructions yet. Tap Edit to add them." }))] })] })] }) }));
+                                    } }), meal.timesMade > 0 ? _jsxs("p", { className: "muted small", style: { marginTop: 8 }, children: ["Made ", meal.timesMade, " ", meal.timesMade === 1 ? "time" : "times", " with this app"] }) : null] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Ratings" }), kids.map((k, i) => (_jsxs("div", { className: "kid", children: [_jsx("span", { className: "who", children: kidName(k, i) }), _jsx(Stars, { value: meal.ratings[k.id] || 0, onChange: (v) => setRating(k, v), label: `Rating from ${kidName(k, i)}` })] }, k.id)))] })] }), _jsxs("div", { className: "detail-main", children: [_jsxs("div", { className: "block", children: [_jsx("h3", { children: "Ingredients" }), _jsxs("p", { className: "muted small", children: ["Serves ", meal.servings] }), _jsx("ul", { className: "ings", children: meal.ingredients.map((i, idx) => (_jsxs("li", { children: [_jsxs("span", { children: [i.name, i.prep ? _jsxs("em", { className: "prep", children: [", ", i.prep] }) : null] }), _jsx("b", { children: fmtQty(i.qty, i.unit, true) })] }, idx))) })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Instructions" }), meal.instructions.length ? (_jsx("ol", { className: "steps", children: meal.instructions.map((s, i) => _jsx("li", { children: s }, i)) })) : (_jsx("p", { className: "muted small", children: "No instructions yet. Tap Edit to add them." }))] })] })] }) }));
 }
 /* ------------------------------------------------------------------ */
 /* App                                                                */

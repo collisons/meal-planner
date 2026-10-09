@@ -7,7 +7,7 @@ This folder is a ready-to-host website. There is nothing to install or build.
 
 1. On GitHub, create a new repository (for example `meal-planner`). Make it **Public**.
    GitHub Pages is free for public repositories.
-2. Click **Add file → Upload files**, drag in **`index.html`**, **`app.js`** and **`recipes.json`**, then click **Commit changes**.
+2. Click **Add file → Upload files**, drag in **`index.html`**, **`app.js`**, **`recipes.json`** and the **`images`** folder, then click **Commit changes**.
 3. Open **Settings → Pages**. Under **Build and deployment**, set **Source** to **Deploy from a branch**,
    choose branch **main** and folder **/ (root)**, then **Save**.
 4. Wait a minute or two. Your app will be at `https://YOUR-USERNAME.github.io/meal-planner/`.
@@ -79,11 +79,12 @@ Each recipe in `recipes.json` looks like this (Claude writes these for you):
   "servings": 4,
   "source": "https://thedefineddish.com/chicken-and-rice-taco-skillet/",
   "image": "https://.../photo.jpg",
-  "ingredients": [{ "name": "Rice", "qty": 1, "unit": "cup", "aisle": "Pantry" }],
+  "ingredients": [{ "name": "Yellow onion", "qty": 0.5, "unit": "", "aisle": "Produce", "prep": "finely diced (1 cup)" }],
   "instructions": ["Step one.", "Step two."]
 }
 ```
 
+The optional `prep` is how to prepare the ingredient, shown next to its name on the meal screen.
 Keep each recipe's `id` the same forever, because ratings are filed under it.
 If the file is ever missing or broken, the app keeps working from the last copy it saved and shows a
 warning if it has none. It will not overwrite your data.
@@ -94,14 +95,22 @@ needs an Anthropic API key, entered in Settings.)
 
 ## Good to know
 
-- **"Cooking for" starts at 5.** Every recipe's amounts and the grocery list scale to that number. Change it
-  with the stepper on the This week screen (1 to 12). To change the starting number for everyone, edit
-  `DEFAULT_HOUSEHOLD` near the top of `app.js`.
-
+- **Shopping.** Check items off and they're crossed out and drop to the bottom of their section. Tap
+  **Done shopping** at the top of the Groceries page to remove everything that's checked. Your meals stay on
+  This week, and unchecked items stay to buy. An **Undo** button shows for about 10 seconds, and **Bring back**
+  stays on the page afterwards. If you add a meal after clearing, only the extra amount you still need shows
+  up. Clearing is shared with your partner's phone, and **Start a new week** resets it all.
+- **Works on any screen.** On a phone it's the bottom-tab layout. On a tablet there are more photos per row.
+  On a laptop or desktop (about 960 px wide and up) the menu moves to a side column, meals open in a
+  centered window with the photo and ingredients side by side, and the grocery list flows into columns.
+- **Recipes are shown as written.** Each meal keeps its original serving size and ingredient amounts, and
+  the grocery list adds the recipes up exactly as they're written.
 - **Offline is fine.** Changes are saved on the phone first and sync when the connection is back.
 - **Kid names** start blank so they aren't published in a public repository. Set them in Settings.
   They are shared with your partner once sharing is on.
 - **Backup:** Settings has **Download backup** and **Restore from file**. Restoring a backup while
   sharing is on replaces what's shared.
-- Recipe photos load from the recipe site's own server.
+- Photos for most recipes load from the recipe site's own server. A cookbook recipe's photo is a file in the
+  **`images`** folder of this repository (for example `images/skillet-baked-ziti.jpg`). To add one, upload the
+  file into that folder and point the recipe's `image` at `images/<file name>`.
 - The page loads React and the icon set from `esm.sh`, so it needs an internet connection.
