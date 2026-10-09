@@ -10410,6 +10410,587 @@
         "Ladle the picadillo over rice with a side of plantain chips, garnish with cilantro, and top with hot sauce if you like.",
         "Leftovers keep up to 3 days in the fridge, separate from the garnishes. Reheat in a skillet over medium heat or in the microwave in 1-minute bursts, stirring after each. From your cookbook, Everyday Eats, page 177 (Beef, Pork, and Lamb)."
       ]
+    },
+    {
+      "id": "one-pot-butternut-squash-and-sausage-pasta",
+      "name": "One-Pot Butternut Squash and Sausage Pasta",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (¼ cup minced)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Bulk Italian sausage",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "hot or mild"
+        },
+        {
+          "name": "Fresh sage",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup julienned leaves"
+        },
+        {
+          "name": "Brown rice shell pasta",
+          "qty": 12,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": "the author uses Jovial brand"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Butternut squash puree",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "15-ounce can (or unsweetened canned pumpkin puree)"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "unsweetened full-fat (1 cup)"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground, plus more for garnish"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup chopped, optional for serving"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large pot over medium. Cook the shallot and garlic until tender, about 2 minutes.",
+        "Add the sausage and sage and cook, breaking up the meat, until browned and cooked through, 5 to 6 minutes. Drain off all but about 2 tablespoons of the fat.",
+        "Add the pasta, wine, broth, squash puree, coconut milk, salt and pepper and stir. Bring to a gentle simmer, without boiling, and cook uncovered, stirring often, until the pasta is al dente and the liquid is absorbed and creamy, 13 to 15 minutes. The sauce looks too thin at first, but the starch from the pasta thickens it.",
+        "Take the pot off the heat and let it rest about 2 minutes, stirring now and then. Plate with black pepper and parsley, if you like.",
+        "Notes from the book: if you use canned pumpkin instead of butternut squash, it won't taste like pumpkin pie. For gluten-free, use only brown rice pasta, because chickpea and other legume pastas won't release enough starch to thicken the sauce. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
+      ]
+    },
+    {
+      "id": "one-pot-green-curry-veggie-noodles",
+      "name": "One-Pot Green Curry Veggie Noodles",
+      "servings": 2,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Shiitake mushrooms",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "stemmed and sliced"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus more to taste"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Bok choy",
+          "qty": 1,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "large, roughly chopped (4 cups)"
+        },
+        {
+          "name": "Thai green curry paste",
+          "qty": 1.5,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "the author uses Mae Ploy; use 1 tbsp if sensitive to heat, or red curry paste for milder"
+        },
+        {
+          "name": "Vegetable broth",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "unsweetened full-fat (1 cup)"
+        },
+        {
+          "name": "Ramen noodles",
+          "qty": 2,
+          "unit": "pkg",
+          "aisle": "Pantry",
+          "prep": "minus the seasoning packets"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice (about ½ lime), plus wedges for serving"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup chopped leaves, plus more for serving"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp thinly sliced leaves, plus more for serving"
+        },
+        {
+          "name": "Peanuts",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "unsalted roasted, roughly chopped"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2, thinly sliced on the diagonal"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep skillet over medium. Cook the onion, mushrooms, salt and pepper, stirring, until the onion begins to soften, about 3 minutes. Add the bok choy and cook another 2 minutes, until bright green and just beginning to soften.",
+        "Add the curry paste, toss to coat the vegetables, and toast until fragrant, about 1 minute.",
+        "While stirring, add the broth and coconut milk. Bring to a simmer, lower the heat to medium, and nestle in the ramen noodles. Cook 2 minutes undisturbed, flip the noodles, and cook 2 more minutes undisturbed. Keep cooking, tossing, until the sauce thickens and the noodles are tender and coated, about 2 more minutes. Take it off the heat.",
+        "Add the lime juice, cilantro and Thai basil and toss.",
+        "Divide between two bowls and top with the peanuts, green onions, more cilantro and Thai basil. Serve with lime wedges. Green curry paste tends toward the spicy side, which is why the book suggests 1 tablespoon if you're sensitive to heat. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
+      ]
+    },
+    {
+      "id": "sun-dried-tomato-pesto-and-mint-pasta",
+      "name": "Sun-Dried Tomato, Pesto, and Mint Pasta",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Kosher salt",
+          "qty": 3.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "about 1 tbsp in the pasta water, ½ tsp in the skillet, plus more to taste"
+        },
+        {
+          "name": "Fusilli col buco",
+          "qty": 12,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": "or brown rice linguine for gluten-free"
+        },
+        {
+          "name": "Sun-dried tomatoes in oil",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "7-ounce jar, thinly sliced, oil reserved"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (¼ cup minced)"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus more for serving"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Zucchini",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, julienned"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground, plus more to taste"
+        },
+        {
+          "name": "Basil pesto",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "store-bought, or the book's Lemon Basil Pesto"
+        },
+        {
+          "name": "Fresh mint",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup roughly chopped leaves, plus more for serving"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lemon)"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "grated, for serving (omit for dairy-free); the book gives no amount, so ¼ cup is my estimate"
+        }
+      ],
+      "instructions": [
+        "Bring a large pot of water to a boil. Add a heavy pinch of salt (about 1 tablespoon) and the pasta and cook until al dente, following the package.",
+        "Meanwhile, heat 2 tablespoons of the oil from the sun-dried tomato jar in a large, deep skillet over medium. Cook the shallot, pepper flakes, garlic, zucchini, ½ teaspoon salt and the black pepper, stirring, until the zucchini is tender and slightly golden, 4 to 5 minutes. Add the sun-dried tomatoes and cook 2 more minutes.",
+        "When the pasta is done, save about 1 cup of the starchy pasta water, then drain the pasta and add it to the skillet with the pesto. Toss for 2 to 3 minutes so the sauce coats the pasta, then add ¼ cup pasta water and toss until well coated and glossy.",
+        "Take it off the heat and toss in the mint and lemon juice. If the pasta is sticking or dry, add more pasta water ¼ cup at a time. Season with more salt and pepper.",
+        "Divide among four bowls and garnish with Parmesan (if using), more pepper flakes and mint.",
+        "To julienne the zucchini: cut off the ends, slice lengthwise into ¼-inch-thick planks (3 to 4 planks), then cut each plank crosswise on the diagonal into ¼-inch-wide strips. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
+      ]
+    },
+    {
+      "id": "creamy-dijon-penne-with-kielbasa",
+      "name": "Creamy Dijon Penne with Kielbasa",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Kosher salt",
+          "qty": 4,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "about 1 tbsp in the pasta water, ½ tsp with the shallot, ½ tsp in the sauce"
+        },
+        {
+          "name": "Gluten-free penne or rigatoni",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin, divided"
+        },
+        {
+          "name": "Kielbasa sausage",
+          "qty": 14,
+          "unit": "oz",
+          "aisle": "Meat & seafood",
+          "prep": "halved lengthwise and thinly sliced crosswise"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Shallot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (½ cup minced)"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "unsweetened full-fat (½ cup used)"
+        },
+        {
+          "name": "Fresh tarragon",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tbsp roughly chopped"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Baby kale",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": ""
+        }
+      ],
+      "instructions": [
+        "Bring a large pot of water to a boil. Add plenty of salt (about 1 tablespoon) and the pasta and cook until al dente, following the package.",
+        "Meanwhile, heat 1 tablespoon of the oil in a large, deep skillet over medium. Spread the kielbasa in a single layer and cook undisturbed until browned on one side, about 2 minutes. Toss and cook 1 to 2 more minutes to finish cooking through. Move it to a plate with a slotted spoon.",
+        "Lower the heat to medium-low. Add the remaining tablespoon of oil, the garlic, shallot, ½ teaspoon salt and the pepper flakes and cook, stirring, until the shallot has softened, about 2 minutes.",
+        "Add the wine and cook, stirring, until it has reduced by half, 1 to 2 minutes. Whisk in the mustard until emulsified, then add the coconut milk, tarragon, ½ teaspoon salt and the black pepper and whisk until smooth.",
+        "Save 1 cup of the starchy pasta water, then drain the pasta. Raise the heat to medium and add the pasta and kielbasa (and any juices from the plate) and toss to coat. Stir in ¼ cup of the pasta water, then add the baby kale 1 cup at a time, tossing until wilted and well distributed. If needed, add more pasta water ¼ cup at a time until the pasta is well coated and glossy. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
+      ]
+    },
+    {
+      "id": "beef-and-broccoli-lo-mein",
+      "name": "Beef and Broccoli Lo Mein",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1-inch piece, peeled and finely grated"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 10.666667,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "⅔ cup"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lime)"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "the author uses Red Boat brand"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "flap or sirloin, thinly sliced against the grain"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 4,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the beef, about 1 tbsp in the noodle water"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp on the steak, 2 tbsp for finishing, plus more as needed"
+        },
+        {
+          "name": "Lo mein noodles",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": "dried lo mein, chow mein or ramen noodles (brown rice linguine for gluten-free)"
+        },
+        {
+          "name": "Broccoli florets",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "1 broccoli head cut into small florets"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4, thinly sliced on the diagonal"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "for serving"
+        }
+      ],
+      "instructions": [
+        "Bring a large pot of water to a boil for the noodles.",
+        "Sauce: whisk the garlic, ginger, coconut aminos, coconut sugar, vinegar, lime juice, sesame oil, fish sauce and pepper flakes in a small bowl. Set aside.",
+        "Beef: in a large bowl, toss the sliced steak with the salt, pepper, tapioca flour and 1 tablespoon avocado oil until evenly coated. Set aside.",
+        "Noodles: when the water boils, add plenty of salt (about 1 tablespoon) and the noodles and cook until tender, about 3 minutes or as the package says. Save ½ cup of the starchy pasta water, drain the noodles, rinse them under cold water, and set aside.",
+        "To finish: heat 2 tablespoons avocado oil in a large, deep skillet over medium-high. Cook the steak in a single layer until golden brown on all sides and cooked through, 2 to 3 minutes per side. Move it to a clean plate.",
+        "Add the broccoli to the same skillet (with another tablespoon of oil if it looks dry) and cook, tossing, until slightly tender, 2 to 3 minutes. Add ¼ cup of the saved pasta water and let the broccoli steam uncovered until bright green and the liquid has evaporated, about 2 more minutes.",
+        "Lower the heat to medium and add the green onions, drained noodles, and beef with any juices. Toss to combine, then pour in the sauce and the remaining pasta water and toss constantly until the noodles are coated and the sauce starts to thicken, about 2 more minutes.",
+        "Divide among four bowls and top with the toasted sesame seeds. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
+      ]
     }
   ]
 }
