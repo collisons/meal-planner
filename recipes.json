@@ -3960,7 +3960,7 @@
         },
         {
           "name": "Low-sodium beef broth",
-          "qty": 0.25,
+          "qty": 0.75,
           "unit": "cup",
           "aisle": "Pantry",
           "prep": ""
@@ -4042,7 +4042,7 @@
         },
         {
           "name": "Pecorino Romano",
-          "qty": 0.25,
+          "qty": 0.75,
           "unit": "cup",
           "aisle": "Dairy & eggs",
           "prep": "freshly grated, plus more for serving"
@@ -4305,7 +4305,7 @@
           "qty": 1,
           "unit": "lb",
           "aisle": "Meat & seafood",
-          "prep": "peeled, deveined, tail-off (16/20 count), patted dry"
+          "prep": "peeled, deveined, tail-off (36/40 count), patted dry"
         },
         {
           "name": "Cilantro",
@@ -4447,7 +4447,7 @@
         },
         {
           "name": "Crème fraîche",
-          "qty": 0.5,
+          "qty": 0.3333333333333333,
           "unit": "cup",
           "aisle": "Dairy & eggs",
           "prep": ""
@@ -4546,18 +4546,18 @@
           "qty": 1,
           "unit": "",
           "aisle": "Produce",
-          "prep": "zest of ½, plus 2 tbsp freshly squeezed juice (about ½ lemon)"
+          "prep": "zest of ½, plus 2 tbsp freshly squeezed juice (about 1 lemon)"
         },
         {
           "name": "Plain Greek yogurt",
-          "qty": 8,
+          "qty": 10.666666666666666,
           "unit": "tbsp",
           "aisle": "Dairy & eggs",
-          "prep": "whole-milk (½ cup)"
+          "prep": "whole-milk (⅔ cup)"
         },
         {
           "name": "Parmesan",
-          "qty": 0.5,
+          "qty": 0.25,
           "unit": "cup",
           "aisle": "Dairy & eggs",
           "prep": "grated, plus more for serving"
@@ -4826,10 +4826,10 @@
         },
         {
           "name": "Shredded sharp cheddar",
-          "qty": 0.75,
+          "qty": 1,
           "unit": "cup",
           "aisle": "Dairy & eggs",
-          "prep": "½ cup in the pasta, ¼ cup on top"
+          "prep": "¾ cup in the pasta, ¼ cup on top"
         },
         {
           "name": "Cooked shredded chicken",
@@ -4862,13 +4862,5553 @@
       ],
       "instructions": [
         "Put a rack in the middle of the oven and heat it to 400°F.",
-        "Heat 2 tablespoons of the oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium. Cook the white parts of the green onions and the garlic, stirring, until softened, about 3 minutes.",
+        "Heat 2 tablespoons of the oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium-high. Cook the white parts of the green onions and the garlic, stirring, until softened, about 3 minutes.",
         "Add the pasta, broth, 1½ teaspoons salt, the pepper, garlic powder and paprika. Bring to a rapid simmer, then turn to medium for a steady bubble (not a hard boil). Cook, stirring often, until the pasta is tender and most of the broth is absorbed, with a little liquid left, 13 to 15 minutes.",
         "Turn the heat to low and stir in the Buffalo sauce, yogurt and the pasta's share of the cheddar until combined and just melted. Off the heat, stir in the chicken, the green parts of the green onions and the blue cheese, then spread it in an even layer.",
         "For the topping, mix the panko, the remaining tablespoon of oil and ¼ teaspoon salt until the crumbs are coated.",
         "Sprinkle the remaining cheddar over the pasta, then the panko mixture. Bake until the cheese is bubbly and the crumbs are golden, 6 to 7 minutes.",
         "Let it cool slightly, then garnish with parsley. Leftovers keep up to 3 days in the fridge. Reheat with a splash of broth.",
         "From your cookbook, Everyday Eats, page 118 (Pasta and Noodles)."
+      ]
+    },
+    {
+      "id": "pesto-unstuffed-shells",
+      "name": "Pesto Unstuffed Shells",
+      "servings": 6,
+      "source": "",
+      "image": "images/pesto-unstuffed-shells.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin: 2 tbsp for the bread crumbs, plus a little to grease the baking dish"
+        },
+        {
+          "name": "Ricotta cheese",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "whole-milk"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup julienned leaves, plus more for serving"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus 2 tbsp juice (about 1 lemon)"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 3.75,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the ricotta, ¼ tsp in the crumbs, about 1 tbsp in the pasta water"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "freshly grated: ¼ cup in the ricotta, ½ cup on top"
+        },
+        {
+          "name": "Panko breadcrumbs",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "gluten-free panko bread crumbs"
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Jumbo pasta shells",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Pantry",
+          "prep": "jumbo shell pasta (or gluten-free rigatoni)"
+        },
+        {
+          "name": "Basil pesto",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "store-bought or homemade"
+        },
+        {
+          "name": "Shredded mozzarella",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "grated"
+        },
+        {
+          "name": "Pine nuts",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "toasted, for garnish"
+        }
+      ],
+      "instructions": [
+        "Put a rack in the middle of the oven and heat it to 375°F. Grease a 9×13-inch baking dish with oil and set it aside.",
+        "Ricotta mixture: stir together the ricotta, garlic, basil, lemon zest and juice, ½ teaspoon salt, the pepper and ¼ cup of the Parmesan. Keep it in the fridge.",
+        "Bread crumbs: mix the panko, the 2 tablespoons oil, ¼ teaspoon salt, the oregano and the paprika until the panko is evenly coated.",
+        "Boil the shells in a large pot of well-salted water (about 1 tablespoon salt) until al dente. Save 1 cup of the pasta water, then drain and return the shells to the pot.",
+        "Stir in the pesto, ¼ cup of the pasta water and half of the ricotta mixture until the shells are coated and the sauce is smooth and glossy, adding more pasta water ¼ cup at a time if needed.",
+        "Pour the pasta into the baking dish in an even layer. Dollop the rest of the ricotta mixture on top, then add the mozzarella and the remaining ½ cup Parmesan, and scatter the bread crumbs over everything.",
+        "Bake about 20 minutes, until bubbly with a golden top. Let it stand 5 minutes, then top with more basil and the pine nuts. To toast pine nuts, stir them in a dry skillet over medium heat until golden and fragrant, 3 to 5 minutes, and watch them closely.",
+        "Make ahead: bake, cool, and refrigerate covered up to 3 days; reheat covered with foil at 350°F about 30 minutes. It also freezes up to 2 months (wrap tightly, thaw overnight, bake as directed). From your cookbook, Everyday Eats, page 121 (Pasta and Noodles)."
+      ]
+    },
+    {
+      "id": "tipsy-noodles",
+      "name": "Tipsy Noodles",
+      "servings": 4,
+      "source": "",
+      "image": "images/tipsy-noodles.jpg",
+      "ingredients": [
+        {
+          "name": "Coconut aminos",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "½ cup"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Thai chiles",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 to 3, minced (3 for spicy, 2 medium, 1 mild; or about ½ serrano)"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.3333333333333333,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "or arrowroot flour"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, seeded and thinly sliced"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4, cut into 2-inch pieces"
+        },
+        {
+          "name": "Matchstick carrots",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Wide rice noodles",
+          "qty": 9,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "about 1 tbsp for the noodle water"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lime)"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 cup packed leaves, plus more for garnish"
+        }
+      ],
+      "instructions": [
+        "Bring a large pot of water to a boil.",
+        "Meanwhile, whisk the coconut aminos, vinegar, fish sauce, sesame oil, coconut sugar, garlic, ginger, Thai chiles, broth and tapioca flour in a small bowl. Set aside.",
+        "Heat the avocado oil in a large, deep skillet over medium-high. Cook the beef, breaking it up, until no longer pink, about 7 minutes. Drain off the excess fat and return the beef to the pan.",
+        "Add the bell pepper, green onions and carrots and cook, stirring, until they begin to soften, 3 to 4 minutes.",
+        "Lower the heat to medium and pour in the sauce. Bring to a simmer and cook, stirring often, until it thickens a bit, about 4 minutes. Turn the heat to low to keep it warm.",
+        "Cook the rice noodles in the boiling water with plenty of salt (about 1 tablespoon), as the package says (usually 2 to 6 minutes). Drain and rinse under cold water.",
+        "Add the noodles to the skillet and toss until glossy and coated, about 2 minutes. Add the lime juice and basil and toss until the basil just wilts, 1 more minute.",
+        "Divide among four bowls with more basil on top. Leftovers keep 3 to 4 days in the fridge. From your cookbook, Everyday Eats, page 122 (Pasta and Noodles)."
+      ]
+    },
+    {
+      "id": "one-pot-italian-shells-and-cheese",
+      "name": "One-Pot Italian Shells and Cheese",
+      "servings": 4,
+      "source": "",
+      "image": "images/italian-shells-and-cheese.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "finely diced (1 cup)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Bulk Italian sausage",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "mild or hot"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus more to taste"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Small pasta shells",
+          "qty": 12,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tomato sauce",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "14.5-ounce can"
+        },
+        {
+          "name": "Red wine vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shredded mozzarella",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "shredded"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp thinly sliced, for serving"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup chopped, for serving"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep-sided skillet or pot over medium-high. When it shimmers, cook the onion and garlic, stirring now and then, until just softened, about 2 minutes.",
+        "Add the sausage and cook, breaking it up, until cooked through and no longer pink, about 7 minutes. Drain all but 2 tablespoons of fat and return the sausage to the pan.",
+        "Stir in the salt, pepper and oregano, then the tomato paste until it's well mixed with the sausage.",
+        "Add the pasta, broth, tomato sauce and vinegar and stir. Bring to a boil, then lower to a gentle simmer (about medium-low). Cook, stirring often, until most of the liquid is absorbed and the pasta is al dente, 13 to 15 minutes.",
+        "Turn the heat to low and stir in the mozzarella until melted. Taste and add salt if needed.",
+        "Top with basil and parsley. Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats (Pasta and Noodles)."
+      ]
+    },
+    {
+      "id": "oven-roasted-shrimp-scampi",
+      "name": "Oven-Roasted Shrimp Scampi",
+      "servings": 4,
+      "source": "",
+      "image": "images/shrimp-scampi.jpg",
+      "ingredients": [
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Olive oil",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin (¼ cup)"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus wedges for serving"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 4,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp in the dish, about 1 tbsp in the pasta water, plus more to taste"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Shrimp",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "peeled, deveined, tail-off (31/40 count), patted dry"
+        },
+        {
+          "name": "Linguine",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry",
+          "prep": "or gluten-free linguine"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.3333333333333333,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "grated, ⅓ cup (omit for dairy-free)"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup roughly chopped leaves"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F and bring a large pot of water to a boil.",
+        "In a 9×13-inch baking dish, toss together the garlic, shallot, pepper flakes, oil, wine, lemon zest, 1 teaspoon salt, the black pepper and the shrimp. Spread into an even layer.",
+        "Bake until the shrimp are pink and cooked through, about 13 minutes.",
+        "Meanwhile, add plenty of salt (about 1 tablespoon) and the pasta to the boiling water and cook as the package says.",
+        "Drain the pasta, add it to the baking dish and gently toss until coated. Add the Parmesan (if using) and parsley and toss once more. Taste and add salt if needed.",
+        "Divide among four bowls and serve with lemon wedges. Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats, page 126 (Pasta and Noodles)."
+      ]
+    },
+    {
+      "id": "chicken-and-broccoli-stir-fry",
+      "name": "Chicken and Broccoli Stir-Fry",
+      "servings": 4,
+      "source": "",
+      "image": "images/chicken-broccoli-stir-fry.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat, patted dry, pounded to ½ inch and cut into 1-inch pieces"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 9,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp on the chicken, 1 tbsp in the sauce"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 6.333333,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp on the chicken, ⅓ cup in the sauce"
+        },
+        {
+          "name": "Baking soda",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "optional"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Broccoli florets",
+          "qty": 4,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "roughly chopped (about 1 large head)"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        }
+      ],
+      "instructions": [
+        "Cover the chicken breasts with parchment or plastic wrap and pound to an even ½-inch thickness. Cut into 1-inch pieces.",
+        "Toss the chicken with the salt, pepper, 2 tablespoons tapioca flour, 1 tablespoon coconut aminos and the baking soda in a medium bowl. Set aside.",
+        "Sauce: whisk the remaining coconut aminos (⅓ cup), sesame oil, fish sauce, broth, garlic, ginger, pepper flakes (if using) and 1 tablespoon tapioca flour in a small bowl.",
+        "Heat the avocado oil in a large, deep nonstick skillet over medium-high. Working in batches, cook the chicken in a single layer, undisturbed, until a golden-brown crust forms, about 3 minutes, then flip and cook about 3 minutes more. Move it to a clean plate.",
+        "Lower the heat to medium. Add the broccoli and ¼ cup water, scraping up the browned bits, and cook until the broccoli is bright green and the water has evaporated, about 3 minutes.",
+        "Return the chicken and its juices to the skillet and pour in the sauce. Simmer, stirring now and then, until the sauce thickens and coats the chicken, about 3 minutes. Take it off the heat, let it cool slightly, and serve over cauliflower rice or steamed rice.",
+        "Leftovers keep 3 to 4 days in the fridge. Reheat gently in a skillet over medium heat with a splash of broth. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "sheet-pan-chicken-with-soppressata-and-peppers",
+      "name": "Sheet Pan Chicken with Soppressata and Peppers",
+      "servings": 4,
+      "source": "",
+      "image": "images/sheet-pan-soppressata-chicken.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus 2 tbsp juice (about 1 lemon)"
+        },
+        {
+          "name": "Fresh oregano",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp roughly chopped leaves, divided (1 tbsp in the mixture, 1 tbsp on top)"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Bone-in, skin-on chicken thighs",
+          "qty": 3,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Mini bell peppers",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "halved and seeded"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Soppressata or salami",
+          "qty": 3,
+          "unit": "oz",
+          "aisle": "Meat & seafood",
+          "prep": "hard, casings removed, cut into small dice (about ¾ cup)"
+        },
+        {
+          "name": "Castelvetrano olives",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "pitted and torn"
+        },
+        {
+          "name": "Goat cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled (omit for dairy-free)"
+        },
+        {
+          "name": "Fresh mint",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp roughly torn leaves"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 425°F and line a sheet pan with parchment paper.",
+        "In a small bowl, whisk the oil, mustard, garlic, lemon zest and juice, 1 tablespoon of the oregano, the salt, black pepper, paprika and pepper flakes.",
+        "Put the chicken thighs on the pan and scatter the bell peppers, onion and soppressata around them. Pour the mustard mixture over everything and toss, massaging it into the chicken. Spread it into a single layer with the thighs skin side up.",
+        "Bake until the chicken is cooked through and golden, 30 to 40 minutes, tossing the vegetables halfway through.",
+        "Let it cool slightly, then top with the olives. Divide among four plates and finish with the goat cheese (if using), the remaining tablespoon of oregano and the mint.",
+        "Leftovers keep up to 3 days in the fridge (keep the goat cheese and herbs separate). From your cookbook, Everyday Eats, page 132 (Poultry)."
+      ]
+    },
+    {
+      "id": "creamy-one-pot-lemon-feta-chicken-with-orzo-cookbook",
+      "name": "Creamy One-Pot Lemon Feta Chicken with Orzo (cookbook)",
+      "servings": 4,
+      "source": "",
+      "image": "images/lemon-feta-chicken-orzo-cookbook.jpg",
+      "ingredients": [
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, ½ tsp in the orzo"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Turmeric",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved lengthwise and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Orzo",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "or gluten-free brown rice orzo"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Lemon",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½ plus 2 tbsp juice (about 1 lemon), and wedges for serving"
+        },
+        {
+          "name": "Fresh oregano",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tbsp chopped leaves, plus more for serving"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tbsp chopped leaves"
+        },
+        {
+          "name": "Feta",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled, divided (½ cup in the orzo, ¼ cup on top)"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F. Mix the salt, pepper, turmeric, paprika and cayenne in a small bowl.",
+        "Season both sides of the chicken breasts generously with the spice blend. Heat the oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium-high and brown the chicken, about 3 minutes per side. It won't be cooked through yet. Move it to a clean plate.",
+        "In the same skillet, lower the heat to medium and cook the shallot, garlic and pepper flakes for 2 minutes. Stir in the mustard and wine, scraping up the browned bits, and cook until the wine has reduced by half, about 2 minutes.",
+        "Add the orzo, broth, lemon zest and juice, ½ teaspoon salt, the oregano, parsley and ½ cup of the feta. Stir, then nestle the chicken and its juices into the skillet.",
+        "Bake uncovered about 15 minutes, until the chicken is cooked and the orzo is almost done. Top with the remaining ¼ cup feta and bake 5 more minutes, until the orzo is cooked and the feta has softened.",
+        "Garnish with more oregano and serve with lemon wedges. This is the cookbook's version of the blog recipe, made with chicken breasts. From your cookbook, Everyday Eats (Poultry)."
+      ]
+    },
+    {
+      "id": "larb-gai-inspired-lettuce-wraps",
+      "name": "Larb Gai-Inspired Lettuce Wraps",
+      "servings": 4,
+      "source": "",
+      "image": "images/larb-lettuce-wraps.jpg",
+      "ingredients": [
+        {
+          "name": "Raw unsalted cashews",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "roughly chopped"
+        },
+        {
+          "name": "White sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shallot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (1 cup)"
+        },
+        {
+          "name": "Ground chicken or turkey",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "preferably dark meat"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Thai chiles",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 to 3, minced (see the Tipsy Noodles note for heat)"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Lime",
+          "qty": 3,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "¼ cup freshly squeezed juice (about 2 limes), plus wedges for serving"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup finely chopped leaves, plus more for garnish"
+        },
+        {
+          "name": "Fresh mint",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup finely chopped leaves, plus more for garnish"
+        },
+        {
+          "name": "Butter lettuce",
+          "qty": 2,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "separated into individual leaves"
+        },
+        {
+          "name": "Persian cucumbers",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced on the diagonal (about 2 cups)"
+        }
+      ],
+      "instructions": [
+        "Toast the cashews and sesame seeds in a large, dry skillet over medium-high until golden and fragrant, about 2 minutes, watching so they don't burn. Move to a bowl.",
+        "Turn the heat to medium-high, add the oil and cook the shallot until slightly tender, about 2 minutes.",
+        "Add the chicken, salt, pepper, garlic and Thai chiles. Cook, breaking up the meat, until cooked through and no longer pink, about 7 minutes.",
+        "Lower the heat to medium-low. Add the coconut aminos, lime juice, coconut sugar, fish sauce and three-quarters of the cashew-sesame mixture (save the rest for serving). Cook, stirring, about 4 minutes. Off the heat, stir in the cilantro and mint.",
+        "Spoon the mixture into lettuce cups, top with cucumber slices and the rest of the cashew-sesame mixture, and garnish with more cilantro and mint. Serve with lime wedges.",
+        "Keep leftover filling, lettuce, cucumbers and topping separate in the fridge for up to 3 days. From your cookbook, Everyday Eats, page 136 (Poultry)."
+      ]
+    },
+    {
+      "id": "roasted-buffalo-chicken-thighs-with-brussels-sprouts",
+      "name": "Roasted Buffalo Chicken Thighs with Brussels Sprouts",
+      "servings": 4,
+      "source": "",
+      "image": "images/buffalo-chicken-thighs-brussels.jpg",
+      "ingredients": [
+        {
+          "name": "Bone-in, skin-on chicken thighs",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "large, trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, ½ tsp with the Brussels sprouts"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Onion powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Brussels sprouts",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "trimmed and halved lengthwise"
+        },
+        {
+          "name": "Red onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, halved and thinly sliced (1 cup)"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lemon)"
+        },
+        {
+          "name": "Buffalo sauce",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "mild or hot"
+        },
+        {
+          "name": "Blue cheese",
+          "qty": 0.3333333333333333,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled, ⅓ cup (omit for dairy-free and paleo)"
+        },
+        {
+          "name": "Fresh dill",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup chopped"
+        },
+        {
+          "name": "Fresh chives",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp finely chopped"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F. Season both sides of the chicken with 1 teaspoon of the salt, the pepper, onion powder and garlic powder.",
+        "Heat the oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium-high. Cook the thighs skin side down, undisturbed, until a golden-brown crust forms and they lift easily, about 4 minutes. They won't be cooked through yet. Move them to a clean plate.",
+        "Lower the heat to medium-low. Add the Brussels sprouts, onion, the remaining ½ teaspoon salt and the lemon juice, scraping up the browned bits, and cook until the juice has reduced by half, 1 to 2 minutes. Spread the sprouts into an even layer and take the pan off the heat.",
+        "Set the thighs skin side up on top. Roast uncovered about 25 minutes, until the chicken is almost cooked through and the sprouts are lightly browned.",
+        "Carefully take the skillet out, toss the sprouts, and spoon 1 tablespoon of Buffalo sauce over each thigh, spreading it over the tops. Roast 5 to 8 more minutes, until the sauce caramelizes and the chicken is cooked through, watching that it doesn't burn.",
+        "Finish with the blue cheese (if using), dill and chives. The skin won't stay crisp in leftovers (3 days in the fridge). From your cookbook, Everyday Eats, page 141 (Poultry)."
+      ]
+    },
+    {
+      "id": "saucy-chipotle-chicken-tacos",
+      "name": "Saucy Chipotle Chicken Tacos",
+      "servings": 4,
+      "source": "",
+      "image": "images/chipotle-chicken-tacos.jpg",
+      "ingredients": [
+        {
+          "name": "Red cabbage",
+          "qty": 0.5,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "small, thinly shredded (3 cups)"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp for the slaw, 2 tbsp for the chicken, plus a little to warm the tortillas"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the slaw, 1 tsp on the chicken"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the slaw, ½ tsp on the chicken"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lime) for the slaw, plus wedges for serving"
+        },
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat, patted dry, cut into ½-inch pieces"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chipotle chiles in adobo",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "1 pepper, finely minced, plus 1 tbsp of the sauce"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Apple cider vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Corn tortillas",
+          "qty": 12,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "or almond flour tortillas for grain-free"
+        },
+        {
+          "name": "Salsa verde",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "for serving"
+        },
+        {
+          "name": "White onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, finely diced (¼ cup)"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup chopped leaves"
+        }
+      ],
+      "instructions": [
+        "Slaw: toss the cabbage with the oil, salt, ½ teaspoon cumin and the lime juice in a large bowl. Set aside.",
+        "Heat 2 tablespoons oil in a large nonstick skillet over medium-high. Add the chicken in a single layer and season with the salt, pepper, paprika, oregano and ½ teaspoon cumin. Cook, tossing now and then, until golden brown on all sides, 4 to 5 minutes.",
+        "Lower the heat to medium and stir in the garlic, tomato paste, minced chipotle and the tablespoon of adobo sauce until fragrant, about 2 minutes.",
+        "Pour in the broth, vinegar and honey, scraping up the browned bits. Bring to a simmer and cook until the sauce reduces slightly, 3 to 4 minutes, then turn the heat to low.",
+        "Warm the tortillas one at a time in a small skillet with ½ teaspoon oil, about 30 seconds per side, or char them over a gas flame.",
+        "Fill the tortillas with the chicken, top with slaw, a drizzle of salsa verde, white onion and cilantro, and serve with lime wedges.",
+        "Keep the chicken, slaw, tortillas and toppings separate in the fridge for up to 3 days. From your cookbook, Everyday Eats, page 142 (Poultry)."
+      ]
+    },
+    {
+      "id": "skillet-french-onion-chicken-with-mushrooms",
+      "name": "Skillet French Onion Chicken with Mushrooms",
+      "servings": 4,
+      "source": "",
+      "image": "images/french-onion-chicken.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "small, trimmed of excess fat, patted dry, and pounded to ½ inch"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, ½ tsp with the onions"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "cassava flour"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin: 2 tbsp for the chicken, 1 tbsp for the onions"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, halved and thinly sliced (about 1 cup)"
+        },
+        {
+          "name": "Baby bella mushrooms",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Produce",
+          "prep": "thinly sliced (one 8-ounce package)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tsp roughly chopped leaves"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Gruyère cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "freshly grated"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F. Cover the chicken breasts with parchment or plastic wrap and pound to an even ½-inch thickness. Season both sides with 1 teaspoon of the salt, the pepper and the paprika.",
+        "Dredge each piece in the flour until coated on both sides, shaking off the excess.",
+        "Heat 2 tablespoons oil in a large oven-safe skillet or 3.5-quart braiser over medium-high. Working in batches, brown the chicken 2 to 3 minutes per side. It won't be cooked through yet. Move it to a clean plate.",
+        "Lower the heat to medium. Add the remaining tablespoon of oil, the onion, mushrooms, garlic and remaining ½ teaspoon salt and cook, stirring, until tender, 5 to 7 minutes.",
+        "Stir in the mustard, coconut aminos and thyme, then add the wine and broth, stirring until combined.",
+        "Nestle the chicken and its juices back into the skillet and top with the Gruyère. Bake uncovered until the chicken is cooked through and the cheese is browned and bubbly, about 12 minutes.",
+        "Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats, page 145 (Poultry)."
+      ]
+    },
+    {
+      "id": "cumin-crusted-chicken-with-avocado-cucumber-salad",
+      "name": "Cumin-Crusted Chicken with Avocado-Cucumber Salad",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 5,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin: 4 tbsp for the chicken (divided, plus more as needed), 1 tbsp in the salad"
+        },
+        {
+          "name": "Lime",
+          "qty": 3,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice for the chicken (about ½ lime), 2 tbsp for the salad (about 1 lime), plus wedges for serving"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tsp on the chicken, 1 tsp in the salad"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: 1 tsp on the chicken, ½ tsp in the salad"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chili powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Persian cucumbers",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced (about 2 cups)"
+        },
+        {
+          "name": "Grape tomatoes",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "quartered"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.25,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "finely diced (¼ cup, about ¼ small onion)"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup finely chopped leaves"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lemon)"
+        },
+        {
+          "name": "Avocado",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, diced"
+        }
+      ],
+      "instructions": [
+        "In a large bowl, toss the chicken thighs with 2 tablespoons of the oil, 1 tablespoon lime juice, the salt, pepper, cumin, chili powder, paprika and cayenne. Let it marinate at room temperature for 10 minutes while you make the salad.",
+        "Salad: in a large bowl, toss the cucumbers, tomatoes, garlic, red onion, cilantro, 1 tablespoon olive oil, the salt, pepper, 2 tablespoons lime juice and the lemon juice. Add the avocado and gently toss once more. Cover and set aside.",
+        "Heat the remaining 2 tablespoons oil in a large skillet, preferably cast iron, over medium-high. Working in batches so the pan isn't crowded, cook the chicken in a single layer until golden brown on both sides and cooked through, 3 to 4 minutes per side. Move it to a serving platter to cool slightly, adding more oil to the pan if it gets dry.",
+        "Spoon the avocado-cucumber salad over the chicken and serve with lime wedges.",
+        "To grill instead: heat a grill to medium-high, lightly oil the grates, and cook the marinated thighs about 5 minutes per side, until nicely charred and 165°F inside.",
+        "From your cookbook, Everyday Eats, page 149 (Poultry)."
+      ]
+    },
+    {
+      "id": "spiced-chicken-and-chickpea-skillet",
+      "name": "Spiced Chicken and Chickpea Skillet",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, ½ tsp with the vegetables"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground coriander",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Turmeric",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin, divided"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced (about 1 cup)"
+        },
+        {
+          "name": "Carrot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, peeled and thinly sliced (about 1 cup)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Harissa paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "mild"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus 2 tbsp juice (about 1 lemon)"
+        },
+        {
+          "name": "Crushed tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "14-ounce can"
+        },
+        {
+          "name": "Chickpeas",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "14-ounce can, drained and rinsed"
+        },
+        {
+          "name": "Lacinato kale",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4 cups de-ribbed and roughly chopped"
+        },
+        {
+          "name": "Fresh oregano",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp torn leaves"
+        },
+        {
+          "name": "Feta",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled (omit for dairy-free)"
+        }
+      ],
+      "instructions": [
+        "Put a rack in the middle of the oven and heat it to 375°F.",
+        "Season both sides of the chicken with 1 teaspoon of the salt, the paprika, coriander, cumin, turmeric and pepper, massaging the spices in.",
+        "Heat 1 tablespoon of the oil in a large oven-safe skillet over medium-high. Working in batches, brown the chicken in a single layer, about 3 minutes per side. It won't be cooked through yet. Move it to a clean plate.",
+        "Lower the heat to medium and add the remaining tablespoon of oil, the onion and the carrot with the remaining ½ teaspoon salt. Cook, stirring now and then, until tender, about 4 minutes. Add the garlic and cook 1 minute.",
+        "Stir in the tomato paste and harissa and cook until the tomato paste softens, about 2 minutes. Add the wine, lemon zest and lemon juice, scraping up the browned bits, and simmer until the wine has reduced by half, about 3 minutes.",
+        "Add the tomatoes, chickpeas and kale and bring to a simmer. Nestle the chicken and its juices back into the skillet. Carefully move it to the oven and cook uncovered 15 to 17 minutes, until the chicken is cooked through and the kale starts to crisp.",
+        "Let it cool slightly, then sprinkle with the oregano and feta (if using). Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats, page 150."
+      ]
+    },
+    {
+      "id": "kung-pao-ground-chicken",
+      "name": "Kung Pao Ground Chicken",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 5.333333,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "⅓ cup"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp for the chicken, 1 tbsp for the vegetables"
+        },
+        {
+          "name": "Ground chicken or turkey",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "preferably dark meat"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, small-diced (1½ cups)"
+        },
+        {
+          "name": "Zucchini",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, small-diced (1½ cups)"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4, thinly sliced, white and green parts kept separate, plus more for garnish"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.75,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ to 1 tsp, depending on your heat preference"
+        },
+        {
+          "name": "Peanuts",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "dry roasted, roughly chopped, plus more for garnish (cashews for paleo)"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp freshly squeezed juice (about ½ lime)"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice, or lettuce leaves, for serving"
+        }
+      ],
+      "instructions": [
+        "Whisk the sesame oil, coconut aminos, broth, fish sauce, vinegar, coconut sugar and tapioca flour in a small bowl. Set aside.",
+        "Heat 2 tablespoons of the avocado oil in a large, deep skillet over medium-high. Add the chicken, salt and pepper and spread it into an even layer. Cook undisturbed until a golden crust forms on one side, about 3 minutes, then break it up and cook until no longer pink, about 4 more minutes. Move it to a clean plate and drain off any excess fat.",
+        "Add the remaining tablespoon of oil, the bell pepper, zucchini and white parts of the green onions. Cook, stirring now and then, until they begin to soften, about 2 minutes. Add the garlic, ginger and pepper flakes and cook until the garlic is golden and fragrant, about 2 more minutes.",
+        "Lower the heat to medium-low and return the chicken and its juices to the skillet. Whisk the sauce again and pour it in. Toss until the chicken is coated, about 2 minutes.",
+        "Turn the heat to low and stir in the peanuts, lime juice and green parts of the green onions. Serve over rice or in lettuce leaves, topped with more peanuts and green onions.",
+        "Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats, page 154."
+      ]
+    },
+    {
+      "id": "ground-turkey-enchilada-skillet",
+      "name": "Ground Turkey Enchilada Skillet",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground turkey",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "or chicken, preferably dark meat"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "finely diced (1 cup)"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chili powder",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Diced green chiles",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "4-ounce can, mild"
+        },
+        {
+          "name": "Green enchilada sauce",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "15-ounce jar"
+        },
+        {
+          "name": "Pinto beans",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "15-ounce can, drained and rinsed"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice (about ½ lime), plus wedges for serving"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup finely chopped leaves, plus more for garnish"
+        },
+        {
+          "name": "Corn tortillas",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "about 4, sliced into ¼-inch strips (1 cup)"
+        },
+        {
+          "name": "Shredded Monterey Jack",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "shredded"
+        },
+        {
+          "name": "Green cabbage",
+          "qty": 0.25,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "shredded (1 cup), for serving"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "sliced, for serving"
+        },
+        {
+          "name": "Jalapeño (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F.",
+        "Heat the oil in a large oven-safe skillet or 3.5-quart braiser over medium-high. Cook the turkey and onion, breaking up the meat, until cooked through and no longer pink, about 7 minutes. Drain off the excess fat and return the turkey and onion to the pan.",
+        "Lower the heat to medium and add the cumin, garlic powder, chili powder, salt, pepper and green chiles. Cook, stirring, to toast the spices, about 2 minutes.",
+        "Pour in the enchilada sauce, beans, broth and lime juice and bring to a simmer. Add the cilantro and sliced tortillas, toss gently, then spread everything into a single layer and sprinkle the cheese over the top.",
+        "Bake uncovered until the cheese is golden brown, about 15 minutes. Let it rest 5 minutes so the sauce thickens a bit more.",
+        "Put a pile of shredded cabbage in the center of the skillet and scoop the mixture into four shallow bowls. Serve with sliced avocado, jalapeño (if using) and lime wedges.",
+        "Tortilla tip: if your tortillas are large, halve them before slicing into ¼-inch strips. Leftovers keep up to 3 days in the fridge, with the garnishes separate. Reheat in a 350°F oven 15 to 20 minutes or in the microwave. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "hibachi-inspired-steak-stir-fry-with-ginger-sauce",
+      "name": "Hibachi-Inspired Steak Stir-Fry with Ginger Sauce",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "½ medium (1 cup medium-diced) in the sauce, ½ medium (1 cup thinly sliced) in the stir-fry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tsp, grated"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lemon)"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 6,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup in the sauce, 2 tbsp in the stir-fry"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the sauce, 1 tsp on the steak, plus a pinch with the vegetables"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ½ tsp in the sauce, ½ tsp on the steak"
+        },
+        {
+          "name": "Filet or sirloin steak",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "patted dry and cut into 1-inch cubes"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "plus more as needed"
+        },
+        {
+          "name": "Zucchini",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, cut in half crosswise, then each half quartered lengthwise"
+        },
+        {
+          "name": "Carrot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, cut in half crosswise, then each half quartered lengthwise"
+        },
+        {
+          "name": "Unsalted butter",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "omit for paleo and dairy-free"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        }
+      ],
+      "instructions": [
+        "Ginger sauce: blend the sauce ingredients in a food processor or blender until just smooth. Set aside. It keeps 3 days in the fridge.",
+        "Season the steak with the salt and pepper and toss to coat.",
+        "Heat the avocado oil in a large skillet over medium-high. Working in batches so the pan isn't crowded, sear the steak in a single layer until golden brown on all sides, about 2 minutes per side. Move it to a clean plate with a slotted spoon.",
+        "If the skillet is dry, add 1 tablespoon more avocado oil. Cook the onion, zucchini, carrots and a pinch of salt, tossing, until slightly tender, about 5 minutes.",
+        "Lower the heat to medium. Stir in the butter (if using), coconut aminos and sesame seeds, then return the steak and its juices to the pan. Cook, tossing, until the steak is coated and the sauce has reduced, about 2 minutes.",
+        "Serve over rice with the ginger sauce on the side for dipping. Keep the stir-fry and sauce in separate containers in the fridge up to 3 days. From your cookbook, Everyday Eats, page 174."
+      ]
+    },
+    {
+      "id": "calabrian-chile-meatball-orzo-skillet",
+      "name": "Calabrian Chile Meatball Orzo Skillet",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Calabrian peppers",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "jarred, chopped: 2 tbsp in the meatballs, 1 tbsp in the orzo"
+        },
+        {
+          "name": "Eggs",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Dairy & eggs",
+          "prep": "large"
+        },
+        {
+          "name": "Panko breadcrumbs",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "gluten-free"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp in the meatballs, 1 tsp in the orzo"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh rosemary",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tsp finely chopped leaves"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Cherry tomatoes",
+          "qty": 1,
+          "unit": "pint",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Orzo",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "or gluten-free orzo"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½"
+        },
+        {
+          "name": "Shredded mozzarella",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "shredded"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup torn leaves, for serving"
+        }
+      ],
+      "instructions": [
+        "Meatballs: in a large bowl, mix the beef, Calabrian peppers, egg, panko, salt, Italian seasoning, pepper, garlic and rosemary with clean hands until just combined. Don't overmix or they'll be tough. Form 16 meatballs, about 1 inch each.",
+        "Heat the oil in a large, deep skillet or 3.5-quart braiser with a lid over medium-high. Brown the meatballs in a single layer, 2 to 3 minutes per side. They don't need to be cooked through. Move them to a clean plate.",
+        "Orzo: lower the heat to medium, add the shallot and tomatoes and cook, stirring, until the tomatoes blister and burst, 3 to 4 minutes.",
+        "Stir in the salt, tomato paste and Calabrian peppers. Pour in the wine and cook, stirring, until reduced by half, about 2 minutes.",
+        "Add the orzo, broth and lemon zest and bring to a rapid simmer, then lower to a gentle simmer (about medium-low). Nestle the meatballs into the pan, cover, and cook about 10 minutes, stirring once halfway so the orzo doesn't stick, until the orzo is al dente and the meatballs are cooked through.",
+        "Off the heat, stir once more and sprinkle the mozzarella over the top. Cover for about 2 minutes to melt it. Top with the basil and divide among four shallow bowls.",
+        "Leftovers keep up to 3 days in the fridge. Reheat with a splash of broth. From your cookbook, Everyday Eats, page 173 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "honey-orange-pork-and-snap-pea-stir-fry",
+      "name": "Honey-Orange Pork and Snap Pea Stir-Fry",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Coconut aminos",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Sriracha",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "no-sugar-added"
+        },
+        {
+          "name": "Orange",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp grated zest, plus 1 tbsp freshly squeezed juice"
+        },
+        {
+          "name": "Honey",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Pork tenderloin",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "silver skin removed, patted dry, and cut into 1-inch cubes"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Sugar snap peas",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "for garnish"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        }
+      ],
+      "instructions": [
+        "Sauce: whisk all the sauce ingredients in a small bowl until combined. Set aside.",
+        "In a large bowl, toss the pork with the salt, pepper and tapioca flour until coated.",
+        "Heat the avocado oil in a large, deep nonstick skillet over medium-high. Add the pork in a single layer and cook undisturbed until a golden-brown crust forms on one side, 3 to 4 minutes. Flip and keep cooking, tossing now and then, until browned on both sides and cooked through, 3 to 4 more minutes. Move the pork to a clean plate with a slotted spoon.",
+        "Lower the heat to medium. Cook the shallot for 1 minute until it begins to soften. Add the snap peas and 2 tablespoons water, scraping up the browned bits, and cook, stirring now and then, until the water has evaporated and the peas are bright green and slightly tender but still crunchy, about 4 minutes.",
+        "Return the pork and its juices to the pan and toss. Pour in the sauce, stir, and bring to a simmer. Cook, tossing, until the pork and peas are well coated, about 2 more minutes.",
+        "Sprinkle with toasted sesame seeds and serve over rice. Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "creamy-peperoncini-chicken",
+      "name": "Creamy Peperoncini Chicken",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "small, pounded to an even ½ inch"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "cassava flour"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Unsalted butter",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": ""
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, thinly sliced (about 1 cup)"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, seeded and thinly sliced"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Peperoncini",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "jarred: ½ cup sliced peppers, drained, plus 3 tbsp of the brine"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Whole-grain Dijon mustard",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp freshly squeezed juice (about ½ lemon)"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "whole-milk (½ cup), or sour cream"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.125,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "2 tbsp, grated"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp finely chopped Italian parsley"
+        }
+      ],
+      "instructions": [
+        "Cover the chicken breasts with parchment or plastic wrap and pound to an even ½-inch thickness. Season both sides with the salt, pepper and Italian seasoning, then sprinkle with the flour so the pieces are evenly coated.",
+        "Heat the oil in a large, deep skillet or 3.5-quart braiser over medium-high. Cook the chicken until golden brown on both sides, 2 to 3 minutes per side. It won't be cooked through yet. Move it to a clean plate.",
+        "Lower the heat to medium, add the butter and let it melt. Cook the onion and bell pepper, stirring, until they begin to soften, about 3 minutes.",
+        "Add the garlic and peperoncini brine, scraping up the browned bits, and cook until the liquid has reduced by half, 1 to 2 minutes.",
+        "Add both mustards, the broth, lemon juice and peperoncini peppers, stir, and bring to a rapid simmer. Lower to a gentle simmer (about medium-low) and stir in the yogurt and Parmesan until the sauce is smooth. Don't let it boil or the yogurt will curdle.",
+        "Nestle the chicken and its juices into the pan and cook, uncovered and gently simmering, until the sauce thickens and the chicken is cooked through, about 5 more minutes. Finish with the parsley.",
+        "Leftovers keep up to 3 days in the fridge. Reheat gently over medium-low with a splash of broth. From your cookbook, Everyday Eats, page 146."
+      ]
+    },
+    {
+      "id": "slow-cooker-bbq-beef-lettuce-wraps",
+      "name": "Slow Cooker or Pressure Cooker BBQ Beef Lettuce Wraps",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Red onion",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small: 1 cup halved and thinly sliced for the beef, 1 more cup for serving"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Pickled jalapeños",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "2 tbsp of the brine for the beef, plus slices for serving"
+        },
+        {
+          "name": "Barbecue sauce",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "no-sugar-added: ½ cup in the sauce, ¼ cup stirred in at the end, plus more for serving"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "flank steak, trimmed of excess fat, patted dry, and cut into 4 equal-size pieces"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lime)"
+        },
+        {
+          "name": "Butter lettuce",
+          "qty": 2,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "separated into leaves"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced"
+        },
+        {
+          "name": "Dill pickles",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "sliced, for serving"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "chopped leaves, for serving"
+        }
+      ],
+      "instructions": [
+        "Slow cooker: whisk the garlic, red onion, tomato paste, jalapeño brine, ½ cup of the barbecue sauce, broth, coconut sugar, mustard, paprika and garlic powder in the slow cooker. Season the steak with the salt and pepper and nestle it into the sauce. Cover and cook on high 4 hours or on low 8 hours, until fall-apart tender.",
+        "Pressure cooker instead: whisk the same sauce in the pressure cooker, nestle in the seasoned steak, seal the lid and vent, and cook on manual or pressure-cook for 60 minutes. Release the pressure manually by turning the valve and letting it vent completely.",
+        "Move the steak to a rimmed sheet pan and shred it with two forks. Add the remaining ¼ cup barbecue sauce, the lime juice and about ½ cup of the cooking liquid and toss.",
+        "To serve, layer two lettuce leaves on each plate, add the beef and finish with red onion, avocado, pickles, pickled jalapeños, more barbecue sauce and cilantro.",
+        "Leftovers keep up to 4 days in the fridge, with the lettuce and toppings separate. Reheat the beef in a skillet over medium heat or in the microwave in 1-minute bursts. From your cookbook, Everyday Eats, page 169 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "creamy-sun-dried-tomato-basil-chicken",
+      "name": "Creamy Sun-Dried Tomato Basil Chicken",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "small, trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, ½ tsp in the sauce"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ½ tsp on the chicken, ½ tsp in the sauce"
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "cassava flour"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin, plus more if needed"
+        },
+        {
+          "name": "Cherry tomatoes",
+          "qty": 1,
+          "unit": "pint",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Sun-dried tomatoes",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "julienne-cut, oil-packed, drained"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "unsweetened full-fat (1 cup)"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup thinly sliced leaves, plus more for garnish"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (1 lemon)"
+        },
+        {
+          "name": "Pine nuts",
+          "qty": 0.125,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "2 tbsp, toasted, optional for serving"
+        }
+      ],
+      "instructions": [
+        "Season both sides of the chicken with 1 teaspoon of the salt and ½ teaspoon of the pepper. Dredge each piece in the flour in a large, shallow bowl until coated on both sides, shaking off the excess.",
+        "Heat the oil in a large, deep skillet or 3.5-quart braiser over medium-high. Cook the chicken until golden brown on both sides, 2 to 3 minutes per side. It will finish cooking in the sauce. Move it to a clean plate.",
+        "Lower the heat to medium and add the cherry tomatoes, pepper flakes, garlic, shallot and sun-dried tomatoes. Cook, stirring, until the cherry tomatoes blister and soften, about 4 minutes. It's fine if they burst.",
+        "Stir in the tomato paste and broth and cook, stirring, until the liquid has reduced by half, about 3 minutes.",
+        "Add the coconut milk, the remaining ½ teaspoon salt and ½ teaspoon pepper and bring to a rapid simmer, then lower to a gentle simmer (about medium-low). Nestle the chicken into the sauce and top with the basil. Simmer uncovered until the sauce thickens and the chicken is cooked through, 7 to 10 minutes.",
+        "Take it off the heat and stir in the lemon juice. Garnish with more basil and toasted pine nuts, if you like. Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats, page 153 (Poultry)."
+      ]
+    },
+    {
+      "id": "skillet-creamed-corn-chicken",
+      "name": "Skillet Creamed Corn Chicken",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "trimmed of excess fat, patted dry, and pounded to ½ inch"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, 1 tsp with the corn"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ½ tsp on the chicken, ½ tsp with the corn"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "cassava flour"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Poblano pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, seeded and sliced into ¼-inch strips"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, halved and thinly sliced (½ cup)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Sweet corn",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "ears, husked, kernels removed"
+        },
+        {
+          "name": "Cream cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "or dairy-free cream cheese"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus 2 tbsp juice (about 1 lime), and wedges for serving"
+        },
+        {
+          "name": "Shredded Monterey Jack",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "omit for dairy-free"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp minced leaves, for serving"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F. Cover the chicken breasts with parchment or plastic wrap and pound to an even ½-inch thickness.",
+        "Season both sides with 1 teaspoon of the salt, ½ teaspoon of the pepper and the chili powder. Dredge each piece in the flour in a large, shallow bowl until coated on both sides, shaking off the excess.",
+        "Heat the oil in a large oven-safe skillet or 3.5-quart braiser over medium-high. Cook the chicken until golden brown on both sides, 2 to 3 minutes per side. It will finish cooking in the oven. Move it to a clean plate.",
+        "Lower the heat to medium. Cook the poblano, onion and garlic, stirring, until they begin to soften, about 3 minutes.",
+        "Add the corn kernels, the remaining 1 teaspoon salt and the remaining ½ teaspoon pepper and cook, stirring, until the corn begins to soften, about 2 more minutes.",
+        "Lower the heat to medium-low and stir in the cream cheese, broth, lime zest and lime juice until well combined.",
+        "Nestle the chicken back into the skillet and sprinkle the Monterey Jack over it. Bake uncovered until the cheese is melted and the chicken is cooked through, 12 to 15 minutes. Garnish with the cilantro and serve with lime wedges.",
+        "Leftovers keep up to 3 days in the fridge. Reheat in a skillet over medium heat with a splash of broth. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "tangy-thai-braised-chicken",
+      "name": "Tangy Thai Braised Chicken",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Coconut aminos",
+          "qty": 5.333333,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "⅓ cup"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "unsweetened full-fat (½ cup used)"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Thai red curry paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Bone-in, skin-on chicken leg quarters",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "small, whole (or 8 thighs), trimmed of excess fat and patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shallot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1-inch piece, peeled and cut into thin matchsticks"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "6, cut into 2-inch pieces"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "leaves, for garnish"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "leaves, for garnish"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice, for serving"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "cut into wedges, for serving"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F.",
+        "Braising liquid: whisk the coconut aminos, coconut milk, broth, curry paste, fish sauce, coconut sugar and garlic in a medium bowl until very well combined. Set aside.",
+        "Season both sides of the chicken with the salt and pepper. Heat the oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium-high. Arrange the chicken skin side down in a single layer and cook until a deep golden-brown crust forms, 6 to 7 minutes. It won't be cooked through yet.",
+        "Take the pan off the heat and flip the chicken skin side up. Scatter the shallots, ginger and green onions over and around it, then pour the braising liquid around and over the chicken.",
+        "Bake uncovered until the chicken is cooked through and fork-tender, about 50 minutes. Let it rest about 5 minutes, then garnish with the Thai basil and cilantro.",
+        "Serve over rice in four shallow bowls, ladling the broth over and around the chicken, with lime wedges. Leftovers keep up to 3 days in the fridge. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "chipotle-chimichurri-steak-bite-bowls",
+      "name": "Chipotle Chimichurri Steak Bite Bowls",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Chipotle chiles in adobo",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "2 canned peppers in adobo sauce, minced (about 2 tbsp)"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 cup roughly chopped leaves and tender stems for the chimichurri, plus more for serving"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 cup roughly chopped leaves and tender stems"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "roughly chopped"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin (½ cup)"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lime)"
+        },
+        {
+          "name": "Red wine vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the chimichurri, 2 tsp on the steak"
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "sirloin or flank, trimmed of excess fat, patted dry, and cut into 1-inch cubes"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice, for serving"
+        },
+        {
+          "name": "Romaine lettuce",
+          "qty": 1,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "shredded"
+        },
+        {
+          "name": "Pico de gallo",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce",
+          "prep": "for serving"
+        }
+      ],
+      "instructions": [
+        "Chimichurri: pulse the chipotles, cilantro, parsley, garlic, olive oil, lime juice, vinegar and ½ teaspoon salt in a food processor or blender until combined but still slightly chunky, with flecks of herbs visible. Set aside. For the best flavor, let it come to room temperature and stir well before serving.",
+        "Cut the steak into 1-inch cubes and season generously with 2 teaspoons salt, the pepper and the cumin. Toss until coated.",
+        "Heat the avocado oil in a large skillet, preferably cast iron, over medium-high. Working in batches so the pan isn't crowded, sear the steak cubes in a single layer, undisturbed, for 2 minutes, until a deep golden crust forms on one side. Flip and cook 1 to 2 minutes more. You want a quick sear, not overcooked steak. Move it to a clean plate and let it rest a couple of minutes.",
+        "Bowls: divide rice among four bowls. Add plenty of romaine, a big scoop of steak bites and the pico de gallo. Finish with a generous dollop of chimichurri and top with cilantro.",
+        "Leftovers keep up to 3 days in the fridge, with the chimichurri separate. Reheat the steak in a skillet over medium-low or in the microwave just until warmed. From your cookbook, Everyday Eats, page 166."
+      ]
+    },
+    {
+      "id": "sloppy-janes",
+      "name": "Sloppy Janes",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Sweet potato",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, scrubbed and patted dry"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp on the potatoes, 2 tbsp for the beef mixture"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp on the potatoes, 1 tsp in the beef mixture"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium (1 cup finely diced)"
+        },
+        {
+          "name": "Green bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (1 cup finely diced)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yellow mustard",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "finely chopped leaves, optional for garnish"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F and line a sheet pan with parchment paper.",
+        "Scrub and pat dry the sweet potatoes and set them on the pan. Pierce each about six times with a fork, drizzle with 2 tablespoons oil, rub it in, and sprinkle with ½ teaspoon salt. Bake until tender, about 40 minutes.",
+        "Meanwhile, heat the remaining 2 tablespoons oil in a large skillet over medium. Cook the onion, bell pepper and garlic, stirring, until tender, about 4 minutes.",
+        "Add the beef and cook, breaking it up, until cooked through and no longer pink, about 7 minutes. Drain off the excess fat and return the beef to the pan.",
+        "Stir in the salt, pepper, chili powder, tomato paste, mustard and coconut aminos until the meat is coated, 3 to 4 more minutes. Turn the heat to low, cover, and keep warm until the potatoes are ready.",
+        "Let the potatoes cool enough to handle. Carve a slit in the top of each, fluff the inside with a fork, and spoon the beef mixture into the center. Garnish with parsley if you like.",
+        "Leftovers keep up to 3 days in the fridge. Reheat in the microwave in 1-minute bursts, stirring the filling after each. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "chorizo-and-sweet-potato-street-tacos",
+      "name": "Chorizo and Sweet Potato Street Tacos",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Fresh Mexican chorizo",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "sausage (see the book's note)"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "only if the skillet seems dry"
+        },
+        {
+          "name": "White onion",
+          "qty": 0.75,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "½ medium (1 cup finely diced) for the filling, plus ¼ small (¼ cup finely diced) for serving"
+        },
+        {
+          "name": "Poblano pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (1 cup finely diced)"
+        },
+        {
+          "name": "Sweet potato",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small, peeled and small-diced (1 cup)"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus a little to taste in the salsa"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large: ½ in the salsa, ½ cubed for the tacos"
+        },
+        {
+          "name": "Salsa verde",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "1 cup"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice (about ½ lime), plus wedges for serving"
+        },
+        {
+          "name": "Flour tortillas (4-inch)",
+          "qty": 12,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "or corn tortillas for gluten-free, or grain-free tortillas"
+        },
+        {
+          "name": "Queso fresco",
+          "qty": 4,
+          "unit": "oz",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled (omit for dairy-free)"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "finely chopped"
+        }
+      ],
+      "instructions": [
+        "Line a plate with paper towels. Cook the chorizo in a large skillet over medium-high, breaking it up, until browned, crumbly and fully cooked with no pink left, 7 to 9 minutes. Move it to the plate with a slotted spoon.",
+        "Lower the heat to medium, adding the oil only if the skillet seems dry. Cook the onion, poblano, sweet potato and salt, stirring often, until the sweet potato is tender, about 8 minutes.",
+        "Return the chorizo to the skillet and toss until it's warmed through and combined, 2 to 3 minutes. Turn the heat to low to keep warm.",
+        "Avocado salsa: blend the ½ avocado, salsa verde and lime juice until smooth in a small blender or with an immersion blender in a wide-mouth jar. Add salt to taste. It keeps up to 3 days in the fridge.",
+        "Warm the tortillas one at a time in a dry skillet over medium heat, about 30 seconds per side, or char them over a gas flame for a few seconds.",
+        "Fill the tortillas with the chorizo and sweet potato mixture, top with a dollop of avocado salsa and the cubed avocado, and finish with the queso fresco (if using), onion and cilantro. Serve with lime wedges.",
+        "Leftovers keep up to 3 days in the fridge, with the tortillas, salsa and toppings separate. Reheat the filling in a skillet over medium. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "italian-sausage-with-brothy-white-beans-and-kale",
+      "name": "Italian Sausage with Brothy White Beans and Kale",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Italian sausage links",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "mild or hot"
+        },
+        {
+          "name": "Shallot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and thinly sliced (1 cup)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "optional"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": ""
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cannellini beans",
+          "qty": 2,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "15-ounce cans, drained and rinsed"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus 1 tbsp juice (about ½ lemon)"
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tsp leaves (or ½ tsp dried), plus more for garnish"
+        },
+        {
+          "name": "Lacinato kale",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4 cups de-ribbed and roughly chopped"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "freshly grated, for serving (omit for dairy-free); the book gives no amount, so ¼ cup is my estimate"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large skillet or 3.5-quart braiser with a lid over medium. Sear the sausage links until browned on both sides, 3 to 4 minutes per side. They don't need to be cooked through yet. Move them to a plate.",
+        "In the same skillet, cook the shallots, garlic, pepper flakes (if using), salt, pepper and Italian seasoning, stirring, until softened, about 2 minutes.",
+        "Pour in the wine, scraping up the browned bits, and simmer 2 minutes to reduce slightly.",
+        "Stir in the tomato paste. Add the beans, broth, lemon zest and thyme, bring to a rapid simmer, then lower to a gentle simmer (about medium-low). Nestle the sausages back in, cover, and cook 10 minutes so the flavors meld and the sausage finishes cooking.",
+        "Stir in the kale and lemon juice and let the kale wilt into the broth, 2 to 3 minutes. Take it off the heat.",
+        "Divide the brothy beans among four shallow bowls and top each with a sausage. Garnish with Parmesan (if using) and fresh thyme.",
+        "Leftovers keep up to 3 days in the fridge. Reheat in a skillet over medium. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "smashed-lamb-burger-tacos-with-harissa-yogurt-sauce",
+      "name": "Smashed Lamb Burger Tacos with Harissa-Yogurt Sauce",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "whole-milk (½ cup)"
+        },
+        {
+          "name": "Harissa paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "mild"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (about 1 lemon)"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.75,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "¼ tsp in the sauce, 1½ tsp in the burgers"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.75,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ¼ tsp in the sauce, ½ tsp in the burgers"
+        },
+        {
+          "name": "Ground lamb",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground coriander",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Allspice",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp to start, more for each batch; the book gives no total, so 2 tbsp is my estimate"
+        },
+        {
+          "name": "Flour tortillas (6-inch)",
+          "qty": 8,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "or almond-flour tortillas for gluten-free and grain-free"
+        },
+        {
+          "name": "Romaine lettuce",
+          "qty": 0.5,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "2 cups thinly sliced"
+        },
+        {
+          "name": "Cherry tomatoes",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "quartered"
+        },
+        {
+          "name": "Red onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Fresh dill",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup roughly chopped"
+        },
+        {
+          "name": "Feta",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "crumbled"
+        }
+      ],
+      "instructions": [
+        "Sauce: whisk the yogurt, harissa, lemon juice, salt and pepper in a small bowl and keep it in the fridge until serving. It keeps 5 days.",
+        "Burgers: in a medium bowl, mix the lamb, garlic, cumin, coriander, oregano, allspice, salt and pepper with clean hands until just combined, without overworking the meat. Roll into 8 equal balls, about 2 inches each.",
+        "Heat 1 tablespoon of the oil in a large skillet or griddle over medium-high. Place 1 or 2 lamb balls in the pan, set a tortilla on top of each, and press down hard with a grilling press or sturdy spatula to smash each into a thin patty. Cook undisturbed 3 to 4 minutes, until the meat is browned and cooked through.",
+        "Scrape under each burger with a stiff spatula and flip so the tortilla is on the bottom. Cook 1 to 2 more minutes, until the tortilla is warm and slightly crisp. Move to a platter and repeat with the rest, adding oil for each batch. Don't stack the tacos or the tortillas get soggy.",
+        "For each taco, add a handful of romaine, tomatoes, onion, dill and feta, and drizzle generously with the harissa-yogurt sauce. Serve immediately.",
+        "From your cookbook, Everyday Eats, page 183 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "red-curry-pork-stir-fry",
+      "name": "Red Curry Pork Stir-Fry",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground pork",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp with the pork, ½ tsp with the beans"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shallot",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (¾ cup minced)"
+        },
+        {
+          "name": "Thai red curry paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yardlong beans",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "trimmed into 2-inch pieces (French or green beans work too)"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp freshly squeezed juice (about ½ lime)"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup packed leaves"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup roughly chopped leaves and tender stems"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        }
+      ],
+      "instructions": [
+        "Heat the avocado oil in a large, deep skillet or wok over medium-high. Add the pork and press it down into a single layer with the back of a spatula. Cook undisturbed until one side is crisp and golden, about 4 minutes. Add 1 teaspoon of the salt and keep cooking, breaking up the pork, until cooked through and no longer pink, about 3 more minutes. Move it to a clean plate with a slotted spoon.",
+        "Lower the heat to medium and add the sesame oil and shallots. Cook, stirring, until softened, about 2 minutes.",
+        "Add the curry paste, yardlong beans, the remaining ½ teaspoon salt and the pepper. Cook, tossing often, until the beans are crisp-tender, about 5 minutes.",
+        "Add the garlic, coconut aminos, fish sauce and coconut sugar. Stir, bring to a simmer, and cook, tossing, until the beans are well coated, 2 to 3 more minutes.",
+        "Lower the heat to medium-low and return the pork and its juices to the pan. Stir in the lime juice, basil and cilantro until the herbs just wilt. Serve right away over rice.",
+        "Leftovers keep up to 3 days in the fridge. Reheat in a skillet or wok over medium heat so the pork stays tender and the beans crisp. From your cookbook, Everyday Eats, page 191 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "chili-crisp-citrus-salmon",
+      "name": "Chili Crisp Citrus Salmon",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large (½ cup halved and thinly sliced)"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "4, cut into 2-inch pieces"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the pan, ½ tsp on the salmon"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ¼ tsp in the pan, ¼ tsp on the salmon"
+        },
+        {
+          "name": "Navel oranges",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, peeled and cut into ¼-inch rounds (see the book's note)"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chili crisp",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "2 tbsp, plus more for serving"
+        },
+        {
+          "name": "Salmon fillets",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "6-ounce skinless center-cut, patted dry, pin bones removed"
+        },
+        {
+          "name": "Fresh mint",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "leaves, for garnish"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        }
+      ],
+      "instructions": [
+        "Put a rack in the center of the oven and heat it to 400°F.",
+        "Heat the avocado oil and sesame oil in a large, deep oven-safe skillet or 3.5-quart braiser over medium-high. Cook the shallot, green onions, ½ teaspoon of the salt and ¼ teaspoon of the pepper, stirring, until just tender, about 2 minutes.",
+        "Add the orange rounds, coconut aminos, honey, vinegar and chili crisp, stir, and bring to a simmer. Nestle the salmon into the skillet and spoon some of the sauce over it. Sprinkle the tops with the remaining ½ teaspoon salt and ¼ teaspoon pepper.",
+        "Bake until the salmon is cooked through and flakes easily with a fork, 8 to 10 minutes.",
+        "Garnish with mint and serve over rice with a drizzle of extra chili crisp. To peel the oranges, slice off the top and bottom, then use a paring knife to cut away the rind and white pith in curving slices, then cut into rounds.",
+        "From your cookbook, Everyday Eats, page 222."
+      ]
+    },
+    {
+      "id": "harissa-salmon-bites-with-sesame-cucumber-salad",
+      "name": "Harissa Salmon Bites with Sesame Cucumber Salad",
+      "servings": 4,
+      "source": "",
+      "image": "images/harissa-salmon-bites.jpg",
+      "ingredients": [
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "whole-milk (¼ cup)"
+        },
+        {
+          "name": "Tahini",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Lemon",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp juice in the salad (about 1 lemon) and 2 tbsp in the glaze (about 1 lemon)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 1,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the salad, 1½ tsp on the salmon"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ½ tsp in the salad, ½ tsp on the salmon"
+        },
+        {
+          "name": "English cucumbers",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium"
+        },
+        {
+          "name": "Red onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup roughly chopped leaves, plus more for garnish"
+        },
+        {
+          "name": "Fresh dill",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup roughly chopped"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "plus more for garnish"
+        },
+        {
+          "name": "Salmon",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "skinless center-cut, patted dry, pin bones removed, cut into 1-inch cubes"
+        },
+        {
+          "name": "Arrowroot flour",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Harissa paste",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "mild"
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice, or gluten-free orzo"
+        }
+      ],
+      "instructions": [
+        "Put racks in the center and at the top of the oven and heat it to 425°F. Line a sheet pan with parchment paper.",
+        "Salad: whisk the yogurt, tahini, sesame oil, 2 tablespoons lemon juice, garlic, ½ teaspoon salt and ½ teaspoon pepper in a large bowl. It will look very thick but thins out once the vegetables go in.",
+        "Cut the cucumbers in half lengthwise, scoop out the seeds, and slice into half-moons (about 4 cups). Add them to the dressing with the onion and toss until the cucumbers release some liquid and the dressing thins. Add the cilantro, dill and sesame seeds, toss again, and chill until the salmon is ready.",
+        "Salmon: toss the salmon cubes with the arrowroot, paprika, garlic powder, oregano, 1½ teaspoons salt, ½ teaspoon pepper and the avocado oil until evenly coated. Spread on the pan in a single layer with space between pieces and bake on the middle rack for 10 minutes.",
+        "Meanwhile, whisk the harissa, the other 2 tablespoons lemon juice and the honey in a small bowl.",
+        "After 10 minutes, take the pan out and pour the harissa mixture over the salmon, tossing to coat. Turn the broiler on high and broil on the top rack until the salmon is slightly charred, about 3 more minutes, watching closely so it doesn't burn. Let it cool slightly.",
+        "Divide the rice or orzo among four shallow bowls, top with the sesame cucumber salad and the salmon, and garnish with more cilantro and sesame seeds. From your cookbook, Everyday Eats, page 214."
+      ]
+    },
+    {
+      "id": "sheet-pan-shrimp-fajita-tacos",
+      "name": "Sheet Pan Shrimp Fajita Tacos",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Mini bell peppers",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "seeded and sliced into thin rounds"
+        },
+        {
+          "name": "Red onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Serrano pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced into rounds, optional"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp on the vegetables, 2 tbsp on the shrimp"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp on the vegetables, 1½ tsp on the shrimp"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground, divided"
+        },
+        {
+          "name": "Shrimp",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "peeled, deveined, tail-off (36/40 count), patted dry"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fresh oregano",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tbsp finely chopped leaves"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½, plus wedges for serving"
+        },
+        {
+          "name": "Grain-free tortillas",
+          "qty": 10,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "or lettuce cups"
+        },
+        {
+          "name": "Avocado",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "mashed"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup freshly chopped leaves"
+        },
+        {
+          "name": "Salsa",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "for serving"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 425°F and line a sheet pan with parchment paper.",
+        "Put the bell peppers, onion and serrano (if using) on the pan. Drizzle with 2 tablespoons of the oil, ½ teaspoon of the salt and ½ teaspoon of the pepper, toss, and spread into an even layer. Roast until just softened, about 10 minutes.",
+        "Meanwhile, toss the shrimp in a large bowl with the remaining 2 tablespoons oil, 1½ teaspoons salt, ½ teaspoon pepper, the chili powder, garlic powder, paprika, cumin, oregano and lime zest until evenly coated.",
+        "Take the vegetables out, add the shrimp, toss, and spread into an even layer. Roast until the shrimp are cooked through, about 10 minutes.",
+        "If using tortillas, warm them one at a time in a dry skillet over medium heat, about 30 seconds per side, or char them over a gas flame for a few seconds.",
+        "For each taco, spread mashed avocado on the bottom of a tortilla (or inside a lettuce cup), fill with the shrimp and vegetables, and finish with cilantro and a drizzle of salsa. Serve with lime wedges.",
+        "Leftovers keep up to 2 days in the fridge, with the tortillas and toppings separate. Reheat quickly in a skillet over medium or in the air fryer at 350°F for 3 to 4 minutes, and avoid the microwave, which makes shrimp rubbery. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "garlic-shrimp-stir-fry",
+      "name": "Garlic Shrimp Stir-Fry",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "low-sodium"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Broccoli florets",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "roughly chopped (about 1 medium head)"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, seeded and thinly sliced"
+        },
+        {
+          "name": "Red onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup halved and thinly sliced)"
+        },
+        {
+          "name": "Shrimp",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "peeled, deveined, tail-off (31/35 count), patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        },
+        {
+          "name": "Chili crisp",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "optional, for serving"
+        }
+      ],
+      "instructions": [
+        "Sauce: whisk the coconut aminos, fish sauce, broth, sesame oil, honey, garlic, ginger and tapioca flour in a small bowl until well combined. Set aside.",
+        "Heat the oil in a large, deep nonstick skillet over medium. Cook the broccoli, bell pepper and onion, stirring, until slightly tender, 4 to 5 minutes.",
+        "Add the shrimp, salt and pepper and cook, tossing, until the shrimp begin to turn pink. They don't need to be cooked through, since they finish in the sauce.",
+        "Pour in the sauce and cook, tossing often, until the shrimp are cooked through and the sauce has thickened, about 4 more minutes. Toss once more to coat.",
+        "Serve over rice with a drizzle of chili crisp, if you like.",
+        "Leftovers keep up to 3 days in the fridge. Reheat in a hot skillet or wok just until warmed through, about 2 minutes, and avoid the microwave, which makes shrimp rubbery. From your cookbook, Everyday Eats, page 204."
+      ]
+    },
+    {
+      "id": "skillet-unstuffed-cabbage-rolls",
+      "name": "Skillet Unstuffed Cabbage Rolls",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (1 cup small-diced)"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus more to taste"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground, plus more to taste"
+        },
+        {
+          "name": "Allspice",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Green cabbage",
+          "qty": 0.5,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "medium, roughly chopped (4 cups)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tamari",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Basmati rice",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "rinsed until the water runs clear"
+        },
+        {
+          "name": "Fire-roasted tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "14.5-ounce can"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp"
+        },
+        {
+          "name": "Lemon",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice (about ½ lemon), plus wedges for serving"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup finely chopped, plus more for serving"
+        },
+        {
+          "name": "Fresh dill",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "¼ cup finely chopped, plus more for serving"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "whole-milk, optional for topping (omit for dairy-free); the book gives no amount, so 1 cup is my estimate"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep skillet or 3.5-quart braiser with a lid over medium-high. Cook the onion and beef, breaking up the meat, until browned and no longer pink and the onions are tender, about 7 minutes. Drain off the excess fat and return the beef and onions to the pan.",
+        "Lower the heat to medium and add the salt, pepper, allspice, cumin and paprika. Cook, tossing, until the spices are fragrant, about 2 minutes.",
+        "Add the cabbage and garlic and cook, tossing, until the cabbage is slightly softened, about 3 minutes. Stir in the tomato paste and tamari until well combined.",
+        "Add the rice, tomatoes, broth, coconut sugar, lemon juice, parsley and dill and stir. Bring to a rapid simmer, then lower to a gentle simmer (about medium-low), cover, and cook 20 minutes. Take the skillet off the heat and keep it covered 10 more minutes so the rice steams until tender.",
+        "Fluff the rice with a fork and garnish with more dill and parsley. Scoop into bowls and top with a dollop of yogurt, if you like, with lemon wedges on the side.",
+        "Leftovers keep up to 3 days in the fridge, separate from the toppings. Reheat gently in a skillet over medium or in the microwave in 1-minute bursts, stirring after each. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "sheet-pan-kofta-meatballs-with-veggies",
+      "name": "Sheet Pan Kofta Meatballs with Veggies",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Red bell pepper",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, seeded and sliced into ¼-inch strips"
+        },
+        {
+          "name": "Yellow bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, seeded and sliced into ¼-inch strips"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, sliced into ¼-inch strips"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp on the vegetables, 1 tsp in the meatballs"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.75,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: ¼ tsp on the vegetables, ½ tsp in the meatballs"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp on the vegetables, 2 tsp in the meatballs"
+        },
+        {
+          "name": "Ground lamb",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "or ground beef"
+        },
+        {
+          "name": "Eggs",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Dairy & eggs",
+          "prep": "large"
+        },
+        {
+          "name": "Panko breadcrumbs",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "gluten-free"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Ground coriander",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Allspice",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "optional"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 tbsp finely chopped leaves in the meatballs, plus leaves for serving"
+        },
+        {
+          "name": "Hummus",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "store-bought"
+        },
+        {
+          "name": "Pita bread",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Bakery",
+          "prep": "warm (omit for gluten-free and grain-free)"
+        }
+      ],
+      "instructions": [
+        "Put a rack at the top of the oven and heat it to 425°F.",
+        "Put the bell peppers and onion on a large sheet pan, drizzle with the oil, and season with ½ teaspoon salt, ¼ teaspoon pepper and ½ teaspoon cumin. Toss and spread into a single layer.",
+        "In a medium bowl, mix the lamb, egg, panko, garlic, 2 teaspoons cumin, the coriander, allspice, cayenne (if using), 1 teaspoon salt, ½ teaspoon pepper and 2 tablespoons cilantro with clean hands until well combined. Roll into 1½-inch meatballs and nestle them onto the pan with the vegetables.",
+        "Bake on the top rack until the meatballs are golden on top and no longer pink in the center and the vegetables are tender, about 15 minutes.",
+        "To serve, put 1 to 2 tablespoons hummus in a shallow bowl or on a small plate, set the meatballs and vegetables on it, and garnish with cilantro. Serve with warm pita, if using.",
+        "Leftovers keep up to 3 days in the fridge. Reheat on a sheet pan in a 350°F oven for 10 to 12 minutes, in a skillet over medium, or in the microwave in 1-minute bursts. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "sweet-and-savory-korean-style-beef-bowls",
+      "name": "Sweet and Savory Korean-Style Beef Bowls",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp"
+        },
+        {
+          "name": "Gluten-free gochujang",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "see the book's note"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp freshly squeezed juice (about ½ lime)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "White onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (½ cup finely diced)"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "3, thinly sliced on the diagonal, white and green parts kept separate"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kimchi",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "2 cups, store-bought"
+        }
+      ],
+      "instructions": [
+        "Sauce: whisk the sesame oil, coconut aminos, fish sauce, ginger, coconut sugar, gochujang, lime juice and garlic in a small bowl. Set aside.",
+        "Heat the avocado oil in a large, deep skillet over medium-high. Cook the white onion, stirring often, until softened, about 2 minutes.",
+        "Add the beef and press it down into a single layer with the back of a spatula. Cook undisturbed until one side is crisp and golden brown, about 4 minutes. Break it up and keep cooking until cooked through and no longer pink, about 3 more minutes. Drain off the excess fat and return the beef to the pan.",
+        "Add the salt, pepper, white parts of the green onions and the sauce. Cook, stirring, until the sauce coats the meat and reduces slightly, 3 to 4 more minutes.",
+        "Put prepared rice in each bowl, spoon the beef and sauce over it, and garnish with the sesame seeds and the green parts of the green onions. Serve with plenty of kimchi on the side.",
+        "Leftovers keep up to 3 days in the fridge, with the rice and kimchi separate. Reheat the beef in a skillet over medium or in the microwave in 1-minute bursts. From your cookbook, Everyday Eats."
+      ]
+    },
+    {
+      "id": "crunchy-coconut-shrimp-bowls-with-spicy-aioli",
+      "name": "Crunchy Coconut Shrimp Bowls with Spicy Aioli",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Avocado oil mayo",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Sriracha",
+          "qty": 1.5,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 to 2 tbsp, depending on your heat preference"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tbsp juice (about ½ lime) in the aioli, plus wedges for serving"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "¼ tsp in the aioli, ½ tsp in the slaw, 1½ tsp on the shrimp"
+        },
+        {
+          "name": "Red cabbage",
+          "qty": 0.5,
+          "unit": "head",
+          "aisle": "Produce",
+          "prep": "medium, finely shredded (4 cups)"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "3, thinly sliced on the diagonal"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Shrimp",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "peeled, deveined, tail-off (36/40 count), patted dry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Panko breadcrumbs",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "gluten-free"
+        },
+        {
+          "name": "Shredded unsweetened coconut",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cooked rice",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "prepared, steamed"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "thinly sliced"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "chopped leaves"
+        },
+        {
+          "name": "Black sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "optional, for garnish; the book gives no amount"
+        }
+      ],
+      "instructions": [
+        "Aioli: whisk the mayo, sriracha, lime juice and ¼ teaspoon salt in a small bowl until well combined. Set aside.",
+        "Slaw: toss the cabbage, green onions, sesame oil, vinegar and ½ teaspoon salt in a medium bowl. Set aside.",
+        "Line a plate with paper towels. Heat the avocado oil in a large skillet over medium-high. Add the shrimp and sprinkle with 1 teaspoon of the salt and the pepper. Cook until golden brown on each side and cooked through, 2 to 3 minutes per side. Move them to the plate with a slotted spoon.",
+        "Lower the heat to medium. Add the panko, coconut and the remaining ½ teaspoon salt and toast, tossing, until golden brown, 2 to 3 minutes, watching so it doesn't burn. Set aside.",
+        "Divide the rice among four bowls and top with the sesame slaw and shrimp. Sprinkle the coconut-panko over the top, put the sliced avocado to the side, and drizzle generously with the spicy aioli, then cilantro. Add sesame seeds if you like and serve with lime wedges.",
+        "From your cookbook, Everyday Eats, page 211 (Fresh Catch)."
+      ]
+    },
+    {
+      "id": "slow-cooker-thai-inspired-shredded-beef-bowls",
+      "name": "Thai-Inspired Shredded Beef Bowls (Slow or Pressure Cooker)",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced: 4 for the beef, 2 for the salad"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, minced"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 12,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "¼ cup"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 5.333333,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "⅓ cup"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 7,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp for the beef, 4 tsp for the salad"
+        },
+        {
+          "name": "Peanut butter",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "creamy unsweetened (almond butter for paleo)"
+        },
+        {
+          "name": "Thai chiles",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 to 3 minced for the beef and 1 to 3 for the salad (see the Tipsy Noodles note for heat)"
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "flap or flank, trimmed of excess fat, patted dry, cut into 4 equal-size pieces"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus a pinch for the salad"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "pressure cooker only"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½ and 2 tbsp juice (about 1 lime), plus wedges for serving"
+        },
+        {
+          "name": "Mini bell peppers",
+          "qty": 12,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "seeded and sliced into thin strips"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (½ cup halved and thinly sliced)"
+        },
+        {
+          "name": "Matchstick carrots",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "fresh leaves, for serving"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "leaves, for serving"
+        }
+      ],
+      "instructions": [
+        "Slow cooker: whisk the garlic, ginger, coconut sugar, coconut aminos, fish sauce, peanut butter and Thai chiles in the slow cooker. Season the steak with the salt and pepper and nestle it in. Cook on high 4 hours or on low 8 hours, until fall-apart tender.",
+        "Pressure cooker instead: whisk the same sauce plus the ½ cup broth in the pressure cooker, nestle in the seasoned steak, seal the lid and vent, and cook on manual or pressure-cook for 60 minutes. Release the pressure manually by turning the valve and letting it vent completely.",
+        "Move the steak pieces to a rimmed sheet pan and shred with two forks. Return the meat and its juices to the cooker, add the lime zest and lime juice, and toss. Keep warm while you make the salad.",
+        "Veggie salad: toss the mini bell peppers, onion, carrots, Thai chiles, garlic, rice vinegar, 4 teaspoons fish sauce and a pinch of salt in a large bowl. Set aside at least 10 minutes to lightly pickle.",
+        "Divide the beef among bowls with the rice and veggie salad, top with cilantro and basil, and serve with lime wedges.",
+        "Leftovers keep up to 4 days in the fridge, with the salad separate. Reheat the beef in a skillet over medium or in the microwave in 1-minute bursts. From your cookbook, Everyday Eats, page 192 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "sheet-pan-chipotle-honey-butter-salmon",
+      "name": "Sheet Pan Chipotle-Honey Butter Salmon",
+      "servings": 4,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Brussels sprouts",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "trimmed, halved lengthwise"
+        },
+        {
+          "name": "Sweet potato",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, unpeeled and cut into ½-inch dice (about 2 cups)"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the vegetables, 1 tsp on the salmon"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Unsalted butter",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "softened (vegan butter for dairy-free)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Chipotle chiles in adobo",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "2 peppers, minced (about 2 tbsp)"
+        },
+        {
+          "name": "Honey",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "zest of ½ and 2 tbsp juice (about 1 lime), plus wedges for serving"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tbsp finely chopped leaves, plus more for garnish"
+        },
+        {
+          "name": "Salmon fillets",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "6-ounce skinless center-cut, patted dry, pin bones removed"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F and line a sheet pan with parchment paper.",
+        "Put the Brussels sprouts and sweet potato on the pan, drizzle with the oil, and season with 1 teaspoon of the salt, the pepper and the paprika. Toss, spread into an even layer, and bake for 20 minutes.",
+        "Meanwhile, mix the softened butter, garlic, chipotles, honey, lime zest, lime juice and cilantro in a small bowl until well combined.",
+        "After 20 minutes, take the vegetables out, add 2 tablespoons of the chipotle-honey butter, and toss to coat. Push the vegetables to the edges to make room in the center.",
+        "Put the salmon fillets in the center. Spread the remaining chipotle-honey butter over the tops and sprinkle with the remaining 1 teaspoon salt.",
+        "Bake until the salmon is cooked through and flakes easily with a fork, about 12 minutes. Divide the fish among four plates with the vegetables, garnish with cilantro, and serve with lime wedges.",
+        "Leftovers keep up to 3 days in the fridge. Reheat on a sheet pan in a 325°F oven for 10 to 12 minutes, in the air fryer at 350°F for 4 to 6 minutes, or in the microwave in 1-minute bursts, tossing the vegetables after each. From your cookbook, Everyday Eats, page 218."
+      ]
+    },
+    {
+      "id": "perfect-oven-roasted-or-slow-cooker-pot-roast",
+      "name": "Perfect Oven-Roasted or Slow Cooker Pot Roast",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Boneless chuck roast",
+          "qty": 3.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "patted dry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tsp on the roast, ½ tsp with the vegetables"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground: 1 tsp on the roast, ½ tsp with the vegetables"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 6,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "2 tbsp (or all-purpose flour)"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, halved and sliced into ¼-inch-wide strips"
+        },
+        {
+          "name": "Carrot",
+          "qty": 3,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, cut into 2-inch pieces"
+        },
+        {
+          "name": "Celery",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "stalks, cut into 2-inch pieces"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "smashed"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Apple cider vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 tsp roughly chopped leaves, plus more for serving"
+        },
+        {
+          "name": "Bay leaves",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Yellow potatoes",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Produce",
+          "prep": "medium, quartered"
+        }
+      ],
+      "instructions": [
+        "Oven method: heat the oven to 275°F. Season the roast generously with 2 teaspoons of the salt and 1 teaspoon of the pepper, then sprinkle with the flour and rub it in so the roast is evenly coated.",
+        "Heat the oil in a large Dutch oven over medium-high. Sear the roast until golden brown on both sides, about 4 minutes per side. It doesn't need to be cooked through. Move it to a clean plate.",
+        "Lower the heat to medium and add the onion, carrots, celery, garlic and the remaining ½ teaspoon salt and ½ teaspoon pepper. Cook, stirring, until the onion begins to soften, about 4 minutes.",
+        "Stir in the mustard, tomato paste and paprika. Pour in the vinegar and cook, scraping up the browned bits, until it has reduced by half, about 2 minutes. Add the broth, bring to a boil, then lower to a gentle simmer (about medium-low).",
+        "Add the thyme and bay leaves, then nestle the roast and its juices into the center of the pot with the vegetables and arrange the potatoes all around it. Cover with a fitted lid, move to the oven, and roast until the beef is fall-apart tender, about 4 hours.",
+        "Slow cooker method: season and sear the roast the same way in a large skillet. Put the onion, carrots, celery, garlic, remaining salt and pepper, mustard, tomato paste, paprika, vinegar and broth in the slow cooker and stir. Set the roast on top with the thyme, bay leaves and potatoes around it. Cover and cook on low 8 to 10 hours, until fall-apart tender.",
+        "Let the roast cool about 10 minutes before serving so the sauce can settle. Discard the bay leaves, shred the meat into large chunks, and divide it with the vegetables among shallow bowls. Ladle the sauce over the top and finish with fresh thyme.",
+        "Leftovers keep up to 4 days in the fridge, or freeze with some of the cooking liquid for up to 3 months. From your cookbook, Everyday Eats, page 184 (Beef, Pork, and Lamb)."
+      ]
+    },
+    {
+      "id": "cuban-inspired-picadillo",
+      "name": "Cuban-Inspired Picadillo",
+      "servings": 8,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra-virgin"
+        },
+        {
+          "name": "White onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium (1 cup finely diced)"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "small (½ cup finely diced)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "90/10"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chili powder",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Bay leaves",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Other",
+          "prep": "omit for paleo"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Tomato sauce",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "8-ounce can"
+        },
+        {
+          "name": "Manzanilla olives",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "5-ounce jar, small, drained"
+        },
+        {
+          "name": "Capers",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "drained"
+        },
+        {
+          "name": "Russet potato",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "large, peeled and small-diced (1½ cups)"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen",
+          "prep": "prepared, or steamed rice"
+        },
+        {
+          "name": "Plantain chips",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry",
+          "prep": "for serving"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "chopped leaves, for serving"
+        },
+        {
+          "name": "Hot sauce (optional)",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry",
+          "prep": "your favorite"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep skillet or 3.5-quart braiser with a lid over medium. Cook the onion, bell pepper and garlic, stirring, until softened, about 4 minutes.",
+        "Add the beef and cook, breaking it up, until cooked through and no longer pink, about 7 minutes. Drain off the excess fat and return the beef to the pan.",
+        "Add the salt, pepper, garlic powder, cumin, oregano, chili powder and bay leaves and cook, stirring, until the spices are toasted, about 2 minutes.",
+        "Pour in the wine (if using) and let it reduce by half, about 1 minute. Add the broth, tomato sauce, olives, capers and potato and stir. Bring to a rapid simmer, then lower to a gentle simmer (about medium-low).",
+        "Cover and cook, stirring now and then, until the potato is fork-tender, about 15 minutes. Discard the bay leaves.",
+        "Ladle the picadillo over rice with a side of plantain chips, garnish with cilantro, and top with hot sauce if you like.",
+        "Leftovers keep up to 3 days in the fridge, separate from the garnishes. Reheat in a skillet over medium heat or in the microwave in 1-minute bursts, stirring after each. From your cookbook, Everyday Eats, page 177 (Beef, Pork, and Lamb)."
       ]
     }
   ]
