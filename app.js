@@ -89,6 +89,61 @@ const saveBase = (b) => {
     }
     catch (e) { /* ignore */ }
 };
+// One place that talks to Anthropic, so problems can be explained in plain words.
+async function callClaude(body, extraHeaders = {}) {
+    if (!getApiKey())
+        throw new Error("nokey");
+    let messages = body.messages;
+    for (let i = 0; i < 4; i++) {
+        let res;
+        try {
+            res = await fetch("https://api.anthropic.com/v1/messages", {
+                method: "POST",
+                headers: { ...apiHeaders(), ...extraHeaders },
+                body: JSON.stringify({ ...body, messages }),
+            });
+        }
+        catch (e) {
+            throw new Error("net");
+        }
+        if (!res.ok) {
+            let detail = "";
+            try {
+                const j = await res.json();
+                detail = (j && j.error && j.error.message) || "";
+            }
+            catch (e) {
+                // No readable error body.
+            }
+            const err = new Error("api");
+            err.status = res.status;
+            err.detail = detail;
+            throw err;
+        }
+        const data = await res.json();
+        // Long web searches can pause part-way. Ask Claude to carry on.
+        if (data.stop_reason === "pause_turn") {
+            messages = [...messages, { role: "assistant", content: data.content }];
+            continue;
+        }
+        return data;
+    }
+    throw new Error("parse");
+}
+function apiProblem(status, detail) {
+    const d = String(detail || "").toLowerCase();
+    if (status === 401)
+        return "Anthropic didn't accept your key. Open Settings and paste it again.";
+    if (d.includes("credit balance"))
+        return "Your Anthropic account has no credit. Add some at console.anthropic.com under Billing, then try again.";
+    if (d.includes("web search"))
+        return `Web search isn't turned on for your Anthropic account. An admin can enable it at console.anthropic.com under Settings. Anthropic said: ${detail}`;
+    if (status === 404)
+        return `Anthropic doesn't recognize the model name in app.js (MODEL). Anthropic said: ${detail}`;
+    if (status === 429)
+        return "Anthropic says there are too many requests right now. Wait a minute and try again.";
+    return `Anthropic returned an error (${status || "unknown"}): ${detail || "no details"}`;
+}
 // The whole app state, flattened into "collection/key" -> value entries.
 function stateToLeaves(st, selAt) {
     const L = {};
@@ -513,26 +568,13 @@ async function recipeFromContent(content, useSearch) {
         throw new Error("nokey");
     const body = {
         model: MODEL,
-        max_tokens: 1000,
+        max_tokens: 4000,
         system: RECIPE_SYSTEM,
         messages: [{ role: "user", content }],
     };
     if (useSearch)
         body.tools = [{ type: "web_search_20250305", name: "web_search" }];
-    let res;
-    try {
-        res = await fetch("https://api.anthropic.com/v1/messages", {
-            method: "POST",
-            headers: apiHeaders(),
-            body: JSON.stringify(body),
-        });
-    }
-    catch (e) {
-        throw new Error("api");
-    }
-    if (!res.ok)
-        throw new Error("api");
-    const data = await res.json();
+    const data = await callClaude(body);
     const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
     const start = text.indexOf("{");
     const end = text.lastIndexOf("}");
@@ -560,10 +602,10 @@ ${PHOTO_RULES}`;
 async function askForPhoto(url, name, mode) {
     if (!getApiKey())
         throw new Error("nokey");
-    const headers = apiHeaders();
+    const headers = {};
     const body = {
         model: MODEL,
-        max_tokens: 1000,
+        max_tokens: 1500,
         system: mode === "fetch" ? PHOTO_SYSTEM_FETCH : PHOTO_SYSTEM_SEARCH,
     };
     if (mode === "fetch") {
@@ -575,16 +617,7 @@ async function askForPhoto(url, name, mode) {
         body.tools = [{ type: "web_search_20250305", name: "web_search" }];
         body.messages = [{ role: "user", content: `Recipe: ${name}\nPage: ${url}\nUse web search to look at this page and return its main photo URL.` }];
     }
-    let res;
-    try {
-        res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers, body: JSON.stringify(body) });
-    }
-    catch (e) {
-        throw new Error("api");
-    }
-    if (!res.ok)
-        throw new Error("api");
-    const data = await res.json();
+    const data = await callClaude(body, headers);
     const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n");
     const i = text.indexOf("{");
     const j = text.lastIndexOf("}");
@@ -687,7 +720,8 @@ function importErrorMessage(e) {
         case "size": return "That photo is too large. Try a smaller one.";
         case "decode": return "Couldn't open that photo. Try taking it again.";
         case "nokey": return "To import recipes, add your Anthropic key in Settings (the people icon). You can still type meals in.";
-        case "api": return "Couldn't reach the recipe reader. Check your connection and try again, or type the meal in.";
+        case "net": return "Couldn't connect to Anthropic from this browser. Check your connection, and turn off any ad blocker or VPN for this page. You can still type the meal in.";
+        case "api": return apiProblem(e.status, e.detail);
         default: return "Couldn't find a full recipe there. Try a clearer photo or another link, or type the meal in.";
     }
 }
@@ -914,7 +948,32 @@ function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
     const [dbUrl, setDbUrl] = useState("");
     const [code, setCode] = useState("");
     const [msg, setMsg] = useState("");
+    const [test, setTest] = useState("");
     const fileRef = useRef(null);
+    const runTest = async () => {
+        setTest("Testing…");
+        const lines = [];
+        try {
+            await callClaude({ model: MODEL, max_tokens: 16, messages: [{ role: "user", content: "Reply with the word OK." }] });
+            lines.push("Key and model: working.");
+        }
+        catch (e) {
+            setTest("Key or model: " + importErrorMessage(e));
+            return;
+        }
+        try {
+            await callClaude({
+                model: MODEL, max_tokens: 300,
+                tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 1 }],
+                messages: [{ role: "user", content: "Search the web once for 'easy dinner recipe', then reply with the word OK." }],
+            });
+            lines.push("Web search: working.");
+        }
+        catch (e) {
+            lines.push("Web search: " + importErrorMessage(e));
+        }
+        setTest(lines.join("\n"));
+    };
     const saveKey = (v) => {
         setKey(v);
         try {
@@ -930,7 +989,7 @@ function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
     const statusText = sync.status === "ok" ? "Connected. Changes show up on your other devices within a few seconds."
         : sync.status === "error" ? `Can't reach the shared database (${sync.error || "no connection"}). Your changes are saved here and will sync when it's back.`
             : "Connecting…";
-    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) })] })] }));
+    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) }), _jsx("div", { className: "row-actions", style: { marginTop: 10 }, children: _jsx("button", { className: "btn ghost sm", onClick: runTest, disabled: !key.trim(), children: "Test connection" }) }), test ? _jsx("p", { className: "note", role: "status", style: { whiteSpace: "pre-line" }, children: test }) : null] })] }));
 }
 function StoreSheet({ item, onPick, onClose }) {
     return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));

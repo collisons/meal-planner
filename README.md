@@ -58,11 +58,14 @@ a new code, and send a new link.
 - **Offline is fine.** Changes are saved on the phone first and sync when the connection is back.
 - **Kid names** start blank so they aren't published in a public repository. Set them in Settings.
   They are shared with your partner once sharing is on.
-- **Importing recipes from links or photos** and **Find photos** use Claude. To turn them on, open
-  Settings and paste your own Anthropic API key. It is stored only in your browser and sent only to
-  Anthropic. Usage is billed to your Anthropic account. Never put a key into `app.js` or any file in the
-  repository. Only one of you needs a key, because imported meals are shared. Without a key, everything
-  else still works.
+- **Importing recipes from links or photos** and **Find photos** use Claude, and they need an Anthropic
+  API key. This is separate from a Claude.ai subscription: create a key at https://console.anthropic.com,
+  add a few dollars of credit under **Billing**, and ask an admin to enable **web search** for your
+  organization in the console settings (link imports use it to read the recipe page). Then open the app's
+  Settings, paste the key, and tap **Test connection**. It tells you plainly whether the key, the credit
+  and web search are working. The key is stored only in your browser and sent only to Anthropic. Never put
+  a key into `app.js` or any file in the repository. Only one of you needs a key, because imported meals
+  are shared. Without a key, everything else still works, including typing meals in.
 - **Backup:** Settings also has **Download backup** and **Restore from file**. Restoring a backup while
   sharing is on replaces what's shared.
 - The 20 built-in recipe photos and any photo link you paste load from the recipe site's own server.
