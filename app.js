@@ -32,6 +32,8 @@ const apiHeaders = () => ({
 /* ------------------------------------------------------------------ */
 const SYNC_CFG_KEY = "mealplan-sync";
 const SYNC_BASE_KEY = "mealplan-sync-base";
+const SHARED_DB = { url: "https://collison-meal-planner-default-rtdb.firebaseio.com", code: "85cfe0d597f72a2576d8" };
+const BASE_KEY = `${SYNC_BASE_KEY}:${SHARED_DB.code}`; // a new code starts from a clean slate, never from an old database's baseline
 const pollMs = () => Number(localStorage.getItem("mealplan-poll-ms")) || 5000;
 const validDbUrl = (u) => {
     try {
@@ -77,7 +79,7 @@ function readJoinLink() {
 }
 const readBase = () => {
     try {
-        return JSON.parse(localStorage.getItem(SYNC_BASE_KEY) || "{}") || {};
+        return JSON.parse(localStorage.getItem(BASE_KEY) || "{}") || {};
     }
     catch (e) {
         return {};
@@ -85,7 +87,7 @@ const readBase = () => {
 };
 const saveBase = (b) => {
     try {
-        localStorage.setItem(SYNC_BASE_KEY, JSON.stringify(b));
+        localStorage.setItem(BASE_KEY, JSON.stringify(b));
     }
     catch (e) { /* ignore */ }
 };
@@ -178,8 +180,6 @@ function stateToLeaves(st, selAt) {
     for (const x of st.extras) {
         L[`extras/${encKey(x.id)}`] = JSON.stringify({ id: x.id, name: x.name, aisle: x.aisle, store: x.store || "", done: !!x.done });
     }
-    for (const k of st.kids)
-        L[`kids/${k.id}`] = String(k.name || "").trim();
     L["household/value"] = st.household;
     return L;
 }
@@ -191,7 +191,7 @@ function leavesToState(L) {
     const cleared = {};
     const storeMap = {};
     const sel = [];
-    const kids = KID_IDS.map((id) => ({ id, name: "" }));
+    const kids = KID_IDS.map((id, i) => ({ id, name: DEFAULT_KIDS[i] }));
     let household = DEFAULT_HOUSEHOLD;
     for (const [path, val] of Object.entries(L)) {
         const i = path.indexOf("/");
@@ -227,11 +227,6 @@ function leavesToState(L) {
                 const name = clampStr(x.name, 60);
                 if (name)
                     extras.push({ id: clampStr(x.id, 40), name, aisle: AISLES.includes(x.aisle) ? x.aisle : "Other", store: STORES.includes(x.store) ? x.store : "", done: x.done === true });
-            }
-            else if (col === "kids") {
-                const k = kids.find((q) => q.id === key);
-                if (k)
-                    k.name = clampStr(val, 20);
             }
             else if (col === "household") {
                 household = Math.round(num(val, 1, 12, DEFAULT_HOUSEHOLD));
@@ -336,7 +331,7 @@ const COUNT_UNITS = new Set(["", "can", "jar", "pint", "head", "bunch", "slice",
 const STORES = ["Trader Joe's", "Whole Foods", "Safeway"];
 const STORE_ABBR = { "Trader Joe's": "TJ", "Whole Foods": "WF", Safeway: "SW" };
 const KID_IDS = ["k1", "k2", "k3"];
-const DEFAULT_KIDS = ["", "", ""];
+const DEFAULT_KIDS = ["Eva", "Clark", "Hannah"];
 const PORTIONS = ["much", "right", "little"];
 const PORTION_FACTOR = { much: 0.8, right: 1, little: 1.25 };
 /* ------------------------------------------------------------------ */
@@ -550,7 +545,7 @@ function sanitizeState(d) {
     const meals = Array.isArray(d.meals) ? d.meals.slice(0, 300).map(cleanMeal).filter(Boolean) : null;
     const kids = KID_IDS.map((id, i) => ({
         id,
-        name: clampStr(Array.isArray(d.kids) ? d.kids[i]?.name : "", 20) || DEFAULT_KIDS[i],
+        name: DEFAULT_KIDS[i],
     }));
     const selected = Array.isArray(d.selected)
         ? [...new Set(d.selected.filter((x) => typeof x === "string").map((x) => x.slice(0, 40)))].slice(0, 40)
@@ -1224,54 +1219,6 @@ function RatingBadge({ info }) {
         return _jsx("span", { children: "Not rated" });
     return (_jsxs("span", { className: "rate", children: [_jsx(Star, { size: 14, style: { color: "#8A6D00", fill: "#F1D24A" } }), " ", info.avg.toFixed(1)] }));
 }
-function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
-    const [key, setKey] = useState(() => getApiKey());
-    const [dbUrl, setDbUrl] = useState("");
-    const [code, setCode] = useState("");
-    const [msg, setMsg] = useState("");
-    const [test, setTest] = useState("");
-    const fileRef = useRef(null);
-    const runTest = async () => {
-        setTest("Testing…");
-        const lines = [];
-        try {
-            await callClaude({ model: MODEL, max_tokens: 16, messages: [{ role: "user", content: "Reply with the word OK." }] });
-            lines.push("Key and model: working.");
-        }
-        catch (e) {
-            setTest("Key or model: " + importErrorMessage(e));
-            return;
-        }
-        try {
-            await callClaude({
-                model: MODEL, max_tokens: 300,
-                tools: [{ type: "web_search_20250305", name: "web_search", max_uses: 1 }],
-                messages: [{ role: "user", content: "Search the web once for 'easy dinner recipe', then reply with the word OK." }],
-            });
-            lines.push("Web search: working.");
-        }
-        catch (e) {
-            lines.push("Web search: " + importErrorMessage(e));
-        }
-        setTest(lines.join("\n"));
-    };
-    const saveKey = (v) => {
-        setKey(v);
-        try {
-            if (v.trim())
-                localStorage.setItem(API_KEY_STORAGE, v.trim());
-            else
-                localStorage.removeItem(API_KEY_STORAGE);
-        }
-        catch (e) {
-            // Storage unavailable: the key just won't be remembered.
-        }
-    };
-    const statusText = sync.status === "ok" ? "Connected. Changes show up on your other devices within a few seconds."
-        : sync.status === "error" ? `Can't reach the shared database (${sync.error || "no connection"}). Your changes are saved here and will sync when it's back.`
-            : "Connecting…";
-    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), ALLOW_ADDING ? (_jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) }), _jsx("div", { className: "row-actions", style: { marginTop: 10 }, children: _jsx("button", { className: "btn ghost sm", onClick: runTest, disabled: !key.trim(), children: "Test connection" }) }), test ? _jsx("p", { className: "note", role: "status", style: { whiteSpace: "pre-line" }, children: test }) : null] })) : null] }));
-}
 function StoreSheet({ item, onPick, onSection, onClose }) {
     return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), item.kind === "extra" ? (_jsxs("div", { style: { marginBottom: 14 }, children: [_jsx("label", { className: "lbl", htmlFor: "extra-section", style: { marginTop: 0 }, children: "Section of the store" }), _jsx("select", { id: "extra-section", value: item.aisle, onChange: (e) => onSection(e.target.value), children: AISLES.map((a) => _jsx("option", { value: a, children: a }, a)) })] })) : null, _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));
 }
@@ -1607,7 +1554,6 @@ export default function FamilyMealPlanner() {
     const [viewId, setViewId] = useState(null);
     const [editor, setEditor] = useState(null); // { id, draft, title, banner }
     const [addOpen, setAddOpen] = useState(false);
-    const [familyOpen, setFamilyOpen] = useState(false);
     const [storeFor, setStoreFor] = useState(null);
     const [saveFailed, setSaveFailed] = useState(false);
     const [toast, setToast] = useState("");
@@ -1704,24 +1650,9 @@ export default function FamilyMealPlanner() {
     useEffect(() => () => clearTimeout(toastTimer.current), []);
     useEffect(() => () => clearTimeout(undoTimer.current), []);
     /* ---- household sharing ---- */
-    const joinedRef = useRef(false);
-    const [syncCfg, setSyncCfg] = useState(() => {
-        const joined = readJoinLink();
-        if (joined) {
-            joinedRef.current = true;
-            try {
-                localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(joined));
-                localStorage.removeItem(SYNC_BASE_KEY);
-                history.replaceState(null, "", location.pathname + location.search);
-            }
-            catch (e) {
-                // Ignore: the link just won't be cleaned from the address bar.
-            }
-            return joined;
-        }
-        return getSyncConfig();
-    });
-    const [syncStatus, setSyncStatus] = useState(syncCfg ? "connecting" : "off");
+    const syncCfg = SHARED_DB;
+    const [syncStatus, setSyncStatus] = useState("connecting");
+    const failRef = useRef(0);
     const [syncError, setSyncError] = useState("");
     const stRef = useRef(null);
     const selAtRef = useRef({});
@@ -1766,6 +1697,9 @@ export default function FamilyMealPlanner() {
         syncBusy.current = true;
         try {
             const remote = await syncGet(cfg);
+            for (const p of Object.keys(remote))
+                if (p.startsWith("kids/"))
+                    delete remote[p];
             const local = stateToLeaves(stRef.current, selAtRef.current);
             const merged = mergeLeaves(local, baseRef.current, remote);
             const patches = diffPatches(merged, remote);
@@ -1797,11 +1731,14 @@ export default function FamilyMealPlanner() {
                 }
             }
             saveBase(baseRef.current);
+            failRef.current = 0;
             setSyncStatus("ok");
             setSyncError("");
         }
         catch (e) {
-            setSyncStatus("error");
+            failRef.current += 1;
+            if (failRef.current >= 3)
+                setSyncStatus("error");
             setSyncError(String((e && e.message) || e));
         }
         finally {
@@ -1834,50 +1771,6 @@ export default function FamilyMealPlanner() {
             window.removeEventListener("online", tick);
         };
     }, [syncCfg, loaded, loadFailed]);
-    useEffect(() => {
-        if (joinedRef.current)
-            showToast("Joined the shared meal plan");
-    }, []);
-    const turnOnSharing = (cfg) => {
-        if (!validDbUrl(cfg.url))
-            return "That doesn't look like a Firebase database address. It should end in firebaseio.com or firebasedatabase.app.";
-        if (!validCode(cfg.code))
-            return "The household code should be 12 to 64 letters and numbers.";
-        const clean = { url: normDbUrl(cfg.url), code: cfg.code };
-        try {
-            localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(clean));
-            localStorage.removeItem(SYNC_BASE_KEY);
-        }
-        catch (e) {
-            // Ignore: sharing still works until the page is closed.
-        }
-        baseRef.current = {};
-        setSyncCfg(clean);
-        setSyncStatus("connecting");
-        setSyncError("");
-        return "";
-    };
-    const turnOffSharing = () => {
-        try {
-            localStorage.removeItem(SYNC_CFG_KEY);
-            localStorage.removeItem(SYNC_BASE_KEY);
-        }
-        catch (e) {
-            // Ignore.
-        }
-        baseRef.current = {};
-        setSyncCfg(null);
-        setSyncStatus("off");
-    };
-    const copyInvite = async () => {
-        try {
-            await navigator.clipboard.writeText(inviteLink(syncCfg));
-            showToast("Invite link copied");
-        }
-        catch (e) {
-            showToast("Couldn't copy. Check clipboard permissions.");
-        }
-    };
     /* ---- derived ---- */
     const mealById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
     const weekMeals = useMemo(() => selected.map((id) => mealById.get(id)).filter(Boolean), [selected, mealById]);
@@ -2088,37 +1981,6 @@ export default function FamilyMealPlanner() {
         const sub = [groceryView === "store" ? i.aisle : null, i.bought > 0 ? `already bought ${fmtQty(i.bought, i.unit)}` : null, ...i.from].filter(Boolean).join(" · ");
         return (_jsxs("div", { className: "row", children: [_jsxs("button", { className: "item", "aria-pressed": i.done, onClick: () => toggleItem(i), children: [_jsx("span", { className: "box", children: i.done ? _jsx(Check, { size: 16, strokeWidth: 3 }) : null }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: i.name }), sub ? _jsx("span", { className: "from", children: sub }) : null] }), i.kind === "plan" ? _jsx("span", { className: "qty", children: fmtQty(i.qty, i.unit) }) : null] }), _jsx("button", { className: `storebtn${i.store ? "" : " none"}`, "aria-label": `Store for ${i.name}: ${i.store || "any"}. Change`, onClick: () => setStoreFor(i), children: i.store ? STORE_ABBR[i.store] : _jsx(Store, { size: 18 }) }), i.kind === "extra" ? (_jsx("button", { className: "icon-btn", "aria-label": `Remove ${i.name}`, onClick: () => setExtras((cur) => cur.filter((x) => x.id !== i.id)), children: _jsx(X, { size: 18 }) })) : null] }, `${i.kind}:${i.id}`));
     };
-    const exportData = () => {
-        try {
-            const blob = new Blob([JSON.stringify({ meals, kids, selected, household, checked, storeMap, extras, cleared }, null, 2)], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `family-meals-backup-${todayStr()}.json`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            setTimeout(() => URL.revokeObjectURL(url), 2000);
-            showToast("Backup downloaded");
-        }
-        catch (e) {
-            showToast("Couldn't create the backup");
-        }
-    };
-    const importData = async (file) => {
-        try {
-            if (!file || file.size > 5 * 1024 * 1024)
-                throw new Error("size");
-            const data = sanitizeState(JSON.parse(await file.text()));
-            if (!data)
-                throw new Error("bad");
-            applyData(data);
-            showToast("Backup restored");
-        }
-        catch (e) {
-            showToast("That file couldn't be read");
-        }
-    };
     const copyList = async () => {
         const lines = ["Groceries"];
         for (const g of groups) {
@@ -2144,7 +2006,7 @@ export default function FamilyMealPlanner() {
     const viewMeal = viewId ? mealById.get(viewId) : null;
     const today = todayStr();
     const metaLine = (m) => (_jsxs("span", { className: "meta", children: [_jsx("span", { children: madeLabel(m.lastMade) }), _jsx(RatingBadge, { info: ratingInfo(m, kids) }), m.unreviewed ? _jsx("span", { className: "pill", children: "Check recipe" }) : null] }));
-    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, !recipesOk ? (_jsx("div", { className: "warn", role: "alert", children: _jsxs("p", { children: ["We couldn't load the recipe list (", RECIPES_STATUS.error || "no connection", "), so saving is paused to protect your data. Check your connection and reload."] }) })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, syncCfg ? (_jsx("p", { className: `syncpill ${syncStatus}`, role: "status", children: syncStatus === "ok" ? "Shared · up to date" : syncStatus === "error" ? "Can't reach the shared list · will retry" : "Connecting…" })) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap (or click) the circle on a photo to add it to this week" })] }), _jsxs("div", { className: "acts", children: [_jsx("button", { className: "icon-btn", "aria-label": "Settings", onClick: () => setFamilyOpen(true), children: _jsx(Users, { size: 22 }) }), ALLOW_ADDING ? _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] }) : null] })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
+    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, !recipesOk ? (_jsx("div", { className: "warn", role: "alert", children: _jsxs("p", { children: ["We couldn't load the recipe list (", RECIPES_STATUS.error || "no connection", "), so saving is paused to protect your data. Check your connection and reload."] }) })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, syncStatus === "error" ? (_jsx("p", { className: "syncpill error", role: "status", children: "Can't reach the shared list. Changes are saved on this phone and will sync when it's back." })) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap (or click) the circle on a photo to add it to this week" })] }), _jsx("div", { className: "acts", children: ALLOW_ADDING ? _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] }) : null })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
                                                 ? `Found ${photoJob.found} of ${photoJob.total} photos.` +
                                                     (photoJob.unloadable
                                                         ? ` ${photoJob.unloadable} ${photoJob.unloadable === 1 ? "address was" : "addresses were"} found but wouldn't load here.`
@@ -2157,5 +2019,5 @@ export default function FamilyMealPlanner() {
                                             addExtra(); } }), _jsx("button", { className: "btn", "aria-label": "Add item", onClick: addExtra, children: _jsx(Plus, { size: 22 }) })] }), items.length === 0 ? (cleared && Object.keys(cleared).length > 0 || lastClear ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing left to buy" }), _jsx("p", { children: "Everything on this week's list has been bought and cleared." }), lastClear ? (_jsxs("button", { className: "link", onClick: undoClear, children: [_jsx(RotateCcw, { size: 14, style: { verticalAlign: "-2px" } }), " Bring back the ", lastClear.count, " ", lastClear.count === 1 ? "item" : "items", " you cleared"] })) : null] })) : (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing to buy yet" }), _jsx("p", { children: "Pick meals for the week and the list fills in. You can also add your own items above." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] }))) : (_jsxs(_Fragment, { children: [_jsx("div", { className: "aisles", children: groups.map((g) => (_jsxs("section", { className: "aisle", "aria-label": g.label, children: [_jsxs("h3", { children: [g.label, _jsx("span", { children: g.items.length })] }), g.items.map((i) => renderRow(i))] }, g.label))) }), _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 14 }), " Uncheck all"] })] }), lastClear ? (_jsxs("button", { className: "link", onClick: undoClear, children: [_jsx(RotateCcw, { size: 14, style: { verticalAlign: "-2px" } }), " Bring back the ", lastClear.count, " ", lastClear.count === 1 ? "item" : "items", " you cleared"] })) : null] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsx("span", { className: "brand", "aria-hidden": "true", children: "dinner planner" }), _jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, inWeek: weekIds.has(viewMeal.id), locked: isLib(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
                     setAddOpen(false);
                     setEditor({ id: null, draft, title: "Review meal", banner: "Imported recipes can contain mistakes. Check the amounts and steps, then save." });
-                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData, sync: { cfg: syncCfg, status: syncStatus, error: syncError, onOn: turnOnSharing, onOff: turnOffSharing, onInvite: copyInvite } }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onSection: moveSection, onClose: () => setStoreFor(null) }) : null, _jsxs("div", { "aria-live": "polite", children: [toast && !undoBar ? _jsx("div", { className: "toast", children: toast }) : null, undoBar > 0 ? (_jsxs("div", { className: "toast undo", children: [_jsxs("span", { children: ["Cleared ", undoBar, " ", undoBar === 1 ? "item" : "items"] }), _jsx("button", { onClick: undoClear, children: "Undo" })] })) : null] })] }));
+                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onSection: moveSection, onClose: () => setStoreFor(null) }) : null, _jsxs("div", { "aria-live": "polite", children: [toast && !undoBar ? _jsx("div", { className: "toast", children: toast }) : null, undoBar > 0 ? (_jsxs("div", { className: "toast undo", children: [_jsxs("span", { children: ["Cleared ", undoBar, " ", undoBar === 1 ? "item" : "items"] }), _jsx("button", { onClick: undoClear, children: "Undo" })] })) : null] })] }));
 }
