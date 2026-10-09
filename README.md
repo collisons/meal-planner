@@ -94,6 +94,10 @@ needs an Anthropic API key, entered in Settings.)
 
 ## Good to know
 
+- **"Cooking for" starts at 5.** Every recipe's amounts and the grocery list scale to that number. Change it
+  with the stepper on the This week screen (1 to 12). To change the starting number for everyone, edit
+  `DEFAULT_HOUSEHOLD` near the top of `app.js`.
+
 - **Offline is fine.** Changes are saved on the phone first and sync when the connection is back.
 - **Kid names** start blank so they aren't published in a public repository. Set them in Settings.
   They are shared with your partner once sharing is on.

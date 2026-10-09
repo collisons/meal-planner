@@ -188,7 +188,7 @@ function leavesToState(L) {
     const storeMap = {};
     const sel = [];
     const kids = KID_IDS.map((id) => ({ id, name: "" }));
-    let household = 4;
+    let household = DEFAULT_HOUSEHOLD;
     for (const [path, val] of Object.entries(L)) {
         const i = path.indexOf("/");
         const col = path.slice(0, i);
@@ -225,7 +225,7 @@ function leavesToState(L) {
                     k.name = clampStr(val, 20);
             }
             else if (col === "household") {
-                household = Math.round(num(val, 1, 12, 4));
+                household = Math.round(num(val, 1, 12, DEFAULT_HOUSEHOLD));
             }
         }
         catch (e) {
@@ -317,6 +317,8 @@ async function syncPush(cfg, patches) {
 }
 // Recipes are built outside the app and shipped inside it. Flip to true to let people add their own.
 const ALLOW_ADDING = false;
+// How many people dinner is scaled for until someone changes it.
+const DEFAULT_HOUSEHOLD = 5;
 // Ordered the way you walk a typical store.
 const AISLES = ["Produce", "Bakery", "Meat & seafood", "Dairy & eggs", "Pantry", "Frozen", "Other"];
 const UNITS = ["", "lb", "oz", "cup", "tbsp", "tsp", "can", "jar", "pint", "head", "bunch", "slice", "pkg", "clove"];
@@ -512,7 +514,7 @@ function sanitizeState(d) {
         }))
             .filter((x) => x.name)
         : [];
-    return { meals, kids, selected, household: Math.round(num(d.household, 1, 12, 4)), checked, storeMap, extras };
+    return { meals, kids, selected, household: Math.round(num(d.household, 1, 12, DEFAULT_HOUSEHOLD)), checked, storeMap, extras };
 }
 const nameKey = (n) => String(n).trim().toLowerCase().slice(0, 60);
 const kidName = (k, i) => k.name.trim() || `Kid ${i + 1}`;
@@ -657,6 +659,22 @@ const hasStats = (st) => Object.keys(st.ratings).length > 0 || !!st.lastMade || 
 function libMeal(lib, stats) {
     return withKnownImage(cleanMeal({ ...lib, tags: ["dinner"], unreviewed: false, ...pickStats(stats) }));
 }
+// Devices that saved the old default (4) move to the new one once. A number someone picked themselves is kept.
+const HH_KEY = "mealplan-hh-default";
+const hhMoved = () => {
+    try {
+        return localStorage.getItem(HH_KEY) === String(DEFAULT_HOUSEHOLD);
+    }
+    catch (e) {
+        return true;
+    }
+};
+const markHhMoved = () => {
+    try {
+        localStorage.setItem(HH_KEY, String(DEFAULT_HOUSEHOLD));
+    }
+    catch (e) { /* ignore */ }
+};
 // Ratings for a recipe that has been taken out of the library are kept in reserve, so they come back with it.
 const ORPHANS_KEY = "mealplan-orphan-stats";
 const readOrphans = () => {
@@ -1450,7 +1468,7 @@ export default function FamilyMealPlanner() {
     const [meals, setMeals] = useState([]);
     const [kids, setKids] = useState(KID_IDS.map((id, i) => ({ id, name: DEFAULT_KIDS[i] })));
     const [selected, setSelected] = useState([]);
-    const [household, setHousehold] = useState(4);
+    const [household, setHousehold] = useState(DEFAULT_HOUSEHOLD);
     const [checked, setChecked] = useState({});
     const [storeMap, setStoreMap] = useState({});
     const [extras, setExtras] = useState([]);
@@ -1488,7 +1506,11 @@ export default function FamilyMealPlanner() {
         }
         setKids(data.kids);
         setSelected(data.selected);
-        setHousehold(data.household);
+        let hh = data.household;
+        if (hh === 4 && !hhMoved())
+            hh = DEFAULT_HOUSEHOLD;
+        markHhMoved();
+        setHousehold(hh);
         setChecked(data.checked);
         setStoreMap(data.storeMap);
         setExtras(data.extras);
@@ -1504,6 +1526,7 @@ export default function FamilyMealPlanner() {
             lastSaved.current = { json: out.raw, count: loadedCount };
         }
         else if (out.status === "empty") {
+            markHhMoved();
             setMeals(mergeLibrary([]));
         }
         setLoadFailed(out.status === "failed");

@@ -112,7 +112,2165 @@
         "Cover and bake for 25 minutes, then uncover and bake 7 to 9 minutes more, until the rice is tender and the chicken is cooked through.",
         "Fluff the rice with a fork and serve with guacamole, sour cream, chips and sliced jalapeño."
       ],
-      "id": "chicken-and-rice-taco-skillet"
+      "id": "chicken-and-rice-taco-skillet",
+      "image": "https://thedefineddish.com/wp-content/uploads/2024/02/Taco-Chicken-Rice-Skillet-6-scaled.jpg"
+    },
+    {
+      "id": "beef-chili-with-beans",
+      "name": "Beef Chili with Beans",
+      "servings": 6,
+      "source": "https://thedefineddish.com/beef-chili-with-beans/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2021/10/beef-chili-with-beans-18.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Green bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Poblano pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Jalapeño",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Hot sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fire-roasted tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Red kidney beans",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut sugar (optional)",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Sour cream (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Shredded cheddar (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Corn chips (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Green onions (optional)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large Dutch oven over medium. Cook the onion, peppers, garlic and 1 teaspoon of the salt until soft, about 8 minutes.",
+        "Add the beef with the rest of the salt and the black pepper. Cook, breaking it up, until browned, about 7 minutes. Pour off all but 2 tablespoons of fat.",
+        "Stir in the tomato paste, hot sauce and spices and cook until fragrant, about 2 minutes. Add the tomatoes and broth and bring to a simmer.",
+        "Lower the heat, cover, and simmer for at least 30 minutes, stirring now and then. A few hours on low is even better.",
+        "About 15 minutes before serving, stir in the beans and the coconut sugar, if using, and cook uncovered until the beans are tender.",
+        "Serve with sour cream, cheddar, corn chips and sliced green onions."
+      ]
+    },
+    {
+      "id": "one-pan-italian-sausage-and-orzo",
+      "name": "One-Pan Italian Sausage and Orzo",
+      "servings": 4,
+      "source": "https://thedefineddish.com/one-pan-italian-sausage-and-orzo/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2026/02/Italian-Sausage-Orzo-Skillet-7-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Italian chicken sausage",
+          "qty": 12,
+          "unit": "oz",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Orzo",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other"
+        },
+        {
+          "name": "Marinara sauce",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Crushed red pepper flakes (optional)",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Heavy cream",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Baby spinach",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep skillet over medium. Brown the sliced sausage on all sides, 6 to 8 minutes, then set it aside.",
+        "Cook the onion and pepper in the same pan until soft, 2 to 3 minutes, scraping up the browned bits. Add the garlic for about a minute.",
+        "Stir in the orzo and toast for 1 to 2 minutes. Add the wine and let it mostly cook off.",
+        "Add the marinara, broth and seasonings. Simmer gently, uncovered, stirring now and then, about 12 minutes, until the orzo is tender and the sauce has thickened.",
+        "Stir in the cream, spinach, Parmesan and lemon juice until the spinach wilts. Season to taste.",
+        "Return the sausage to the pan to warm through. Top with torn basil and serve."
+      ]
+    },
+    {
+      "id": "turkey-taco-soup",
+      "name": "Turkey Taco Soup",
+      "servings": 6,
+      "source": "https://thedefineddish.com/turkey-taco-soup/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/10/Turkey-Taco-Soup-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Jalapeño (optional)",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground turkey",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Mild taco seasoning",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 4,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fire-roasted diced tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Diced green chiles",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Pinto beans",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black beans",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Frozen corn",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Frozen"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Shredded cheddar (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Greek yogurt or sour cream (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Avocado (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Corn chips (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large pot over medium-high. Cook the onion, pepper, jalapeño and garlic until soft, about 4 minutes.",
+        "Add the turkey and cook, breaking it up, until no longer pink, 6 to 8 minutes. Drain off any excess fat.",
+        "Stir in the salt, pepper, tomato paste and taco seasoning. Add the broth, tomatoes, green chiles, both beans and the lime zest, and bring to a simmer.",
+        "Lower the heat, cover, and cook about 10 minutes, until the beans are tender and the flavors blend.",
+        "Stir in the frozen corn, lime juice and cilantro and let it warm through. Season to taste.",
+        "Ladle into bowls and top with cheese, yogurt or sour cream, avocado and corn chips."
+      ]
+    },
+    {
+      "id": "one-pan-salmon-with-herb-butter-couscous",
+      "name": "One-Pan Salmon with Herb Butter Couscous",
+      "servings": 4,
+      "source": "https://thedefineddish.com/one-pan-salmon-with-herb-butter-couscous/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/08/One-Pot-Salmon-with-Herb-Butter-Couscous-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Salmon fillets",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Pearl (Israeli) couscous",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh rosemary",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lemon",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Onion powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Salted butter",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        }
+      ],
+      "instructions": [
+        "Season the tops of the salmon with a teaspoon of the salt and a pinch of pepper. Sear them seasoned side down in the oil in a large, deep skillet over medium-high until golden, about 3 minutes. Set aside. They finish cooking later.",
+        "Lower the heat to medium and cook the onion and garlic until tender, about 3 minutes. Add the couscous and toast, stirring, for 2 to 3 minutes.",
+        "Stir in the rosemary, thyme and parsley with the wine and cook until the wine is absorbed, about a minute.",
+        "Add the broth, lemon zest, onion powder, garlic powder and the rest of the salt and pepper. Bring to a quick simmer, then lower the heat, cover, and cook about 8 minutes until most of the liquid is absorbed.",
+        "Stir in the butter and Parmesan. Nestle the salmon, browned side up, into the couscous, cover, and cook 3 to 5 minutes more until cooked through.",
+        "Garnish with extra thyme and serve with lemon wedges."
+      ]
+    },
+    {
+      "id": "ginger-peanut-butter-ground-turkey-stir-fry",
+      "name": "Ginger and Peanut Butter Ground Turkey Stir-Fry",
+      "servings": 4,
+      "source": "https://thedefineddish.com/ginger-peanut-butter-ground-turkey-stir-fry/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2021/04/Ginger-Peanut-Butter-Ground-Turkey-Stir-Fry-2.jpg",
+      "ingredients": [
+        {
+          "name": "Creamy peanut butter",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Sriracha",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground turkey",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "White rice, uncooked (for serving)",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh mint (garnish)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh Thai basil (garnish)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cilantro (optional)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Whisk the peanut butter, coconut aminos, lime juice, sriracha, rice vinegar and sesame oil into a smooth sauce.",
+        "Heat the avocado oil in a large nonstick skillet over medium. Cook the shallot, garlic and ginger for about 2 minutes, watching that they don't burn.",
+        "Add the turkey, salt and pepper and cook, breaking it up, until no longer pink, about 7 minutes.",
+        "Pour in the sauce and add the green onions. Stir for about 3 more minutes, until the turkey is coated and the onions are just tender.",
+        "Serve over steamed rice, topped with mint, Thai basil and cilantro."
+      ]
+    },
+    {
+      "id": "shredded-beef-chipotle-burrito-bowls",
+      "name": "Shredded Beef Chipotle Burrito Bowls",
+      "servings": 12,
+      "source": "https://thedefineddish.com/shredded-beef-chipotle-burrito-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2024/08/Shredded-Chipotle-Beef-Burrito-Bowls-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Chipotle chiles in adobo",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Apple cider vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Salsa verde",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Boneless chuck roast",
+          "qty": 3,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Bay leaves",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "White rice, uncooked (for serving)",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Frozen fire-roasted corn (optional)",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Frozen"
+        },
+        {
+          "name": "Guacamole (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Pico de gallo (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cilantro (optional)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Hot sauce (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime (optional)",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "In the slow cooker, stir together the chipotles, vinegar, broth, salsa verde and garlic.",
+        "Season the roast all over with the salt, pepper, cumin and oregano. Nestle it into the sauce and add the bay leaves.",
+        "Cover and cook on low for 8 to 10 hours. For an Instant Pot, cook 60 minutes on high pressure, then release the pressure.",
+        "Move the roast to a sheet pan and shred it with two forks. Return it to the sauce, toss to coat, and let it rest at least 10 minutes.",
+        "Build the bowls with rice, then beef, then toppings such as corn, guacamole, pico de gallo, cilantro, hot sauce and a lime wedge."
+      ]
+    },
+    {
+      "id": "seared-chicken-thighs-with-garlic-ginger-broth-and-rice",
+      "name": "Seared Chicken Thighs with Garlic-Ginger Broth and Rice",
+      "servings": 2,
+      "source": "https://thedefineddish.com/seared-chicken-thighs-with-garlic-ginger-broth-and-rice/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2026/02/Seared-Chicken-Thighs-Garlic-Ginger-Bone-Broth-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 1.25,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Chicken bone broth",
+          "qty": 4,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Baby bok choy",
+          "qty": 1,
+          "unit": "head",
+          "aisle": "Produce"
+        },
+        {
+          "name": "White rice, uncooked (for serving)",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Chili crisp (optional)",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a medium pot over medium-high. Season the thighs well with salt and pepper and sear 3 to 4 minutes per side, until golden and cooked through. Set them aside.",
+        "Lower the heat to medium-low. Cook the sesame oil, garlic and ginger for 1 to 2 minutes, stirring, without letting them burn.",
+        "Pour in the bone broth, scraping up the browned bits. Bring to a rapid simmer, then lower the heat, cover, and simmer gently for 5 to 10 minutes.",
+        "Whisk the coconut aminos, rice vinegar and tapioca flour into a slurry and stir it into the broth. Simmer until the broth is slightly thickened and silky.",
+        "Add the bok choy leaves and simmer about 3 minutes, until just wilted.",
+        "Put rice or noodles in two bowls, slice the chicken on top, and ladle over the bok choy and broth. Garnish with sliced green onions and chili crisp."
+      ]
+    },
+    {
+      "id": "one-pot-hamburger-helper",
+      "name": "One-Pot Hamburger Helper",
+      "servings": 6,
+      "source": "https://thedefineddish.com/one-pot-hamburger-helper/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2017/11/One-Pot-Hamburger-Helper-2-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Elbow pasta",
+          "qty": 12,
+          "unit": "oz",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Milk",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Shredded cheddar (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Fresh parsley (optional)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large, deep skillet over medium-high. Cook the beef and onion with the garlic powder, paprika, salt, pepper and chili powder, breaking up the meat, until no longer pink, 5 to 7 minutes. Pour off all but 2 tablespoons of fat if needed.",
+        "Stir in the tomato paste.",
+        "Add the pasta, broth and milk. Bring to a boil, then simmer, stirring often, for 12 to 15 minutes, until the pasta is al dente and most of the liquid is absorbed.",
+        "Take the pan off the heat and fold in the cheese. Garnish with parsley and serve."
+      ]
+    },
+    {
+      "id": "one-pot-hamburger-helper-beef-stroganoff",
+      "name": "One-Pot Hamburger Helper Beef Stroganoff",
+      "servings": 4,
+      "source": "https://thedefineddish.com/one-pot-hamburger-helper-beef-stroganoff/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2019/10/One-Pot-Hamburger-Helper-Beef-Stroganoff-5-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Onion powder",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Button mushrooms",
+          "qty": 6,
+          "unit": "oz",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Wide egg noodles",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 3.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "White wine vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Light sour cream",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large skillet over medium-high. Cook the onion for 2 to 3 minutes, then add the beef with the garlic powder, onion powder, paprika, salt and pepper. Cook, breaking up the meat, until no longer pink, 5 to 7 minutes. Keep about 2 tablespoons of fat for the mushrooms and pour off the rest.",
+        "Stir in the mustard and mushrooms and cook until softened, 3 to 4 minutes.",
+        "Add the egg noodles, broth and vinegar. Bring to a boil and cook, stirring often, about 15 minutes, until the noodles are tender and the liquid is absorbed.",
+        "Take the pan off the heat and stir in the sour cream. Season with more salt if needed and garnish with thyme leaves."
+      ]
+    },
+    {
+      "id": "one-pot-spaghettios-with-mini-meatballs",
+      "name": "One-Pot Spaghetti-O's with Mini Meatballs",
+      "servings": 6,
+      "source": "https://thedefineddish.com/one-pot-spaghettios-with-mini-meatballs/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/08/One-Pot-Spaghetti-Os-with-Mini-Meatballs-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Ground beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Eggs",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Milk",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Panko breadcrumbs",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Marinara sauce",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Small pasta (ditalini, orzo, etc.)",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Crushed red pepper flakes (optional)",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Mix the beef, egg, salt, pepper, 2 cloves of the garlic, a tablespoon of chopped basil, the milk, a quarter cup of the Parmesan and the breadcrumbs by hand. Roll into half-inch meatballs.",
+        "Brown the meatballs in the oil in a large, deep skillet or braiser over medium-high, about 2 minutes per side, in batches. Set them aside. They don't need to cook through.",
+        "Lower the heat to medium-low. Cook the onion and the remaining garlic until tender, about 3 minutes. Add the marinara, broth, torn basil, parsley, coconut sugar, the rest of the Parmesan and the remaining salt. Simmer gently for 3 to 4 minutes.",
+        "Stir in the pasta and cook, stirring often, 8 to 10 minutes, until it's very al dente and has absorbed much of the sauce. It sticks easily, and it may need extra broth.",
+        "Return the meatballs and their juices and cook, stirring often, about 6 minutes more, until the meatballs are cooked through and the pasta is tender.",
+        "Cover and rest for 2 minutes. Garnish with basil and red pepper flakes."
+      ]
+    },
+    {
+      "id": "creamy-one-pot-lemon-feta-chicken-with-orzo",
+      "name": "Creamy One-Pot Lemon Feta Chicken with Orzo",
+      "servings": 4,
+      "source": "https://thedefineddish.com/creamy-one-pot-lemon-feta-chicken-with-orzo/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/08/Lemon-Feta-Chicken-Orzo-Skillet-1-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Turmeric",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dijon mustard",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Other"
+        },
+        {
+          "name": "Orzo",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lemon",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh oregano",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh parsley",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Feta",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 375°F. Stir together the salt, turmeric, smoked paprika, pepper and cayenne.",
+        "Pat the chicken dry and season both sides generously with the spice blend. Brown it in the oil in a large, deep oven-safe skillet over medium-high, about 3 minutes per side, in batches. Set it aside.",
+        "Lower the heat to medium. Cook the shallot, garlic and red pepper flakes for 2 minutes. Add the Dijon and wine, scraping up the browned bits, and cook until reduced by half.",
+        "Stir in the orzo, broth, lemon zest and juice, a little more salt, the oregano, parsley and half a cup of the feta. Nestle the chicken back in and bake about 15 minutes, until the orzo is almost done.",
+        "Top with the remaining feta and bake about 5 minutes more, until the orzo is cooked and the feta has softened.",
+        "Garnish with more oregano and serve with lemon wedges."
+      ]
+    },
+    {
+      "id": "tie-dye-chicken",
+      "name": "Tie-Dye Chicken",
+      "servings": 4,
+      "source": "https://thedefineddish.com/tie-dye-chicken/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2024/03/Tie-Dye-Chicken-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Marinara sauce",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Shredded mozzarella",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Sliced pepperoni",
+          "qty": 12,
+          "unit": "slice",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Basil pesto",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F. Pound the chicken to an even half inch, pat it dry, season both sides with the salt, pepper and Italian seasoning, and dredge lightly in the flour.",
+        "Brown it in the oil in a large, deep oven-safe skillet over medium-high, about 3 minutes per side. It doesn't need to cook through.",
+        "Off the heat, spoon the marinara over and around the chicken, sprinkle on the mozzarella, and top with the pepperoni.",
+        "Bake on the top rack for 8 to 12 minutes, until the chicken is cooked through and the cheese is melted and lightly browned.",
+        "Let it cool for 3 to 5 minutes, then swirl or dollop the pesto on top. Garnish with basil."
+      ]
+    },
+    {
+      "id": "chipotle-sesame-adobo-steak-tacos",
+      "name": "Chipotle Sesame Adobo Steak Tacos",
+      "servings": 6,
+      "source": "https://thedefineddish.com/chipotle-sesame-adobo-steak-tacos/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/05/Chipotle-Sesame-Adobo-Steak-Tacos-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Chipotle peppers in adobo",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Creamy peanut butter",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Distilled white vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Tamari or soy sauce",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Flour tortillas",
+          "qty": 10,
+          "unit": "",
+          "aisle": "Bakery"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cotija cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Blend two of the chipotles with the sesame seeds, garlic, sesame oil, peanut butter, coconut sugar, 3 tablespoons of the avocado oil, vinegar, lime juice, tamari and a pinch of salt and pepper until smooth. Thin with a teaspoon or two of warm water if it's too thick.",
+        "Cut the steak into half-inch cubes and pat dry.",
+        "Heat the last tablespoon of avocado oil in a large skillet or griddle over medium-high. Cook the steak in a single layer, undisturbed, 3 to 4 minutes, until golden.",
+        "Sprinkle with the salt, pepper, cumin and paprika, toss, and cook 2 to 3 minutes more, until cooked through.",
+        "Lower the heat, add 2 tablespoons of the sauce, and toss to coat.",
+        "Warm the tortillas and fill them with steak. Drizzle with more sauce and top with avocado, cotija and cilantro."
+      ]
+    },
+    {
+      "id": "creamy-linguine-with-lemon-and-pancetta",
+      "name": "Creamy Linguine with Lemon and Pancetta",
+      "servings": 2,
+      "source": "https://thedefineddish.com/creamy-linguine-with-lemon-and-pancetta/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/05/Creamy-Linguine-with-Lemon-_-Pancetta-2-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Linguine",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Pancetta",
+          "qty": 4,
+          "unit": "oz",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Heavy cream",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Pecorino Romano",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        }
+      ],
+      "instructions": [
+        "Boil the linguine in well-salted water until al dente. Save about half a cup of the pasta water before draining.",
+        "Meanwhile, cook the pancetta in a large skillet over medium until the fat renders and it crisps, about 4 minutes.",
+        "Add the garlic, shallot and red pepper flakes and cook about 2 minutes without letting them burn.",
+        "Stir in the cream, lemon zest and pepper.",
+        "Add the drained pasta to the skillet with the pecorino, lemon juice and a pinch of salt. Toss with a quarter cup of the pasta water until the cheese melts and the pasta is glossy, adding more water if it's too thick.",
+        "Taste for salt and serve with extra pecorino and red pepper flakes."
+      ]
+    },
+    {
+      "id": "harissa-lamb-meatball-bowls",
+      "name": "Harissa Lamb Meatball Bowls",
+      "servings": 4,
+      "source": "https://thedefineddish.com/harissa-lamb-meatball-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/08/120816_Harissa-Lamb-Bowls-13.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground lamb or beef",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Eggs",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Harissa sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.75,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Curry powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground coriander",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Smoked paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cucumber",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cherry tomatoes",
+          "qty": 1,
+          "unit": "pint",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Tahini",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Brown rice, uncooked (for serving)",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh dill",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F and lightly oil a small baking sheet.",
+        "Mix the lamb, egg, harissa, salt, curry powder, garlic powder, coriander, paprika and tapioca flour by hand. Roll into 1-inch balls (damp hands help) and set them on the pan.",
+        "Bake about 15 minutes, until golden and cooked through.",
+        "Meanwhile, toss the cucumber, tomatoes, red onion, olive oil, 2 tablespoons of the lemon juice, salt and pepper.",
+        "Stir together the tahini, yogurt, the remaining lemon juice, cilantro and a pinch of salt. Thin with 2 to 4 tablespoons of warm water until thick but drizzly.",
+        "Divide the rice among four bowls. Top with the meatballs, the salad, a spoonful of tahini sauce and an extra dab of harissa if you like. Garnish with dill."
+      ]
+    },
+    {
+      "id": "curried-turkey-sloppy-joes",
+      "name": "Curried Turkey Sloppy Joes",
+      "servings": 6,
+      "source": "https://thedefineddish.com/curried-turkey-sloppy-joes/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/08/Curried-Turkey-Sloppy-Joes-2-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground turkey",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Curry powder",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garam masala",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cayenne pepper (optional)",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Crushed tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 5.33,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Serrano pepper (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Potato hamburger buns",
+          "qty": 6,
+          "unit": "",
+          "aisle": "Bakery"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large skillet over medium. Cook the pepper, onion and garlic until they start to soften, 3 to 4 minutes.",
+        "Add the turkey, ginger, salt and pepper and cook, breaking the turkey into very small pieces, until no longer pink, 4 to 6 minutes. Drain off excess fat if needed.",
+        "Stir in the curry powder, garam masala, cumin and cayenne and toast for about 2 minutes.",
+        "Mix in the tomato paste, then the crushed tomatoes, broth and coconut sugar. Simmer, stirring often, about 4 minutes, until slightly thickened.",
+        "Lower the heat and stir in the yogurt until just combined. Season to taste.",
+        "Top with cilantro and spoon onto the buns, finishing with thin slices of serrano if you like."
+      ]
+    },
+    {
+      "id": "mongolian-chicken",
+      "name": "Mongolian Chicken",
+      "servings": 4,
+      "source": "https://thedefineddish.com/mongolian-chicken/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/07/230707_mongolian-chicken-13.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken breasts",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 12,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 5.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.75,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Crushed red pepper flakes (optional)",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "White rice, uncooked (for serving)",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Pound the chicken to an even quarter inch and slice it into thin strips about 2 inches wide. Toss with a teaspoon of avocado oil, the salt, pepper and a tablespoon of the tapioca flour.",
+        "Whisk the coconut aminos, fish sauce, sesame oil, rice vinegar, broth and the other tablespoon of tapioca flour into a sauce.",
+        "Heat 2 tablespoons of avocado oil in a large skillet or wok over medium-high. Brown the chicken in batches, so the pan isn't crowded, until golden and just cooked through, adding oil as needed. Set it aside.",
+        "Cook the white and light green parts of the green onions with the ginger and garlic for 20 to 30 seconds. Pour in the sauce, bring to a rapid simmer, and cook, stirring, until thickened, 2 to 3 minutes.",
+        "Return the chicken with the red pepper flakes and the dark green onion pieces and toss just until hot.",
+        "Serve right away, on its own or over rice."
+      ]
+    },
+    {
+      "id": "baked-salmon-sushi-bowls",
+      "name": "Baked Salmon Sushi Bowls",
+      "servings": 4,
+      "source": "https://thedefineddish.com/baked-salmon-sushi-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2022/03/Baked-Salmon-Sushi-Bowls-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Center-cut salmon",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 6,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "White pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Sriracha",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Brown rice, uncooked (for serving)",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Persian cucumbers",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Roasted seaweed (nori) snacks",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 325°F. Pat the salmon dry and put it in a small baking dish.",
+        "Whisk 2 tablespoons of the avocado oil with a quarter cup of the coconut aminos, the ginger and the sesame oil. Pour it over the salmon and sprinkle with the salt and pepper. Bake 25 to 30 minutes, until it flakes easily.",
+        "While it bakes, whisk the dressing: the remaining avocado oil, honey, the remaining coconut aminos, fish sauce, lemon juice, sriracha and garlic.",
+        "Flake the salmon into large pieces. Serve over rice with avocado, cucumber, green onions and nori. Drizzle with the dressing and sprinkle with sesame seeds."
+      ]
     }
   ]
 }
