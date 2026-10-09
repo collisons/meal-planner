@@ -23,6 +23,209 @@ const apiHeaders = () => ({
     "anthropic-version": "2023-06-01",
     "anthropic-dangerous-direct-browser-access": "true",
 });
+/* ------------------------------------------------------------------ */
+/* Household sharing (optional)                                       */
+/* Keeps meals, the week and the grocery list in sync between phones  */
+/* through a small Firebase Realtime Database. Every item is synced   */
+/* on its own, so two people editing at once don't overwrite each     */
+/* other.                                                             */
+/* ------------------------------------------------------------------ */
+const SYNC_CFG_KEY = "mealplan-sync";
+const SYNC_BASE_KEY = "mealplan-sync-base";
+const pollMs = () => Number(localStorage.getItem("mealplan-poll-ms")) || 5000;
+const validDbUrl = (u) => {
+    try {
+        const x = new URL(String(u).trim());
+        return x.protocol === "https:" && /\.(firebaseio\.com|firebasedatabase\.app)$/.test(x.hostname);
+    }
+    catch (e) {
+        return false;
+    }
+};
+const normDbUrl = (u) => new URL(String(u).trim()).origin;
+const validCode = (c) => /^[A-Za-z0-9_-]{12,64}$/.test(String(c));
+const getSyncConfig = () => {
+    try {
+        const c = JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || "null");
+        return c && validDbUrl(c.url) && validCode(c.code) ? { url: normDbUrl(c.url), code: c.code } : null;
+    }
+    catch (e) {
+        return null;
+    }
+};
+const newHouseholdCode = () => {
+    const abc = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const a = new Uint8Array(20);
+    crypto.getRandomValues(a);
+    return Array.from(a, (n) => abc[n % abc.length]).join("");
+};
+// Database keys can't contain . $ # [ ] / so every key is encoded.
+const encKey = (s) => btoa(unescape(encodeURIComponent(String(s)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+const decKey = (s) => decodeURIComponent(escape(atob(String(s).replace(/-/g, "+").replace(/_/g, "/"))));
+const inviteLink = (cfg) => `${location.origin}${location.pathname}#join=${encodeURIComponent(btoa(JSON.stringify({ u: cfg.url, c: cfg.code })))}`;
+function readJoinLink() {
+    try {
+        const m = /[#&]join=([^&]+)/.exec(location.hash);
+        if (!m)
+            return null;
+        const d = JSON.parse(atob(decodeURIComponent(m[1])));
+        return validDbUrl(d.u) && validCode(d.c) ? { url: normDbUrl(d.u), code: d.c } : null;
+    }
+    catch (e) {
+        return null;
+    }
+}
+const readBase = () => {
+    try {
+        return JSON.parse(localStorage.getItem(SYNC_BASE_KEY) || "{}") || {};
+    }
+    catch (e) {
+        return {};
+    }
+};
+const saveBase = (b) => {
+    try {
+        localStorage.setItem(SYNC_BASE_KEY, JSON.stringify(b));
+    }
+    catch (e) { /* ignore */ }
+};
+// The whole app state, flattened into "collection/key" -> value entries.
+function stateToLeaves(st, selAt) {
+    const L = {};
+    for (const m of st.meals) {
+        const c = cleanMeal(m);
+        if (c)
+            L[`meals/${encKey(c.id)}`] = JSON.stringify(c);
+    }
+    for (const id of st.selected) {
+        if (!selAt[id])
+            selAt[id] = Date.now();
+        L[`selected/${encKey(id)}`] = selAt[id];
+    }
+    for (const id of Object.keys(selAt))
+        if (!st.selected.includes(id))
+            delete selAt[id];
+    for (const [k, v] of Object.entries(st.checked))
+        if (v)
+            L[`checked/${encKey(k)}`] = true;
+    for (const [k, v] of Object.entries(st.storeMap))
+        if (v)
+            L[`storeMap/${encKey(k)}`] = v;
+    for (const x of st.extras) {
+        L[`extras/${encKey(x.id)}`] = JSON.stringify({ id: x.id, name: x.name, aisle: x.aisle, store: x.store || "", done: !!x.done });
+    }
+    for (const k of st.kids)
+        L[`kids/${k.id}`] = String(k.name || "").trim();
+    L["household/value"] = st.household;
+    return L;
+}
+function leavesToState(L) {
+    const meals = [];
+    const extras = [];
+    const checked = {};
+    const storeMap = {};
+    const sel = [];
+    const kids = KID_IDS.map((id) => ({ id, name: "" }));
+    let household = 4;
+    for (const [path, val] of Object.entries(L)) {
+        const i = path.indexOf("/");
+        const col = path.slice(0, i);
+        const key = path.slice(i + 1);
+        try {
+            if (col === "meals") {
+                const m = cleanMeal(JSON.parse(val));
+                if (m)
+                    meals.push(withKnownImage(m));
+            }
+            else if (col === "selected") {
+                sel.push([decKey(key), Number(val) || 0]);
+            }
+            else if (col === "checked") {
+                if (val === true)
+                    checked[decKey(key)] = true;
+            }
+            else if (col === "storeMap") {
+                if (STORES.includes(val))
+                    storeMap[decKey(key)] = val;
+            }
+            else if (col === "extras") {
+                const x = JSON.parse(val);
+                const name = clampStr(x.name, 60);
+                if (name)
+                    extras.push({ id: clampStr(x.id, 40), name, aisle: AISLES.includes(x.aisle) ? x.aisle : "Other", store: STORES.includes(x.store) ? x.store : "", done: x.done === true });
+            }
+            else if (col === "kids") {
+                const k = kids.find((q) => q.id === key);
+                if (k)
+                    k.name = clampStr(val, 20);
+            }
+            else if (col === "household") {
+                household = Math.round(num(val, 1, 12, 4));
+            }
+        }
+        catch (e) {
+            // Ignore one malformed entry instead of failing the whole sync.
+        }
+    }
+    sel.sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
+    return { meals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, selAt: Object.fromEntries(sel) };
+}
+// For each entry: if this device changed it, keep ours; otherwise take what's shared.
+function mergeLeaves(local, base, remote) {
+    const out = {};
+    const paths = new Set([...Object.keys(local), ...Object.keys(base), ...Object.keys(remote)]);
+    for (const p of paths) {
+        const v = local[p] !== base[p] ? local[p] : remote[p];
+        if (v !== undefined)
+            out[p] = v;
+    }
+    return out;
+}
+function diffPatches(merged, remote) {
+    const patches = {};
+    for (const p of new Set([...Object.keys(merged), ...Object.keys(remote)])) {
+        if (merged[p] === remote[p])
+            continue;
+        const i = p.indexOf("/");
+        const col = p.slice(0, i);
+        (patches[col] = patches[col] || {})[p.slice(i + 1)] = merged[p] === undefined ? null : merged[p];
+    }
+    return patches;
+}
+function changedCols(a, b) {
+    const cols = new Set();
+    for (const p of new Set([...Object.keys(a), ...Object.keys(b)])) {
+        if (a[p] !== b[p])
+            cols.add(p.slice(0, p.indexOf("/")));
+    }
+    return cols;
+}
+async function syncGet(cfg) {
+    const res = await fetch(`${cfg.url}/households/${cfg.code}.json`, { cache: "no-store" });
+    if (!res.ok)
+        throw new Error(res.status === 401 || res.status === 403 ? "permission denied" : `error ${res.status}`);
+    const data = await res.json();
+    const L = {};
+    if (data && typeof data === "object") {
+        for (const [col, obj] of Object.entries(data)) {
+            if (obj && typeof obj === "object")
+                for (const [k, v] of Object.entries(obj))
+                    L[`${col}/${k}`] = v;
+        }
+    }
+    return L;
+}
+async function syncPush(cfg, patches) {
+    for (const [col, body] of Object.entries(patches)) {
+        const res = await fetch(`${cfg.url}/households/${cfg.code}/${col}.json?print=silent`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+        });
+        if (!res.ok)
+            throw new Error(res.status === 401 || res.status === 403 ? "permission denied" : `error ${res.status}`);
+    }
+}
 // Ordered the way you walk a typical store.
 const AISLES = ["Produce", "Bakery", "Meat & seafood", "Dairy & eggs", "Pantry", "Frozen", "Other"];
 const UNITS = ["", "lb", "oz", "cup", "tbsp", "tsp", "can", "jar", "pint", "head", "bunch", "slice", "pkg", "clove"];
@@ -566,6 +769,10 @@ const CSS = `
 .chips.scroll .chip{flex:none}
 .photobar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
 .mp .photobar p{font-weight:700}
+.mp .syncpill{margin:0 0 12px;font-size:12px;font-weight:700;color:var(--muted)}
+.syncpill::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--moss)}
+.syncpill.error::before{background:#C9A412}
+.syncpill.connecting::before{background:#9AA79D}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px;margin-top:16px}
 .tile{display:flex;flex-direction:column;min-width:0}
 .shotwrap{position:relative;border-radius:10px}
@@ -702,8 +909,11 @@ function RatingBadge({ info }) {
         return _jsx("span", { children: "Not rated" });
     return (_jsxs("span", { className: "rate", children: [_jsx(Star, { size: 14, style: { color: "#8A6D00", fill: "#F1D24A" } }), " ", info.avg.toFixed(1)] }));
 }
-function FamilySheet({ kids, onChange, onClose, onExport, onRestore }) {
+function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
     const [key, setKey] = useState(() => getApiKey());
+    const [dbUrl, setDbUrl] = useState("");
+    const [code, setCode] = useState("");
+    const [msg, setMsg] = useState("");
     const fileRef = useRef(null);
     const saveKey = (v) => {
         setKey(v);
@@ -717,7 +927,10 @@ function FamilySheet({ kids, onChange, onClose, onExport, onRestore }) {
             // Storage unavailable: the key just won't be remembered.
         }
     };
-    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Your meals are saved in this browser only. Download a backup to keep them safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) })] })] }));
+    const statusText = sync.status === "ok" ? "Connected. Changes show up on your other devices within a few seconds."
+        : sync.status === "error" ? `Can't reach the shared database (${sync.error || "no connection"}). Your changes are saved here and will sync when it's back.`
+            : "Connecting…";
+    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) })] })] }));
 }
 function StoreSheet({ item, onPick, onClose }) {
     return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));
@@ -1078,6 +1291,178 @@ export default function FamilyMealPlanner() {
         toastTimer.current = setTimeout(() => setToast(""), 2200);
     };
     useEffect(() => () => clearTimeout(toastTimer.current), []);
+    /* ---- household sharing ---- */
+    const joinedRef = useRef(false);
+    const [syncCfg, setSyncCfg] = useState(() => {
+        const joined = readJoinLink();
+        if (joined) {
+            joinedRef.current = true;
+            try {
+                localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(joined));
+                localStorage.removeItem(SYNC_BASE_KEY);
+                history.replaceState(null, "", location.pathname + location.search);
+            }
+            catch (e) {
+                // Ignore: the link just won't be cleaned from the address bar.
+            }
+            return joined;
+        }
+        return getSyncConfig();
+    });
+    const [syncStatus, setSyncStatus] = useState(syncCfg ? "connecting" : "off");
+    const [syncError, setSyncError] = useState("");
+    const stRef = useRef(null);
+    const selAtRef = useRef({});
+    const baseRef = useRef(null);
+    if (baseRef.current === null)
+        baseRef.current = readBase();
+    const syncBusy = useRef(false);
+    const syncAgain = useRef(false);
+    const cfgRef = useRef(syncCfg);
+    const readyRef = useRef(false);
+    stRef.current = { meals, kids, selected, household, checked, storeMap, extras };
+    cfgRef.current = syncCfg;
+    readyRef.current = loaded && !loadFailed;
+    const applyLeaves = (merged, cols) => {
+        const st = leavesToState(merged);
+        selAtRef.current = st.selAt;
+        if (cols.has("meals"))
+            setMeals(st.meals);
+        if (cols.has("kids"))
+            setKids(st.kids);
+        if (cols.has("selected"))
+            setSelected(st.selected);
+        if (cols.has("household"))
+            setHousehold(st.household);
+        if (cols.has("checked"))
+            setChecked(st.checked);
+        if (cols.has("storeMap"))
+            setStoreMap(st.storeMap);
+        if (cols.has("extras"))
+            setExtras(st.extras);
+    };
+    const syncNow = async () => {
+        const cfg = cfgRef.current;
+        if (!cfg || !readyRef.current)
+            return;
+        if (syncBusy.current) {
+            syncAgain.current = true;
+            return;
+        }
+        syncBusy.current = true;
+        try {
+            const remote = await syncGet(cfg);
+            const local = stateToLeaves(stRef.current, selAtRef.current);
+            const merged = mergeLeaves(local, baseRef.current, remote);
+            const patches = diffPatches(merged, remote);
+            const cols = changedCols(merged, local);
+            if (cols.size)
+                applyLeaves(merged, cols);
+            // Until our own changes are confirmed, those entries keep the shared value as their baseline.
+            const nextBase = { ...merged };
+            for (const col of Object.keys(patches)) {
+                for (const key of Object.keys(patches[col])) {
+                    const p = `${col}/${key}`;
+                    if (remote[p] === undefined)
+                        delete nextBase[p];
+                    else
+                        nextBase[p] = remote[p];
+                }
+            }
+            baseRef.current = nextBase;
+            saveBase(nextBase);
+            await syncPush(cfg, patches);
+            for (const col of Object.keys(patches)) {
+                for (const key of Object.keys(patches[col])) {
+                    const p = `${col}/${key}`;
+                    if (merged[p] === undefined)
+                        delete baseRef.current[p];
+                    else
+                        baseRef.current[p] = merged[p];
+                }
+            }
+            saveBase(baseRef.current);
+            setSyncStatus("ok");
+            setSyncError("");
+        }
+        catch (e) {
+            setSyncStatus("error");
+            setSyncError(String((e && e.message) || e));
+        }
+        finally {
+            syncBusy.current = false;
+            if (syncAgain.current) {
+                syncAgain.current = false;
+                setTimeout(syncNow, 300);
+            }
+        }
+    };
+    // Sync shortly after any change here...
+    useEffect(() => {
+        if (!syncCfg || !loaded || loadFailed)
+            return undefined;
+        const t = setTimeout(() => syncNow(), 700);
+        return () => clearTimeout(t);
+    }, [syncCfg, loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras]);
+    // ...and keep checking for changes made on the other phone.
+    useEffect(() => {
+        if (!syncCfg || !loaded || loadFailed)
+            return undefined;
+        const tick = () => { if (document.visibilityState === "visible")
+            syncNow(); };
+        const id = setInterval(tick, pollMs());
+        document.addEventListener("visibilitychange", tick);
+        window.addEventListener("online", tick);
+        return () => {
+            clearInterval(id);
+            document.removeEventListener("visibilitychange", tick);
+            window.removeEventListener("online", tick);
+        };
+    }, [syncCfg, loaded, loadFailed]);
+    useEffect(() => {
+        if (joinedRef.current)
+            showToast("Joined the shared meal plan");
+    }, []);
+    const turnOnSharing = (cfg) => {
+        if (!validDbUrl(cfg.url))
+            return "That doesn't look like a Firebase database address. It should end in firebaseio.com or firebasedatabase.app.";
+        if (!validCode(cfg.code))
+            return "The household code should be 12 to 64 letters and numbers.";
+        const clean = { url: normDbUrl(cfg.url), code: cfg.code };
+        try {
+            localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(clean));
+            localStorage.removeItem(SYNC_BASE_KEY);
+        }
+        catch (e) {
+            // Ignore: sharing still works until the page is closed.
+        }
+        baseRef.current = {};
+        setSyncCfg(clean);
+        setSyncStatus("connecting");
+        setSyncError("");
+        return "";
+    };
+    const turnOffSharing = () => {
+        try {
+            localStorage.removeItem(SYNC_CFG_KEY);
+            localStorage.removeItem(SYNC_BASE_KEY);
+        }
+        catch (e) {
+            // Ignore.
+        }
+        baseRef.current = {};
+        setSyncCfg(null);
+        setSyncStatus("off");
+    };
+    const copyInvite = async () => {
+        try {
+            await navigator.clipboard.writeText(inviteLink(syncCfg));
+            showToast("Invite link copied");
+        }
+        catch (e) {
+            showToast("Couldn't copy. Check clipboard permissions.");
+        }
+    };
     /* ---- derived ---- */
     const mealById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
     const weekMeals = useMemo(() => selected.map((id) => mealById.get(id)).filter(Boolean), [selected, mealById]);
@@ -1287,7 +1672,7 @@ export default function FamilyMealPlanner() {
     const viewMeal = viewId ? mealById.get(viewId) : null;
     const today = todayStr();
     const metaLine = (m) => (_jsxs("span", { className: "meta", children: [_jsx("span", { children: madeLabel(m.lastMade) }), _jsx(RatingBadge, { info: ratingInfo(m, kids) }), m.scale !== 1 ? _jsxs("span", { children: ["Recipe at ", Math.round(m.scale * 100), "%"] }) : null, m.unreviewed ? _jsx("span", { className: "pill", children: "Check recipe" }) : null] }));
-    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap the circle on a photo to add it to this week" })] }), _jsxs("div", { className: "acts", children: [_jsx("button", { className: "icon-btn", "aria-label": "Settings", onClick: () => setFamilyOpen(true), children: _jsx(Users, { size: 22 }) }), _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] })] })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
+    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, syncCfg ? (_jsx("p", { className: `syncpill ${syncStatus}`, role: "status", children: syncStatus === "ok" ? "Shared · up to date" : syncStatus === "error" ? "Can't reach the shared list · will retry" : "Connecting…" })) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap the circle on a photo to add it to this week" })] }), _jsxs("div", { className: "acts", children: [_jsx("button", { className: "icon-btn", "aria-label": "Settings", onClick: () => setFamilyOpen(true), children: _jsx(Users, { size: 22 }) }), _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] })] })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
                                                 ? `Found ${photoJob.found} of ${photoJob.total} photos.` +
                                                     (photoJob.unloadable
                                                         ? ` ${photoJob.unloadable} ${photoJob.unloadable === 1 ? "address was" : "addresses were"} found but wouldn't load here.`
@@ -1303,5 +1688,5 @@ export default function FamilyMealPlanner() {
                                             })] }, g.label))), _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 16 }), " Uncheck all"] })] })] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, household: household, inWeek: weekIds.has(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
                     setAddOpen(false);
                     setEditor({ id: null, draft, title: "Review meal", banner: "Imported recipes can contain mistakes. Check the amounts and steps, then save." });
-                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onClose: () => setStoreFor(null) }) : null, _jsx("div", { "aria-live": "polite", children: toast ? _jsx("div", { className: "toast", children: toast }) : null })] }));
+                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData, sync: { cfg: syncCfg, status: syncStatus, error: syncError, onOn: turnOnSharing, onOff: turnOffSharing, onInvite: copyInvite } }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onClose: () => setStoreFor(null) }) : null, _jsx("div", { "aria-live": "polite", children: toast ? _jsx("div", { className: "toast", children: toast }) : null })] }));
 }
