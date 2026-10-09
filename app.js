@@ -169,6 +169,9 @@ function stateToLeaves(st, selAt) {
     for (const [k, v] of Object.entries(st.checked))
         if (v)
             L[`checked/${encKey(k)}`] = true;
+    for (const [k, v] of Object.entries(st.cleared || {}))
+        if (v > 0)
+            L[`cleared/${encKey(k)}`] = v;
     for (const [k, v] of Object.entries(st.storeMap))
         if (v)
             L[`storeMap/${encKey(k)}`] = v;
@@ -185,6 +188,7 @@ function leavesToState(L) {
     const statsById = {};
     const extras = [];
     const checked = {};
+    const cleared = {};
     const storeMap = {};
     const sel = [];
     const kids = KID_IDS.map((id) => ({ id, name: "" }));
@@ -208,6 +212,11 @@ function leavesToState(L) {
             else if (col === "checked") {
                 if (val === true)
                     checked[decKey(key)] = true;
+            }
+            else if (col === "cleared") {
+                const n = Number(val);
+                if (Number.isFinite(n) && n > 0 && n < 100000)
+                    cleared[decKey(key)] = n;
             }
             else if (col === "storeMap") {
                 if (STORES.includes(val))
@@ -234,7 +243,7 @@ function leavesToState(L) {
     }
     sel.sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
     const allMeals = [...LIBRARY.map((lib) => libMeal(lib, statsById[lib.id])), ...meals.filter((m) => !isLib(m.id) && !String(m.id).startsWith("lib_"))];
-    return { meals: allMeals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, selAt: Object.fromEntries(sel) };
+    return { meals: allMeals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, cleared, selAt: Object.fromEntries(sel) };
 }
 // For each entry: if this device changed it, keep ours; otherwise take what's shared.
 // Shared ratings for a recipe that isn't in the library right now are left untouched.
@@ -477,6 +486,58 @@ function cleanMeal(m) {
     };
 }
 // Anything read from storage is untrusted: rebuild it field by field.
+function cleanExtras(list) {
+    return Array.isArray(list)
+        ? list
+            .slice(0, 100)
+            .filter((x) => x && typeof x.name === "string")
+            .map((x) => ({
+            id: clampStr(x.id || uid(), 40),
+            name: clampStr(x.name, 60),
+            aisle: AISLES.includes(x.aisle) ? x.aisle : "Other",
+            store: STORES.includes(x.store) ? x.store : "",
+            done: x.done === true,
+        }))
+            .filter((x) => x.name)
+        : [];
+}
+// How much of each ingredient has already been bought and cleared from the list this week.
+function cleanCleared(o) {
+    const out = {};
+    if (o && typeof o === "object") {
+        for (const [k, v] of Object.entries(o).slice(0, 500)) {
+            const n = Number(v);
+            if (Number.isFinite(n) && n > 0 && n < 100000)
+                out[String(k).slice(0, 100)] = n;
+        }
+    }
+    return out;
+}
+// The last "Done shopping", kept on this device so it can be brought back.
+const LAST_CLEAR_KEY = "mealplan-last-clear";
+function readLastClear() {
+    try {
+        const raw = JSON.parse(localStorage.getItem(LAST_CLEAR_KEY) || "null");
+        if (!raw || typeof raw !== "object")
+            return null;
+        const planIds = Array.isArray(raw.planIds) ? raw.planIds.filter((x) => typeof x === "string").map((x) => x.slice(0, 100)).slice(0, 500) : [];
+        const removedExtras = cleanExtras(raw.removedExtras);
+        const count = planIds.length + removedExtras.length;
+        return count ? { planIds, removedExtras, prevCleared: cleanCleared(raw.prevCleared), count, at: Number(raw.at) || 0 } : null;
+    }
+    catch (e) {
+        return null;
+    }
+}
+function writeLastClear(snap) {
+    try {
+        if (snap)
+            localStorage.setItem(LAST_CLEAR_KEY, JSON.stringify(snap));
+        else
+            localStorage.removeItem(LAST_CLEAR_KEY);
+    }
+    catch (e) { /* ignore */ }
+}
 function sanitizeState(d) {
     if (!d || typeof d !== "object")
         return null;
@@ -501,20 +562,9 @@ function sanitizeState(d) {
                 storeMap[String(k).slice(0, 60)] = v;
         }
     }
-    const extras = Array.isArray(d.extras)
-        ? d.extras
-            .slice(0, 100)
-            .filter((x) => x && typeof x.name === "string")
-            .map((x) => ({
-            id: clampStr(x.id || uid(), 40),
-            name: clampStr(x.name, 60),
-            aisle: AISLES.includes(x.aisle) ? x.aisle : "Other",
-            store: STORES.includes(x.store) ? x.store : "",
-            done: x.done === true,
-        }))
-            .filter((x) => x.name)
-        : [];
-    return { meals, kids, selected, household: Math.round(num(d.household, 1, 12, DEFAULT_HOUSEHOLD)), checked, storeMap, extras };
+    const extras = cleanExtras(d.extras);
+    const cleared = cleanCleared(d.cleared);
+    return { meals, kids, selected, household: Math.round(num(d.household, 1, 12, DEFAULT_HOUSEHOLD)), checked, storeMap, extras, cleared };
 }
 const nameKey = (n) => String(n).trim().toLowerCase().slice(0, 60);
 const kidName = (k, i) => k.name.trim() || `Kid ${i + 1}`;
@@ -675,6 +725,39 @@ const markHhMoved = () => {
     }
     catch (e) { /* ignore */ }
 };
+// ---- Which part of the store a typed-in item belongs to ----
+// First rule that matches wins, so specific words ("peanut butter", "chicken broth") come before general ones ("butter", "chicken").
+const AISLE_RULES = [
+    ["Frozen", /\b(frozen|ice cream|gelato|sorbet|popsicles?|ice pops?)\b/],
+    ["Other", /\b(paper towels?|toilet paper|tissues?|napkins?|aluminum foil|tin foil|foil|plastic wrap|cling wrap|parchment|wax paper|trash bags?|garbage bags?|zip(?:-?lock)? bags?|sandwich bags?|storage bags?|soap|detergent|dish soap|dishwasher|sponges?|shampoo|conditioner|toothpaste|toothbrush|deodorant|diapers?|wipes|batteries|light ?bulbs?|candles?|cleaner|cleaning|bleach|laundry|dryer sheets?|pet food|dog food|cat food|cat litter|vitamins?|medicine|ibuprofen|tylenol|band-?aids?|bandages?|sunscreen|lotion|razors?)\b/],
+    ["Produce", /\b(green beans?|string beans?|snap peas?|sugar snap)\b/],
+    ["Pantry", /\b(broth|stock|bouillon|soups?|sauces?|pastes?|powder|seasonings?|spices?|extracts?|flakes|jams?|jelly|preserves|syrup|vinegar|oils?|dressing|marinade|salsa|ketchup|mustard|mayo|mayonnaise|tahini|peanut butter|almond butter|cashew butter|nut butter|sunflower butter|coconut|canned|crushed tomatoes|diced tomatoes|stewed tomatoes|chips|crackers?|cookies?|cereal|granola|oats|oatmeal|pasta|noodles?|spaghetti|macaroni|penne|rigatoni|linguine|fettuccine|orzo|couscous|quinoa|rice|flour|cornstarch|corn starch|cornmeal|starch|sugar|salt|peppercorns?|black pepper|white pepper|cayenne|cumin|paprika|oregano|cinnamon|turmeric|nutmeg|honey|baking soda|baking powder|yeast|cocoa|chocolate|candy|popcorn|pretzels?|nuts?|almonds?|walnuts?|pecans?|cashews?|peanuts?|pistachios?|seeds?|raisins|coffee|tea|juice|soda|seltzer|sparkling|water|lemonade|kombucha|lentils?|chickpeas?|beans|olives?|pickles?|capers|bars?|snacks?|dried)\b/],
+    ["Other", /\b(wine|beer|vodka|whiskey|bourbon|tequila|rum|gin|prosecco|champagne|liquor)\b/],
+    ["Bakery", /\b(bread|bagels?|tortillas?|buns?|rolls?|naan|pita|muffins?|croissants?|baguette|brioche|sourdough|cakes?|donuts?|doughnuts?|pies?|cupcakes?|focaccia|ciabatta|wraps?)\b/],
+    ["Dairy & eggs", /\b(milk|cream|half and half|half & half|butter|buttermilk|cheese|yogurt|yoghurt|eggs?|cottage cheese|ricotta|mozzarella|parmesan|parmigiano|pecorino|cheddar|feta|gouda|mascarpone|creamer|kefir|ghee)\b/],
+    ["Meat & seafood", /\b(chicken|beef|steaks?|pork|bacon|sausages?|turkey|ham|hamburgers?|burgers?|lamb|brisket|ribs?|roast|chops?|meatballs?|hot dogs?|salami|pepperoni|prosciutto|pancetta|chorizo|salmon|shrimp|fish|tuna|cod|tilapia|halibut|trout|scallops?|crab|lobster|clams?|mussels?|oysters?|anchov(?:y|ies)|jerky|deli meat)\b/],
+    ["Produce", /\b(apples?|bananas?|oranges?|lemons?|limes?|grapes?|berr(?:y|ies)|strawberr\w*|blueberr\w*|raspberr\w*|blackberr\w*|cherr(?:y|ies)|peach(?:es)?|pears?|plums?|mango(?:es)?|pineapple|melons?|watermelon|cantaloupe|kiwi|avocados?|tomato(?:es)?|potato(?:es)?|yams?|onions?|shallots?|scallions?|garlic|ginger|lettuce|romaine|spinach|kale|arugula|cabbage|salad|greens|cucumbers?|celery|carrots?|broccoli|cauliflower|zucchini|squash|pumpkin|eggplant|mushrooms?|asparagus|corn|peas|sprouts|radish(?:es)?|beets?|turnips?|leeks?|fennel|jalape\w*|chiles?|chilis?|peppers?|basil|cilantro|parsley|mint|dill|thyme|rosemary|sage|chives|herbs?|fruit|veggies?|vegetables?|bok choy|brussels|artichokes?|okra|tofu|tempeh)\b/],
+];
+const aisleKey = (n) => String(n || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim().replace(/s$/, "");
+let libraryAisles = null;
+// A name that exactly matches an ingredient in your recipes goes in the same section as that ingredient.
+function guessAisle(name) {
+    if (!libraryAisles) {
+        libraryAisles = new Map();
+        for (const r of LIBRARY)
+            for (const i of r.ingredients)
+                if (!libraryAisles.has(aisleKey(i.name)))
+                    libraryAisles.set(aisleKey(i.name), i.aisle);
+    }
+    const fromRecipes = libraryAisles.get(aisleKey(name));
+    if (fromRecipes && AISLES.includes(fromRecipes))
+        return fromRecipes;
+    const text = String(name || "").toLowerCase();
+    for (const [aisle, re] of AISLE_RULES)
+        if (re.test(text))
+            return aisle;
+    return "Other";
+}
 // Ratings for a recipe that has been taken out of the library are kept in reserve, so they come back with it.
 const ORPHANS_KEY = "mealplan-orphan-stats";
 const readOrphans = () => {
@@ -989,9 +1072,8 @@ const CSS = `
 .legend{margin-top:8px;font-size:12px;color:var(--muted)}
 .progress{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:14px 0 6px}
 .progress div{height:100%;background:var(--lemon);border-right:2px solid #B79A10;transition:width .25s ease}
-.addbox{margin:16px 0 4px;display:grid;grid-template-columns:1fr 1fr 48px;gap:8px}
-.addbox .name{grid-column:1 / 3}
-.addbox .btn{padding:0;grid-column:3;grid-row:1}
+.addbox{margin:16px 0 4px;display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:8px}
+.addbox .btn{padding:0}
 .aisle{margin-top:20px}
 .aisle h3{display:flex;justify-content:space-between;padding-bottom:6px;border-bottom:2px solid var(--ink)}
 .aisle h3 span{color:var(--muted);font-weight:700}
@@ -1048,6 +1130,15 @@ const CSS = `
 .warn{margin-bottom:14px;padding:10px 12px;border-radius:12px;background:var(--lemon-soft);font-size:13px;font-weight:700}
 .loading{display:grid;place-items:center;flex:1;color:var(--muted);font-weight:700}
 
+.cart{margin-top:26px;padding:10px 14px 6px;border-radius:18px;background:#fff;border:1.5px solid var(--line)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cart-toggle{display:flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;background:none;font-weight:800;font-size:15px;text-align:left}
+.cart-toggle .count{display:grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--lemon);border:1.5px solid #B79A10;font-size:13px}
+.cart .confirm{margin:6px 0 10px}
+.cart-list{margin-top:4px}
+.cart-list .row:last-child{border-bottom:0}
+.toast.undo{display:flex;align-items:center;gap:14px;padding:6px 6px 6px 18px;max-width:92%;white-space:nowrap}
+.toast.undo button{min-height:40px;padding:0 18px;border:0;border-radius:999px;background:var(--lemon);color:var(--ink);font-weight:800}
 .brand{display:none}
 .detail{display:block}
 
@@ -1060,10 +1151,7 @@ const CSS = `
   .searchbox{max-width:460px}
   .weeklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   .seg{max-width:360px}
-  .addbox,.progress{max-width:720px}
-  .addbox{grid-template-columns:minmax(0,1fr) 170px 150px 48px}
-  .addbox .name{grid-column:1}
-  .addbox .btn{grid-column:4}
+  .addbox,.progress,.cart{max-width:560px}
   .empty-state{max-width:560px}
   .sheet-root{position:fixed;align-items:center;justify-content:center}
   .sheet{width:min(600px,calc(100vw - 48px));max-height:90vh;border-radius:24px}
@@ -1205,8 +1293,8 @@ function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
             : "Connecting…";
     return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), ALLOW_ADDING ? (_jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) }), _jsx("div", { className: "row-actions", style: { marginTop: 10 }, children: _jsx("button", { className: "btn ghost sm", onClick: runTest, disabled: !key.trim(), children: "Test connection" }) }), test ? _jsx("p", { className: "note", role: "status", style: { whiteSpace: "pre-line" }, children: test }) : null] })) : null] }));
 }
-function StoreSheet({ item, onPick, onClose }) {
-    return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));
+function StoreSheet({ item, onPick, onSection, onClose }) {
+    return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), item.kind === "extra" ? (_jsxs("div", { style: { marginBottom: 14 }, children: [_jsx("label", { className: "lbl", htmlFor: "extra-section", style: { marginTop: 0 }, children: "Section of the store" }), _jsx("select", { id: "extra-section", value: item.aisle, onChange: (e) => onSection(e.target.value), children: AISLES.map((a) => _jsx("option", { value: a, children: a }, a)) })] })) : null, _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));
 }
 function AddMealSheet({ onClose, onDraft, onManual, onImported, knownSources }) {
     const [mode, setMode] = useState("menu");
@@ -1538,6 +1626,12 @@ export default function FamilyMealPlanner() {
     const [checked, setChecked] = useState({});
     const [storeMap, setStoreMap] = useState({});
     const [extras, setExtras] = useState([]);
+    const [cleared, setCleared] = useState({});
+    const [lastClear, setLastClear] = useState(() => readLastClear());
+    const [undoBar, setUndoBar] = useState(0);
+    const undoTimer = useRef(null);
+    const [cartOpen, setCartOpen] = useState(false);
+    const [confirmClear, setConfirmClear] = useState(false);
     const [tab, setTab] = useState("meals");
     const [viewId, setViewId] = useState(null);
     const [editor, setEditor] = useState(null); // { id, draft, title, banner }
@@ -1557,8 +1651,6 @@ export default function FamilyMealPlanner() {
     const [lovedOnly, setLovedOnly] = useState(false);
     const [groceryView, setGroceryView] = useState("section");
     const [extraName, setExtraName] = useState("");
-    const [extraAisle, setExtraAisle] = useState("Other");
-    const [extraStore, setExtraStore] = useState("");
     const toastTimer = useRef(null);
     /* ---- load ---- */
     const applyData = (data) => {
@@ -1580,6 +1672,7 @@ export default function FamilyMealPlanner() {
         setChecked(data.checked);
         setStoreMap(data.storeMap);
         setExtras(data.extras);
+        setCleared(data.cleared || {});
         return count;
     };
     const runLoad = async (isCancelled) => {
@@ -1615,7 +1708,7 @@ export default function FamilyMealPlanner() {
             return undefined;
         const t = setTimeout(async () => {
             try {
-                const json = JSON.stringify({ meals, kids, selected, household, checked, storeMap, extras });
+                const json = JSON.stringify({ meals, kids, selected, household, checked, storeMap, extras, cleared });
                 const prev = lastSaved.current;
                 // Before a big drop in meals, keep the longer list as a backup.
                 if (prev.json && prev.count >= 2 && meals.length <= prev.count - 2) {
@@ -1631,13 +1724,14 @@ export default function FamilyMealPlanner() {
             }
         }, 400);
         return () => clearTimeout(t);
-    }, [loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras]);
+    }, [loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras, cleared]);
     const showToast = (msg) => {
         setToast(msg);
         clearTimeout(toastTimer.current);
         toastTimer.current = setTimeout(() => setToast(""), 2200);
     };
     useEffect(() => () => clearTimeout(toastTimer.current), []);
+    useEffect(() => () => clearTimeout(undoTimer.current), []);
     /* ---- household sharing ---- */
     const joinedRef = useRef(false);
     const [syncCfg, setSyncCfg] = useState(() => {
@@ -1667,7 +1761,7 @@ export default function FamilyMealPlanner() {
     const syncAgain = useRef(false);
     const cfgRef = useRef(syncCfg);
     const readyRef = useRef(false);
-    stRef.current = { meals, kids, selected, household, checked, storeMap, extras };
+    stRef.current = { meals, kids, selected, household, checked, storeMap, extras, cleared };
     cfgRef.current = syncCfg;
     readyRef.current = loaded && !loadFailed && recipesOk;
     const applyLeaves = (merged, cols) => {
@@ -1683,6 +1777,8 @@ export default function FamilyMealPlanner() {
             setHousehold(st.household);
         if (cols.has("checked"))
             setChecked(st.checked);
+        if (cols.has("cleared"))
+            setCleared(st.cleared);
         if (cols.has("storeMap"))
             setStoreMap(st.storeMap);
         if (cols.has("extras"))
@@ -1751,7 +1847,7 @@ export default function FamilyMealPlanner() {
             return undefined;
         const t = setTimeout(() => syncNow(), 700);
         return () => clearTimeout(t);
-    }, [syncCfg, loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras]);
+    }, [syncCfg, loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras, cleared]);
     // ...and keep checking for changes made on the other phone.
     useEffect(() => {
         if (!syncCfg || !loaded || loadFailed || !recipesOk)
@@ -1848,23 +1944,30 @@ export default function FamilyMealPlanner() {
                 e.from.add(meal.name);
             }
         }
-        const planItems = [...map.values()].map((e) => ({
-            ...e, from: [...e.from], store: storeMap[nameKey(e.name)] || "", done: !!checked[e.id],
-        }));
+        // Amounts already bought and cleared come off the list. If more is needed later, only the difference shows.
+        const planItems = [...map.values()]
+            .map((e) => {
+            const bought = cleared[e.id] || 0;
+            return { ...e, qty: e.qty - bought, bought, from: [...e.from], store: storeMap[nameKey(e.name)] || "", done: !!checked[e.id] };
+        })
+            .filter((e) => e.qty > 0.009);
         const extraItems = extras.map((x) => ({ kind: "extra", id: x.id, name: x.name, aisle: x.aisle, from: [], store: x.store, done: x.done }));
         return [...planItems, ...extraItems];
-    }, [weekMeals, household, storeMap, checked, extras]);
+    }, [weekMeals, household, storeMap, checked, extras, cleared]);
+    // Checked items wait in "In the cart"; the main list shows only what's left to find.
+    const activeItems = useMemo(() => items.filter((i) => !i.done), [items]);
+    const cartItems = useMemo(() => items.filter((i) => i.done).sort((p, q) => p.name.localeCompare(q.name)), [items]);
     const groups = useMemo(() => {
-        const cmp = (p, q) => (p.done - q.done) || p.name.localeCompare(q.name);
+        const cmp = (p, q) => p.name.localeCompare(q.name);
         if (groceryView === "section") {
-            return AISLES.map((a) => ({ label: a, items: items.filter((i) => i.aisle === a).sort(cmp) })).filter((g) => g.items.length);
+            return AISLES.map((a) => ({ label: a, items: activeItems.filter((i) => i.aisle === a).sort(cmp) })).filter((g) => g.items.length);
         }
         const order = (i) => AISLES.indexOf(i.aisle);
         return [...STORES, ""].map((s) => ({
             label: s || "Any store",
-            items: items.filter((i) => i.store === s).sort((p, q) => (p.done - q.done) || (order(p) - order(q)) || p.name.localeCompare(q.name)),
+            items: activeItems.filter((i) => i.store === s).sort((p, q) => (order(p) - order(q)) || p.name.localeCompare(q.name)),
         })).filter((g) => g.items.length);
-    }, [items, groceryView]);
+    }, [activeItems, groceryView]);
     const totalItems = items.length;
     const doneItems = items.filter((i) => i.done).length;
     const remaining = totalItems - doneItems;
@@ -1895,8 +1998,10 @@ export default function FamilyMealPlanner() {
         const name = clampStr(extraName, 60);
         if (!name || extras.length >= 100)
             return;
-        setExtras((cur) => [...cur, { id: uid(), name, aisle: extraAisle, store: extraStore, done: false }]);
+        const aisle = guessAisle(name);
+        setExtras((cur) => [...cur, { id: uid(), name, aisle, store: "", done: false }]);
         setExtraName("");
+        showToast(`Added to ${aisle}`);
     };
     const toggleItem = (item) => {
         if (item.kind === "plan")
@@ -1921,6 +2026,51 @@ export default function FamilyMealPlanner() {
         }
         setStoreFor(null);
     };
+    const moveSection = (aisle) => {
+        if (!AISLES.includes(aisle))
+            return;
+        setExtras((cur) => cur.map((x) => (x.id === storeFor.id ? { ...x, aisle } : x)));
+        setStoreFor((cur) => (cur ? { ...cur, aisle } : cur));
+    };
+    // "Done shopping": checked items leave the list. Meals stay on This week, unchecked items stay to buy.
+    const clearBought = () => {
+        const planDone = items.filter((i) => i.done && i.kind === "plan");
+        const extraDone = extras.filter((x) => x.done);
+        if (!planDone.length && !extraDone.length)
+            return;
+        const snap = { planIds: planDone.map((i) => i.id), removedExtras: extraDone, prevCleared: cleared, at: Date.now(), count: planDone.length + extraDone.length };
+        const next = { ...cleared };
+        for (const i of planDone)
+            next[i.id] = (cleared[i.id] || 0) + i.qty;
+        setCleared(next);
+        setChecked((c) => { const n = { ...c }; for (const i of planDone)
+            delete n[i.id]; return n; });
+        setExtras((cur) => cur.filter((x) => !x.done));
+        setLastClear(snap);
+        writeLastClear(snap);
+        setConfirmClear(false);
+        setCartOpen(false);
+        setUndoBar(snap.count);
+        clearTimeout(undoTimer.current);
+        undoTimer.current = setTimeout(() => setUndoBar(0), 10000);
+    };
+    const undoClear = () => {
+        const snap = lastClear;
+        if (!snap)
+            return;
+        setCleared(snap.prevCleared);
+        setChecked((c) => { const n = { ...c }; for (const id of snap.planIds)
+            n[id] = true; return n; });
+        setExtras((cur) => {
+            const have = new Set(cur.map((x) => x.id));
+            return [...cur, ...snap.removedExtras.filter((x) => !have.has(x.id))].slice(0, 100);
+        });
+        setLastClear(null);
+        writeLastClear(null);
+        setUndoBar(0);
+        clearTimeout(undoTimer.current);
+        showToast(`Brought back ${snap.count} ${snap.count === 1 ? "item" : "items"}`);
+    };
     const resetChecks = () => {
         setChecked({});
         setExtras((cur) => cur.map((x) => ({ ...x, done: false })));
@@ -1929,6 +2079,12 @@ export default function FamilyMealPlanner() {
         setSelected([]);
         setChecked({});
         setExtras((cur) => cur.filter((x) => !x.done));
+        setCleared({});
+        setLastClear(null);
+        writeLastClear(null);
+        setUndoBar(0);
+        setCartOpen(false);
+        setConfirmClear(false);
         setConfirmWeek(false);
         setTab("meals");
         showToast("Pick meals for the new week");
@@ -1964,9 +2120,13 @@ export default function FamilyMealPlanner() {
         }
         setPhotoJob((j) => (j ? { ...j, finished: true } : j));
     };
+    const renderRow = (i) => {
+        const sub = [groceryView === "store" ? i.aisle : null, i.bought > 0 ? `already bought ${fmtQty(i.bought, i.unit)}` : null, ...i.from].filter(Boolean).join(" · ");
+        return (_jsxs("div", { className: "row", children: [_jsxs("button", { className: "item", "aria-pressed": i.done, onClick: () => toggleItem(i), children: [_jsx("span", { className: "box", children: i.done ? _jsx(Check, { size: 16, strokeWidth: 3 }) : null }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: i.name }), sub ? _jsx("span", { className: "from", children: sub }) : null] }), i.kind === "plan" ? _jsx("span", { className: "qty", children: fmtQty(i.qty, i.unit) }) : null] }), _jsx("button", { className: `storebtn${i.store ? "" : " none"}`, "aria-label": `Store for ${i.name}: ${i.store || "any"}. Change`, onClick: () => setStoreFor(i), children: i.store ? STORE_ABBR[i.store] : _jsx(Store, { size: 18 }) }), i.kind === "extra" ? (_jsx("button", { className: "icon-btn", "aria-label": `Remove ${i.name}`, onClick: () => setExtras((cur) => cur.filter((x) => x.id !== i.id)), children: _jsx(X, { size: 18 }) })) : null] }, `${i.kind}:${i.id}`));
+    };
     const exportData = () => {
         try {
-            const blob = new Blob([JSON.stringify({ meals, kids, selected, household, checked, storeMap, extras }, null, 2)], { type: "application/json" });
+            const blob = new Blob([JSON.stringify({ meals, kids, selected, household, checked, storeMap, extras, cleared }, null, 2)], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
@@ -2030,11 +2190,10 @@ export default function FamilyMealPlanner() {
                                     const info = ratingInfo(m, kids);
                                     return (_jsxs("div", { className: `tile${sel ? " sel" : ""}`, children: [_jsxs("div", { className: "shotwrap", children: [_jsx("button", { className: "shot", onClick: () => setViewId(m.id), "aria-label": `Open ${m.name}`, children: _jsx(TilePhoto, { meal: m }) }), m.unreviewed ? _jsx("span", { className: "pill flag", children: "Check recipe" }) : null, _jsx("button", { className: "tick", "aria-pressed": sel, "aria-label": `${sel ? "Remove" : "Add"} ${m.name} ${sel ? "from" : "to"} this week`, onClick: () => toggleSelect(m.id), children: _jsx("span", { className: "ring", children: sel ? _jsx(Check, { size: 18, strokeWidth: 3 }) : null }) })] }), _jsx("button", { className: "cap", onClick: () => setViewId(m.id), children: m.name }), _jsx("p", { className: "tsub", children: madeLabel(m.lastMade) }), info ? (_jsxs("p", { className: "tsub stars2", children: [_jsx(Star, { size: 12, style: { color: "#8A6D00", fill: "#F1D24A" } }), " ", info.avg.toFixed(1)] })) : null] }, m.id));
                                 }) })) : null, meals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals yet" }), _jsx("p", { children: ALLOW_ADDING ? "Add your first meal from a recipe link, a photo, or by typing it in." : "No meals have been added to the library yet." }), ALLOW_ADDING ? _jsxs("button", { className: "btn", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add a meal"] }) : null] })) : shownMeals.length === 0 ? (_jsx("p", { className: "muted", style: { marginTop: 20 }, children: "No meals match those filters. Clear a filter, or add a new meal." })) : null] })) : null, tab === "week" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "This week" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] })] }), _jsxs("div", { className: "stepper-wrap", children: [_jsx("span", { id: "hh-label", children: "Cooking for" }), _jsxs("div", { className: "stepper", role: "group", "aria-labelledby": "hh-label", children: [_jsx("button", { "aria-label": "Fewer people", disabled: household <= 1, onClick: () => setHousehold((h) => Math.max(1, h - 1)), children: _jsx(Minus, { size: 18 }) }), _jsx("output", { "aria-live": "polite", children: household }), _jsx("button", { "aria-label": "More people", disabled: household >= 12, onClick: () => setHousehold((h) => Math.min(12, h + 1)), children: _jsx(Plus, { size: 18 }) })] })] })] }), weekMeals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals picked yet" }), _jsx("p", { children: "Choose a few from your meal list and this page fills in with the plan and the grocery list." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] })) : (_jsxs(_Fragment, { children: [_jsx("div", { className: "stack weeklist", style: { marginTop: 18 }, children: weekMeals.map((m) => (_jsxs("div", { className: "card", children: [_jsxs("button", { className: "open", onClick: () => setViewId(m.id), children: [_jsx(MealPhoto, { src: m.image, className: "thumb" }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: m.name }), metaLine(m), m.lastMade === today ? _jsxs("span", { className: "pill ok", style: { marginTop: 6 }, children: [_jsx(Check, { size: 12, strokeWidth: 3 }), " Made today"] }) : null] }), _jsx(ChevronRight, { size: 20, color: "#5A6B62" })] }), _jsx("button", { className: "icon-btn", "aria-label": `Remove ${m.name} from this week`, onClick: () => toggleSelect(m.id), children: _jsx(X, { size: 18 }) })] }, m.id))) }), _jsxs("div", { className: "tailnav", children: [_jsxs("button", { className: "btn", onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 18 }), " Open grocery list (", totalItems, ")"] }), confirmWeek ? (_jsxs("div", { className: "confirm", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Clear this week's meals and checkmarks?" }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: startNewWeek, children: "Start new week" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirmWeek(false), children: "Cancel" })] })] })) : (_jsx("button", { className: "link", onClick: () => setConfirmWeek(true), children: "Start a new week" }))] })] }))] })) : null, tab === "groceries" ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "head", children: _jsxs("div", { children: [_jsx("h1", { children: "Groceries" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", ", scaled for ", household] })] }) }), _jsxs("div", { className: "seg", role: "group", "aria-label": "Group list by", children: [_jsx("button", { "aria-pressed": groceryView === "section", onClick: () => setGroceryView("section"), children: "By section" }), _jsx("button", { "aria-pressed": groceryView === "store", onClick: () => setGroceryView("store"), children: "By store" })] }), _jsx("p", { className: "legend", children: "TJ Trader Joe's \u00B7 WF Whole Foods \u00B7 SW Safeway. Tap (or click) the circle on an item to set its store." }), totalItems > 0 ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "progress", role: "progressbar", "aria-label": "Items in cart", "aria-valuemin": 0, "aria-valuemax": totalItems, "aria-valuenow": doneItems, children: _jsx("div", { style: { width: `${(doneItems / totalItems) * 100}%` } }) }), _jsxs("p", { className: "small muted", children: [doneItems, " of ", totalItems, " in the cart"] })] })) : null, _jsxs("div", { className: "addbox", children: [_jsx("input", { className: "field name", "aria-label": "Add an item", placeholder: "Add an item", maxLength: 60, value: extraName, onChange: (e) => setExtraName(e.target.value), onKeyDown: (e) => { if (e.key === "Enter")
-                                            addExtra(); } }), _jsx("button", { className: "btn", "aria-label": "Add item", onClick: addExtra, children: _jsx(Plus, { size: 22 }) }), _jsx("select", { "aria-label": "Store section for new item", value: extraAisle, onChange: (e) => setExtraAisle(e.target.value), style: { padding: "0 6px" }, children: AISLES.map((a) => _jsx("option", { value: a, children: a }, a)) }), _jsxs("select", { "aria-label": "Store for new item", value: extraStore, onChange: (e) => setExtraStore(e.target.value), style: { padding: "0 6px" }, children: [_jsx("option", { value: "", children: "Any store" }), STORES.map((s) => _jsx("option", { value: s, children: s }, s))] })] }), groups.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing to buy yet" }), _jsx("p", { children: "Pick meals for the week and the list fills in. You can also add your own items above." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] })) : (_jsxs(_Fragment, { children: [_jsx("div", { className: "aisles", children: groups.map((g) => (_jsxs("section", { className: "aisle", "aria-label": g.label, children: [_jsxs("h3", { children: [g.label, _jsx("span", { children: g.items.length })] }), g.items.map((i) => {
-                                                    const sub = [groceryView === "store" ? i.aisle : null, ...i.from].filter(Boolean).join(" · ");
-                                                    return (_jsxs("div", { className: "row", children: [_jsxs("button", { className: "item", "aria-pressed": i.done, onClick: () => toggleItem(i), children: [_jsx("span", { className: "box", children: i.done ? _jsx(Check, { size: 16, strokeWidth: 3 }) : null }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: i.name }), sub ? _jsx("span", { className: "from", children: sub }) : null] }), i.kind === "plan" ? _jsx("span", { className: "qty", children: fmtQty(i.qty, i.unit) }) : null] }), _jsx("button", { className: `storebtn${i.store ? "" : " none"}`, "aria-label": `Store for ${i.name}: ${i.store || "any"}. Change`, onClick: () => setStoreFor(i), children: i.store ? STORE_ABBR[i.store] : _jsx(Store, { size: 18 }) }), i.kind === "extra" ? (_jsx("button", { className: "icon-btn", "aria-label": `Remove ${i.name}`, onClick: () => setExtras((cur) => cur.filter((x) => x.id !== i.id)), children: _jsx(X, { size: 18 }) })) : null] }, `${i.kind}:${i.id}`));
-                                                })] }, g.label))) }), _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 16 }), " Uncheck all"] })] })] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsx("span", { className: "brand", "aria-hidden": "true", children: "dinner planner" }), _jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, household: household, inWeek: weekIds.has(viewMeal.id), locked: isLib(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
+                                            addExtra(); } }), _jsx("button", { className: "btn", "aria-label": "Add item", onClick: addExtra, children: _jsx(Plus, { size: 22 }) })] }), items.length === 0 ? (cleared && Object.keys(cleared).length > 0 || lastClear ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing left to buy" }), _jsx("p", { children: "Everything on this week's list has been bought and cleared." }), lastClear ? (_jsxs("button", { className: "link", onClick: undoClear, children: [_jsx(RotateCcw, { size: 14, style: { verticalAlign: "-2px" } }), " Bring back the ", lastClear.count, " ", lastClear.count === 1 ? "item" : "items", " you cleared"] })) : null] })) : (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing to buy yet" }), _jsx("p", { children: "Pick meals for the week and the list fills in. You can also add your own items above." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] }))) : (_jsxs(_Fragment, { children: [groups.length === 0 ? (_jsx("p", { className: "note", role: "status", children: "Everything left on your list is in the cart. Tap Done shopping to clear it." })) : (_jsx("div", { className: "aisles", children: groups.map((g) => (_jsxs("section", { className: "aisle", "aria-label": g.label, children: [_jsxs("h3", { children: [g.label, _jsx("span", { children: g.items.length })] }), g.items.map((i) => renderRow(i))] }, g.label))) })), cartItems.length > 0 ? (_jsxs("section", { className: "cart", "aria-label": "In the cart", children: [_jsxs("div", { className: "cart-head", children: [_jsxs("button", { className: "cart-toggle", "aria-expanded": cartOpen || groups.length === 0, onClick: () => setCartOpen((o) => !o), children: [_jsx(ChevronRight, { size: 18, style: { transform: cartOpen || groups.length === 0 ? "rotate(90deg)" : "none", transition: "transform .15s" } }), _jsx("span", { children: "In the cart" }), _jsx("b", { className: "count", children: cartItems.length })] }), _jsx("button", { className: "btn sm", disabled: confirmClear, onClick: () => setConfirmClear(true), children: "Done shopping" })] }), confirmClear ? (_jsxs("div", { className: "confirm", role: "alertdialog", "aria-label": "Confirm done shopping", children: [_jsxs("p", { style: { fontWeight: 700 }, children: ["Clear ", cartItems.length, " checked ", cartItems.length === 1 ? "item" : "items", "?", " ", activeItems.length > 0
+                                                                ? `${activeItems.length} unchecked ${activeItems.length === 1 ? "item stays" : "items stay"} on your list.`
+                                                                : "Your list will be empty.", " ", "Your meals stay on This week."] }), _jsxs("div", { className: "row-actions", children: [_jsxs("button", { className: "btn sm", onClick: clearBought, children: ["Clear ", cartItems.length] }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirmClear(false), children: "Keep shopping" })] })] })) : null, cartOpen || groups.length === 0 ? _jsx("div", { className: "cart-list", children: cartItems.map((i) => renderRow(i)) }) : null] })) : null, _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 14 }), " Uncheck all"] })] }), lastClear ? (_jsxs("button", { className: "link", onClick: undoClear, children: [_jsx(RotateCcw, { size: 14, style: { verticalAlign: "-2px" } }), " Bring back the ", lastClear.count, " ", lastClear.count === 1 ? "item" : "items", " you cleared"] })) : null] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsx("span", { className: "brand", "aria-hidden": "true", children: "dinner planner" }), _jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, household: household, inWeek: weekIds.has(viewMeal.id), locked: isLib(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
                     setAddOpen(false);
                     setEditor({ id: null, draft, title: "Review meal", banner: "Imported recipes can contain mistakes. Check the amounts and steps, then save." });
-                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData, sync: { cfg: syncCfg, status: syncStatus, error: syncError, onOn: turnOnSharing, onOff: turnOffSharing, onInvite: copyInvite } }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onClose: () => setStoreFor(null) }) : null, _jsx("div", { "aria-live": "polite", children: toast ? _jsx("div", { className: "toast", children: toast }) : null })] }));
+                } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData, sync: { cfg: syncCfg, status: syncStatus, error: syncError, onOn: turnOnSharing, onOff: turnOffSharing, onInvite: copyInvite } }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onSection: moveSection, onClose: () => setStoreFor(null) }) : null, _jsxs("div", { "aria-live": "polite", children: [toast && !undoBar ? _jsx("div", { className: "toast", children: toast }) : null, undoBar > 0 ? (_jsxs("div", { className: "toast undo", children: [_jsxs("span", { children: ["Cleared ", undoBar, " ", undoBar === 1 ? "item" : "items"] }), _jsx("button", { onClick: undoClear, children: "Undo" })] })) : null] })] }));
 }
