@@ -2271,6 +2271,1135 @@
         "While it bakes, whisk the dressing: the remaining avocado oil, honey, the remaining coconut aminos, fish sauce, lemon juice, sriracha and garlic.",
         "Flake the salmon into large pieces. Serve over rice with avocado, cucumber, green onions and nori. Drizzle with the dressing and sprinkle with sesame seeds."
       ]
+    },
+    {
+      "id": "honey-ginger-baked-salmon",
+      "name": "Honey-Ginger Baked Salmon",
+      "servings": 4,
+      "source": "https://thedefineddish.com/honey-ginger-baked-salmon/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2021/08/2021-08-30-00.24.35.jpg",
+      "ingredients": [
+        {
+          "name": "Center-cut salmon",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Honey",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 3,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "White pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F and set the salmon in an oven-safe baking dish.",
+        "Whisk the honey, coconut aminos, vinegar, garlic, ginger, a teaspoon of the sesame seeds and the sesame oil.",
+        "Pour the sauce over the salmon and top with the sliced white parts of the green onions, the salt and the pepper.",
+        "Bake 10 minutes, baste with the sauce, then bake 8 to 10 minutes more, until the salmon flakes easily.",
+        "Let it rest 5 minutes, spoon the sauce over the top, and garnish with the rest of the sesame seeds and the sliced green tops."
+      ]
+    },
+    {
+      "id": "spicy-cilantro-steak-bowls",
+      "name": "Spicy Cilantro Steak Bowls",
+      "servings": 4,
+      "source": "https://thedefineddish.com/spicy-cilantro-steak-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2022/06/Spicy-Cilantro-Steak-Bowls-2-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 1.25,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 12,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tamari or soy sauce",
+          "qty": 5.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Jalapeño",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 1,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red wine vinegar",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Corn on the cob",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red onion (for pickled onions)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Spring greens",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cherry tomatoes",
+          "qty": 1,
+          "unit": "pint",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cucumber",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Poke the steak all over with a fork, season both sides with salt and pepper, and marinate it in a zip bag with a quarter cup of the olive oil and the soy sauce, at least 30 minutes at room temperature or a few hours in the fridge. Take it out 30 minutes before cooking.",
+        "Blend the cilantro, jalapeño, garlic, half a cup of olive oil, red wine vinegar and a pinch of salt until smooth.",
+        "Grill or sear the steak over medium-high, about 5 minutes per side depending on thickness. Meanwhile, rub the corn with a little oil, season it, and grill 2 to 3 minutes per side.",
+        "Rest the steak under foil for a minute or so and cut the kernels off the cob.",
+        "Divide the greens, corn, avocado, pickled onions, tomatoes and cucumber among bowls.",
+        "Slice the steak very thinly against the grain, lay it on top, and drizzle everything with the cilantro sauce."
+      ]
+    },
+    {
+      "id": "whole30-thai-basil-beef",
+      "name": "Whole30 Thai Basil Beef",
+      "servings": 4,
+      "source": "https://thedefineddish.com/whole30-thai-basil-beef/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/08/230824_whole_30_thai_basil_beef-09.jpg",
+      "ingredients": [
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 1.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tapioca flour",
+          "qty": 0.67,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.75,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "White onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 4,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Thai chiles",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Coconut aminos",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fish sauce",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh Thai or regular basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cilantro (optional)",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cauliflower rice (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Pound the steak to about half an inch, then slice it against the grain into very thin strips, halving any long ones lengthwise.",
+        "Toss the strips with a teaspoon of the salt, half a teaspoon of pepper, a teaspoon of the oil and the tapioca flour.",
+        "Heat a skillet over high with the remaining 2 tablespoons of oil. Sear the steak 2 to 3 minutes per side, in batches, and set it aside.",
+        "Lower the heat to medium. Cook the onion, garlic, bell pepper and chiles with the rest of the salt and pepper until the onion is very tender, 5 to 7 minutes.",
+        "Return the beef with the coconut aminos and fish sauce and simmer 2 to 3 minutes, until thickened.",
+        "Off the heat, toss in the basil until just wilted. Serve right away with cauliflower rice, cilantro and lime wedges."
+      ]
+    },
+    {
+      "id": "chipotle-chicken-enchilada-bowls",
+      "name": "Chipotle Chicken Enchilada Bowls",
+      "servings": 4,
+      "source": "https://thedefineddish.com/chipotle-chicken-enchilada-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2017/05/IMG_2008-1200x800.jpg",
+      "ingredients": [
+        {
+          "name": "Cooked shredded chicken",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Chipotle enchilada sauce",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Riced cauliflower",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Frozen"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Radishes",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Mango",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Guacamole",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Baby spinach",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "For the cauliflower rice, heat a tablespoon of the oil over medium, cook the riced cauliflower about 2 minutes with salt and pepper, add the broth, lower the heat, cover, and steam about 4 minutes until the liquid is absorbed.",
+        "Heat the other tablespoon of oil over medium-high in a skillet, cast iron if you have it. Spread the chicken in a single layer and let it crisp on one side for about 2 minutes.",
+        "Add enchilada sauce to taste, toss to coat, and cook 2 minutes more. Add salt if needed.",
+        "Spoon the cauliflower rice into bowls, add the chicken, and arrange the radishes, spinach, guacamole and mango around it.",
+        "Garnish with cilantro and serve with lime wedges."
+      ]
+    },
+    {
+      "id": "spicy-chicken-tikka-tacos",
+      "name": "Spicy Chicken Tikka Tacos",
+      "servings": 4,
+      "source": "https://thedefineddish.com/spicy-chicken-tikka-tacos/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2019/05/IMG_0396.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground chicken breast",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Curry powder",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cinnamon",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Turmeric",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Flour tortillas",
+          "qty": 10,
+          "unit": "",
+          "aisle": "Bakery"
+        },
+        {
+          "name": "Cucumber",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Serrano pepper (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Baby arugula",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large skillet over medium-high. Cook the onion, chicken, salt, pepper, garlic and ginger, breaking up the meat, until no longer pink, 5 to 7 minutes.",
+        "Add the curry powder, cayenne, cinnamon, paprika, cumin and turmeric and toast for about 2 minutes.",
+        "Stir in the tomato paste, then pour in the coconut milk and bring to a simmer.",
+        "Simmer, stirring now and then, 3 to 4 minutes, until slightly thickened. Taste and adjust the salt, pepper and cayenne.",
+        "Serve in warm tortillas with arugula, cucumber, cilantro, serrano and lime wedges."
+      ]
+    },
+    {
+      "id": "flap-steak-tacos-with-jalapeno-chimichurri",
+      "name": "Flap Steak Tacos with Jalapeño Chimichurri",
+      "servings": 6,
+      "source": "https://thedefineddish.com/flap-steak-tacos-with-jalapeno-chimichurri/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2026/06/Flap-Steak-Tacos-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 7.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tamari or soy sauce",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chili powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Flap, flank or skirt steak",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Jalapeño",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 1,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Red wine vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Flour tortillas",
+          "qty": 12,
+          "unit": "",
+          "aisle": "Bakery"
+        },
+        {
+          "name": "Avocado",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "White onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Whisk 2 tablespoons of the avocado oil with the tamari, sesame oil, lime zest, cumin, garlic powder, chili powder, 1½ teaspoons salt and ½ teaspoon pepper. Add the steak and turn to coat. Marinate 20 minutes at room temperature, or refrigerate up to 24 hours (take it out 20 to 30 minutes before grilling).",
+        "Pulse the jalapeño, green onions, garlic, cilantro, the remaining avocado oil, 2 tablespoons lime juice, the red wine vinegar and the rest of the salt and pepper in a food processor until finely chopped but still a little textured. Adjust the seasoning.",
+        "Heat the grill to high. Let the extra marinade drip off the steak and grill 3 to 4 minutes per side for medium-rare. Rest 5 minutes, then slice thinly against the grain. A grill pan or cast iron works indoors.",
+        "Warm the tortillas on the grill grates, about 30 seconds per side. Stack two per taco and top with steak, avocado, diced white onion, cilantro and a generous drizzle of chimichurri. Serve with lime wedges."
+      ]
+    },
+    {
+      "id": "crockpot-creamy-coconut-chicken-tikka-masala",
+      "name": "Crockpot Creamy Coconut Chicken Tikka Masala",
+      "servings": 6,
+      "source": "https://www.halfbakedharvest.com/crockpot-creamy-coconut-chicken-tikka-masala/",
+      "image": "https://www.halfbakedharvest.com/wp-content/uploads/2022/11/Crockpot-Creamy-Coconut-Chicken-Tikka-Masala-1.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garam masala",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Turmeric",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 12,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Salted butter",
+          "qty": 6,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Paprika",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Basmati rice, uncooked (for serving)",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Naan (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Bakery"
+        }
+      ],
+      "instructions": [
+        "In the slow cooker, combine the chicken, yogurt, onion, shallot, garlic, ginger, garam masala, turmeric, a teaspoon of salt and a pinch of chili flakes. Let it sit 10 minutes.",
+        "Stir in the tomato paste and ⅓ cup of water. Cover and cook on low for 5 to 6 hours or on high for 3 to 4 hours. For an Instant Pot, cook 8 to 10 minutes at high pressure, release the steam, then switch to sauté for the next step.",
+        "Turn the heat to high, stir in the coconut milk, and cook uncovered about 10 minutes, until warmed. Stir in the cilantro.",
+        "Meanwhile, melt the butter with the sesame seeds, chili flakes and paprika and cook until the butter browns.",
+        "Serve the chicken and sauce over rice with naan, topped with the sesame chili butter."
+      ]
+    },
+    {
+      "id": "creamy-roasted-garlic-butternut-squash-pasta",
+      "name": "Creamy Roasted Garlic Butternut Squash Pasta",
+      "servings": 6,
+      "source": "https://www.halfbakedharvest.com/creamy-roasted-garlic-butternut-squash-pasta/",
+      "image": "https://www.halfbakedharvest.com/wp-content/uploads/2021/10/Creamy-Roasted-Garlic-Butternut-Squash-Pasta-1.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cubed butternut squash",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 8,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh thyme",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh rosemary",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Prosciutto",
+          "qty": 8,
+          "unit": "slice",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Ricotta cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Long or short pasta",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Salted butter",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Fresh sage",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Shredded gouda",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.33,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F. On a baking sheet, toss the squash and garlic with the olive oil, thyme, a tablespoon of the rosemary and a pinch each of red pepper flakes, salt and pepper. Lay the prosciutto around the squash. Bake 20 minutes, check the prosciutto, then bake 10 to 15 minutes more, until the squash is tender.",
+        "Purée the squash, the roasted garlic and the ricotta in a food processor until smooth. Season with salt and pepper.",
+        "Boil the pasta in salted water until al dente. Save a cup of the cooking water, then drain.",
+        "In a large skillet, melt the butter with the sage and the other tablespoon of rosemary until the butter starts to brown. Stir in the squash purée and half a cup of the pasta water, then melt in the gouda and Parmesan.",
+        "Add the pasta and toss, thinning with a little more pasta water if needed.",
+        "Divide among plates and top with extra Parmesan and the crispy prosciutto."
+      ]
+    },
+    {
+      "id": "butter-chicken",
+      "name": "30-Minute Spicy Indian Butter Chicken",
+      "servings": 6,
+      "source": "https://www.halfbakedharvest.com/butter-chicken/",
+      "image": "https://www.halfbakedharvest.com/wp-content/uploads/2020/12/30-Minute-Spicy-Indian-Butter-Chicken-1.jpg",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 2,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garam masala",
+          "qty": 1.67,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Turmeric",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Salted butter",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Coconut milk",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Basmati rice, uncooked (for serving)",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Naan (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Bakery"
+        }
+      ],
+      "instructions": [
+        "Toss the chicken with the yogurt, half the garlic and ginger, 2 teaspoons of the garam masala, a teaspoon of the cumin, ½ teaspoon of the turmeric, half the cayenne and a teaspoon of salt. Let it sit 5 to 10 minutes.",
+        "Heat the oil in a large skillet over medium-high. Sear the chicken on both sides, about 2 minutes, toss it with a tablespoon of butter, and set it aside.",
+        "Cook the onion in the same skillet for about 5 minutes. Add 2 tablespoons of butter, the rest of the garlic, ginger, garam masala, cumin, turmeric and cayenne, the red pepper flakes, and salt and pepper. Cook until very fragrant, about 5 minutes. Stir in the tomato paste and cook 3 to 4 minutes more.",
+        "Lower the heat. Add a cup of water and the coconut milk and simmer about 5 minutes, until slightly thickened. Stir in the last tablespoon of butter, and thin with a little more coconut milk if it's too thick.",
+        "Return the chicken and its juices and cook, stirring now and then, about 5 minutes, until the sauce thickens a little. Off the heat, stir in the cilantro and season to taste.",
+        "Serve over rice with naan."
+      ]
+    },
+    {
+      "id": "better-than-takeout-dan-dan-noodles",
+      "name": "Better Than Takeout Dan Dan Noodles",
+      "servings": 6,
+      "source": "https://www.halfbakedharvest.com/better-than-takeout-dan-dan-noodles/",
+      "image": "https://www.halfbakedharvest.com/wp-content/uploads/2019/10/Better-Than-Takeout-Dan-Dan-Noodles-1-1.jpg",
+      "ingredients": [
+        {
+          "name": "Toasted sesame oil",
+          "qty": 7.33,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Garlic",
+          "qty": 6,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Crushed red pepper flakes",
+          "qty": 4.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Tamari or soy sauce",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Hoisin sauce",
+          "qty": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Honey",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Creamy peanut butter",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chinese egg noodles",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 2.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Baby spinach",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Ground chicken or pork",
+          "qty": 0.5,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Mixed mushrooms",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Shallot",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Make the chili oil: warm a third of a cup of the sesame oil with the garlic and red pepper flakes in a large skillet over medium until the garlic is fragrant, about 5 minutes. Carefully pour it into a heatproof bowl or jar.",
+        "Stir together the soy sauce, hoisin, honey, vinegar, peanut butter and a third of a cup of water.",
+        "Cook the noodles as the package says, drain, and set aside. In the same pot, bring the broth and half the sauce to a simmer, stir in the spinach, and keep warm.",
+        "Heat the 2 remaining tablespoons of sesame oil in the empty skillet over medium-high. Brown the chicken with a little pepper, breaking it up, about 5 minutes. Add the mushrooms and shallot and cook 2 to 3 minutes. Pour in the rest of the sauce and simmer about 5 minutes, until it coats the meat and the edges crisp. Stir in 2 to 4 tablespoons of the chili oil.",
+        "Ladle the broth into bowls, add the noodles and toss. Top with the meat, more chili oil and green onions. Serve right away."
+      ]
     }
   ]
 }
