@@ -148,6 +148,12 @@ function apiProblem(status, detail) {
 function stateToLeaves(st, selAt) {
     const L = {};
     for (const m of st.meals) {
+        if (isLib(m.id)) {
+            const stats = pickStats(m);
+            if (hasStats(stats))
+                L[`stats/${encKey(m.id)}`] = JSON.stringify(stats);
+            continue;
+        }
         const c = cleanMeal(m);
         if (c)
             L[`meals/${encKey(c.id)}`] = JSON.stringify(c);
@@ -176,6 +182,7 @@ function stateToLeaves(st, selAt) {
 }
 function leavesToState(L) {
     const meals = [];
+    const statsById = {};
     const extras = [];
     const checked = {};
     const storeMap = {};
@@ -191,6 +198,9 @@ function leavesToState(L) {
                 const m = cleanMeal(JSON.parse(val));
                 if (m)
                     meals.push(withKnownImage(m));
+            }
+            else if (col === "stats") {
+                statsById[decKey(key)] = JSON.parse(val);
             }
             else if (col === "selected") {
                 sel.push([decKey(key), Number(val) || 0]);
@@ -223,13 +233,37 @@ function leavesToState(L) {
         }
     }
     sel.sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
-    return { meals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, selAt: Object.fromEntries(sel) };
+    const allMeals = [...LIBRARY.map((lib) => libMeal(lib, statsById[lib.id])), ...meals.filter((m) => !isLib(m.id) && !String(m.id).startsWith("lib_"))];
+    return { meals: allMeals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, selAt: Object.fromEntries(sel) };
 }
 // For each entry: if this device changed it, keep ours; otherwise take what's shared.
+// Shared ratings for a recipe that isn't in the library right now are left untouched.
+function isOrphanStat(p) {
+    if (!p.startsWith("stats/"))
+        return false;
+    try {
+        return !isLib(decKey(p.slice(6)));
+    }
+    catch (e) {
+        return false;
+    }
+}
+function dropOrphans(L) {
+    const out = {};
+    for (const [p, v] of Object.entries(L))
+        if (!isOrphanStat(p))
+            out[p] = v;
+    return out;
+}
 function mergeLeaves(local, base, remote) {
     const out = {};
     const paths = new Set([...Object.keys(local), ...Object.keys(base), ...Object.keys(remote)]);
     for (const p of paths) {
+        if (isOrphanStat(p)) {
+            if (remote[p] !== undefined)
+                out[p] = remote[p];
+            continue;
+        }
         const v = local[p] !== base[p] ? local[p] : remote[p];
         if (v !== undefined)
             out[p] = v;
@@ -281,6 +315,8 @@ async function syncPush(cfg, patches) {
             throw new Error(res.status === 401 || res.status === 403 ? "permission denied" : `error ${res.status}`);
     }
 }
+// Recipes are built outside the app and shipped inside it. Flip to true to let people add their own.
+const ALLOW_ADDING = false;
 // Ordered the way you walk a typical store.
 const AISLES = ["Produce", "Bakery", "Meat & seafood", "Dairy & eggs", "Pantry", "Frozen", "Other"];
 const UNITS = ["", "lb", "oz", "cup", "tbsp", "tsp", "can", "jar", "pint", "head", "bunch", "slice", "pkg", "clove"];
@@ -563,6 +599,100 @@ const withKnownImage = (m) => {
     const k = knownImageFor(m.source);
     return k && m.image !== k ? { ...m, image: k } : m;
 };
+// ---- Built-in recipe library. Add new meals here. Ratings and history are kept separately. ----
+const LIBRARY_RAW = (typeof window !== "undefined" && window.__RECIPES__) || [];
+function shortHash(str) {
+    let h = 5381;
+    for (const c of String(str))
+        h = ((h * 33) ^ c.charCodeAt(0)) >>> 0;
+    return h.toString(36).slice(0, 7);
+}
+// Recipes may come from anywhere (a file on the web), so every field is rebuilt and checked.
+function cleanLibrary(list) {
+    const seen = new Set();
+    const out = [];
+    for (const r of Array.isArray(list) ? list.slice(0, 500) : []) {
+        if (!r || typeof r !== "object")
+            continue;
+        const draft = cleanDraft(r);
+        if (!draft.name || draft.ingredients.length === 0)
+            continue;
+        let slug = String(r.id || draft.name).trim().replace(/^lib_/, "").toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
+        if (!slug)
+            slug = shortHash(draft.name);
+        if (slug.length > 36)
+            slug = `${slug.slice(0, 28)}-${shortHash(slug)}`; // ids are capped at 40 characters
+        const id = `lib_${slug}`;
+        if (seen.has(id))
+            continue;
+        seen.add(id);
+        out.push({ ...draft, id, source: cleanSource(r.source), image: cleanImage(r.image) });
+    }
+    return out;
+}
+const LIBRARY = cleanLibrary(LIBRARY_RAW);
+// "none" means the recipe list could not be loaded at all.
+const RECIPES_STATUS = (typeof window !== "undefined" && window.__RECIPES_STATUS__) || { source: "inline" };
+const LIB_BY_ID = new Map(LIBRARY.map((l) => [l.id, l]));
+const isLib = (id) => LIB_BY_ID.has(id);
+// Everything a family generates about a meal (as opposed to the recipe itself).
+function pickStats(m) {
+    const ratings = {};
+    for (const k of KID_IDS) {
+        const v = m && m.ratings ? m.ratings[k] : null;
+        if (Number.isInteger(v) && v >= 1 && v <= 5)
+            ratings[k] = v;
+    }
+    return {
+        ratings,
+        lastMade: parseDay(m && m.lastMade) ? m.lastMade : null,
+        timesMade: Math.round(num(m && m.timesMade, 0, 9999, 0)),
+        scale: round2(num(m && m.scale, 0.3, 3, 1)),
+        scaleBefore: round2(num(m && m.scaleBefore, 0.3, 3, 1)),
+        portion: PORTIONS.includes(m && m.portion) ? m.portion : null,
+        portionFor: m && typeof m.portionFor === "string" ? m.portionFor.slice(0, 10) : "",
+    };
+}
+const hasStats = (st) => Object.keys(st.ratings).length > 0 || !!st.lastMade || st.timesMade > 0 || st.scale !== 1 || st.scaleBefore !== 1 || !!st.portion || !!st.portionFor;
+function libMeal(lib, stats) {
+    return withKnownImage(cleanMeal({ ...lib, tags: ["dinner"], unreviewed: false, ...pickStats(stats) }));
+}
+// Ratings for a recipe that has been taken out of the library are kept in reserve, so they come back with it.
+const ORPHANS_KEY = "mealplan-orphan-stats";
+const readOrphans = () => {
+    try {
+        return JSON.parse(localStorage.getItem(ORPHANS_KEY) || "{}") || {};
+    }
+    catch (e) {
+        return {};
+    }
+};
+const writeOrphans = (o) => {
+    try {
+        localStorage.setItem(ORPHANS_KEY, JSON.stringify(o));
+    }
+    catch (e) { /* ignore */ }
+};
+// Library meals always come from the recipe list; anything else is kept as-is.
+function mergeLibrary(meals) {
+    const list = meals || [];
+    const have = new Map(list.map((m) => [m.id, m]));
+    const orphans = readOrphans();
+    let changed = false;
+    for (const m of list) {
+        if (String(m.id).startsWith("lib_") && !LIB_BY_ID.has(m.id)) {
+            const st = pickStats(m);
+            if (hasStats(st)) {
+                orphans[m.id] = st;
+                changed = true;
+            }
+        }
+    }
+    if (changed)
+        writeOrphans(orphans);
+    const libs = LIBRARY.map((lib) => libMeal(lib, have.get(lib.id) || orphans[lib.id]));
+    return [...libs, ...list.filter((m) => !LIB_BY_ID.has(m.id) && !String(m.id).startsWith("lib_"))];
+}
 async function recipeFromContent(content, useSearch) {
     if (!getApiKey())
         throw new Error("nokey");
@@ -989,7 +1119,7 @@ function FamilySheet({ kids, onChange, onClose, onExport, onRestore, sync }) {
     const statusText = sync.status === "ok" ? "Connected. Changes show up on your other devices within a few seconds."
         : sync.status === "error" ? `Can't reach the shared database (${sync.error || "no connection"}). Your changes are saved here and will sync when it's back.`
             : "Connecting…";
-    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) }), _jsx("div", { className: "row-actions", style: { marginTop: 10 }, children: _jsx("button", { className: "btn ghost sm", onClick: runTest, disabled: !key.trim(), children: "Test connection" }) }), test ? _jsx("p", { className: "note", role: "status", style: { whiteSpace: "pre-line" }, children: test }) : null] })] }));
+    return (_jsxs(Sheet, { title: "Settings", onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: onClose, children: "Done" }), children: [_jsx("h3", { children: "Your kids" }), _jsx("p", { className: "muted small", children: "Names show up when you rate a meal. Ratings are saved per kid." }), kids.map((k, i) => (_jsxs("div", { children: [_jsxs("label", { className: "lbl", htmlFor: `kid-${k.id}`, children: ["Kid ", i + 1] }), _jsx("input", { id: `kid-${k.id}`, className: "field", maxLength: 20, placeholder: `Kid ${i + 1}`, value: k.name, onChange: (e) => onChange(kids.map((x) => (x.id === k.id ? { ...x, name: e.target.value.slice(0, 20) } : x))) })] }, k.id))), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Share with your household" }), sync.cfg ? (_jsxs(_Fragment, { children: [_jsx("p", { className: "note", role: "status", children: statusText }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn sm", onClick: sync.onInvite, children: "Copy invite link" }), _jsx("button", { className: "btn ghost sm", onClick: sync.onOff, children: "Turn off sharing" })] }), _jsx("p", { className: "muted small", style: { marginTop: 8 }, children: "Send the invite link to your partner. Opening it on their phone joins them automatically. Anyone with the link can see and edit the shared list, so send it privately." })] })) : (_jsxs(_Fragment, { children: [_jsx("p", { className: "muted small", children: "Keep the week's meals and the grocery list in sync between phones. This needs a free Firebase database (setup steps are in the README). Turning it on uploads what's on this device and merges it with anything already shared." }), _jsx("label", { className: "lbl", htmlFor: "sync-url", children: "Database address" }), _jsx("input", { id: "sync-url", className: "field", inputMode: "url", autoCapitalize: "none", spellCheck: false, placeholder: "https://your-project-default-rtdb.firebaseio.com", value: dbUrl, onChange: (e) => setDbUrl(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "sync-code", children: "Household code" }), _jsx("input", { id: "sync-code", className: "field", autoCapitalize: "none", spellCheck: false, maxLength: 64, placeholder: "12 or more letters and numbers", value: code, onChange: (e) => setCode(e.target.value.trim()) }), _jsx("button", { className: "link", onClick: () => setCode(newHouseholdCode()), children: "Generate a code" }), _jsx("div", { className: "row-actions", style: { marginTop: 6 }, children: _jsx("button", { className: "btn sm", onClick: () => setMsg(sync.onOn({ url: dbUrl, code })), children: "Turn on sharing" }) }), msg ? _jsx("div", { className: "err", role: "alert", children: msg }) : null] }))] }), _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Backup" }), _jsx("p", { className: "muted small", children: "Download a backup to keep your meals safe or move them to another device." }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn ghost sm", onClick: onExport, children: "Download backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => fileRef.current && fileRef.current.click(), children: "Restore from file" })] }), _jsx("input", { ref: fileRef, type: "file", accept: "application/json,.json", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; onRestore(f); } })] }), ALLOW_ADDING ? (_jsxs("div", { className: "block", children: [_jsx("h3", { children: "Recipe import (optional)" }), _jsx("p", { className: "muted small", children: "To import recipes from links or photos, paste your own Anthropic API key. It stays in this browser and is sent only to Anthropic. Usage is billed to your Anthropic account. Only one of you needs a key: imported meals are shared." }), _jsx("label", { className: "lbl", htmlFor: "api-key", children: "Anthropic API key" }), _jsx("input", { id: "api-key", className: "field", type: "password", autoComplete: "off", autoCapitalize: "none", spellCheck: false, placeholder: "sk-ant-\u2026", value: key, onChange: (e) => saveKey(e.target.value) }), _jsx("div", { className: "row-actions", style: { marginTop: 10 }, children: _jsx("button", { className: "btn ghost sm", onClick: runTest, disabled: !key.trim(), children: "Test connection" }) }), test ? _jsx("p", { className: "note", role: "status", style: { whiteSpace: "pre-line" }, children: test }) : null] })) : null] }));
 }
 function StoreSheet({ item, onPick, onClose }) {
     return (_jsxs(Sheet, { title: "Where to buy it", onClose: onClose, children: [_jsxs("p", { className: "muted small", style: { marginBottom: 12 }, children: [item.name, item.kind === "plan" ? ". We'll remember this for next week." : ""] }), _jsxs("div", { className: "stack", children: [STORES.map((s) => (_jsxs("button", { className: "opt", "aria-pressed": item.store === s, onClick: () => onPick(s), children: [_jsx("span", { className: "t", children: _jsx("span", { className: "nm", children: s }) }), _jsx("b", { children: STORE_ABBR[s] })] }, s))), _jsx("button", { className: "opt", "aria-pressed": !item.store, onClick: () => onPick(""), children: _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Any store" }), _jsx("span", { className: "sub", children: "No preference" })] }) })] })] }));
@@ -999,6 +1129,7 @@ function AddMealSheet({ onClose, onDraft, onManual, onImported, knownSources }) 
     const [url, setUrl] = useState("");
     const [busy, setBusy] = useState(false);
     const [busyMsg, setBusyMsg] = useState("");
+    const [pasteText, setPasteText] = useState("");
     const [error, setError] = useState("");
     const fileRef = useRef(null);
     const [batchText, setBatchText] = useState("");
@@ -1112,6 +1243,69 @@ function AddMealSheet({ onClose, onDraft, onManual, onImported, knownSources }) 
             setBusyMsg("");
         }
     }
+    async function openPasted() {
+        // Accepts one recipe, a list of recipes, or {"meals": [...]}.
+        const t = pasteText.trim();
+        let parsed = null;
+        const start = t.search(/[\[{]/);
+        const end = Math.max(t.lastIndexOf("]"), t.lastIndexOf("}"));
+        for (const candidate of [t, start >= 0 && end > start ? t.slice(start, end + 1) : ""]) {
+            if (!candidate)
+                continue;
+            try {
+                parsed = JSON.parse(candidate);
+                break;
+            }
+            catch (e) { /* try the next form */ }
+        }
+        if (!parsed)
+            return setError("That recipe block couldn't be read. Make sure you copied all of it, from the first { to the last }.");
+        const list = Array.isArray(parsed) ? parsed : Array.isArray(parsed.meals) ? parsed.meals : [parsed];
+        // Pasted text is untrusted too: rebuild every field.
+        const items = list.slice(0, 40)
+            .map((raw) => ({ source: cleanSource(raw && raw.source), draft: cleanDraft(raw) }))
+            .filter((x) => x.draft.name && x.draft.ingredients.length);
+        if (!items.length)
+            return setError("That recipe block is missing a name or ingredients.");
+        setBusy(true);
+        setBusyMsg("Finding photos…");
+        setError("");
+        const withPhoto = async (x) => {
+            let image = x.draft.image;
+            try {
+                if (x.source)
+                    image = knownImageFor(x.source) || (await quickPhoto(x.source)) || image;
+            }
+            catch (e) {
+                // No photo found. One can be added later.
+            }
+            return { ...x.draft, source: x.source, image: image || "" };
+        };
+        if (items.length === 1) {
+            const meal = await withPhoto(items[0]);
+            setBusy(false);
+            setBusyMsg("");
+            onDraft(meal);
+            return;
+        }
+        const known = new Set(knownSources.map(normUrl));
+        let added = 0;
+        let skipped = 0;
+        for (const x of items) {
+            if (x.source && known.has(normUrl(x.source))) {
+                skipped++;
+                continue;
+            }
+            onImported(await withPhoto(x));
+            if (x.source)
+                known.add(normUrl(x.source));
+            added++;
+        }
+        setBusy(false);
+        setBusyMsg("");
+        setPasteText("");
+        setProgress(`Added ${added} ${added === 1 ? "meal" : "meals"}${skipped ? `, skipped ${skipped} you already have` : ""}. Open each one from the Meals list to check it.`);
+    }
     async function importPhoto(file) {
         if (!file)
             return;
@@ -1132,7 +1326,7 @@ function AddMealSheet({ onClose, onDraft, onManual, onImported, knownSources }) 
             setBusy(false);
         }
     }
-    return (_jsxs(Sheet, { title: "Add a meal", onClose: onClose, children: [mode === "menu" ? (_jsxs("div", { className: "stack", children: [_jsxs("button", { className: "opt", onClick: () => { setError(""); setMode("link"); }, disabled: busy, children: [_jsx(Link2, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "From a link" }), _jsx("span", { className: "sub", children: "Paste a recipe web address" })] })] }), _jsxs("button", { className: "opt", onClick: () => { setError(""); setMode("batch"); }, disabled: busy, children: [_jsx(Link2, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Several links at once" }), _jsx("span", { className: "sub", children: "Bring over a batch of recipes" })] })] }), _jsxs("button", { className: "opt", onClick: () => fileRef.current && fileRef.current.click(), disabled: busy, children: [_jsx(Camera, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "From a photo" }), _jsx("span", { className: "sub", children: "A cookbook page, recipe card or screenshot" })] })] }), _jsxs("button", { className: "opt", onClick: onManual, disabled: busy, children: [_jsx(Pencil, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Type it in" }), _jsx("span", { className: "sub", children: "Ingredients and instructions" })] })] }), _jsx("input", { ref: fileRef, type: "file", accept: "image/*", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; importPhoto(f); } })] })) : mode === "batch" ? (_jsxs("div", { children: [_jsx("label", { className: "lbl", htmlFor: "batch-urls", children: "Recipe links, one per line (up to 25)" }), _jsx("textarea", { id: "batch-urls", className: "field", style: { minHeight: 170 }, autoCapitalize: "none", maxLength: 4000, placeholder: "https://\nhttps://", value: batchText, disabled: running, onChange: (e) => setBatchText(e.target.value) }), !running ? (_jsx("button", { className: "link", onClick: () => setBatchText(DEFINED_DISH_LINKS.join("\n")), children: "Fill in 20 popular recipes from The Defined Dish" })) : null, _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [running ? (_jsx("button", { className: "btn ghost", onClick: () => { stopRef.current = true; }, children: "Stop after this one" })) : (_jsx("button", { className: "btn", onClick: importBatch, disabled: !batchText.trim(), children: "Import all" })), _jsx("button", { className: "btn ghost", onClick: () => setMode("menu"), disabled: running, children: "Back" })] }), _jsx("p", { className: "muted small", style: { marginTop: 10 }, children: "Each recipe takes about 20 seconds. Keep this screen open. Meals are saved as they finish." })] })) : (_jsxs("div", { children: [_jsx("label", { className: "lbl", htmlFor: "recipe-url", children: "Recipe link" }), _jsx("input", { id: "recipe-url", className: "field", inputMode: "url", autoCapitalize: "none", placeholder: "https://", maxLength: 300, value: url, onChange: (e) => setUrl(e.target.value), disabled: busy, onKeyDown: (e) => { if (e.key === "Enter" && !busy)
+    return (_jsxs(Sheet, { title: "Add a meal", onClose: onClose, children: [mode === "menu" ? (_jsxs("div", { className: "stack", children: [_jsxs("button", { className: "opt", onClick: () => { setError(""); setMode("link"); }, disabled: busy, children: [_jsx(Link2, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "From a link" }), _jsx("span", { className: "sub", children: "Use a recipe's web address" })] })] }), _jsxs("button", { className: "opt", onClick: () => { setError(""); setMode("batch"); }, disabled: busy, children: [_jsx(Link2, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Several links at once" }), _jsx("span", { className: "sub", children: "Bring over a batch of recipes" })] })] }), _jsxs("button", { className: "opt", onClick: () => { setError(""); setMode("paste"); }, disabled: busy, children: [_jsx(ClipboardList, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Paste a recipe" }), _jsx("span", { className: "sub", children: "A recipe block that Claude wrote for you" })] })] }), _jsxs("button", { className: "opt", onClick: () => fileRef.current && fileRef.current.click(), disabled: busy, children: [_jsx(Camera, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "From a photo" }), _jsx("span", { className: "sub", children: "A cookbook page, recipe card or screenshot" })] })] }), _jsxs("button", { className: "opt", onClick: onManual, disabled: busy, children: [_jsx(Pencil, { size: 24 }), _jsxs("span", { className: "t", children: [_jsx("span", { className: "nm", children: "Type it in" }), _jsx("span", { className: "sub", children: "Ingredients and instructions" })] })] }), _jsx("input", { ref: fileRef, type: "file", accept: "image/*", hidden: true, onChange: (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; importPhoto(f); } })] })) : mode === "paste" ? (_jsxs("div", { children: [_jsx("label", { className: "lbl", htmlFor: "paste-recipe", children: "Paste the recipe block (one meal or several)" }), _jsx("textarea", { id: "paste-recipe", className: "field", style: { minHeight: 190 }, autoCapitalize: "none", spellCheck: false, maxLength: 20000, placeholder: "{ \"name\": \"…\", \"ingredients\": [ … ] }", value: pasteText, onChange: (e) => setPasteText(e.target.value), disabled: busy }), _jsxs("div", { className: "row-actions", style: { marginTop: 10 }, children: [_jsx("button", { className: "btn", onClick: openPasted, disabled: busy || !pasteText.trim(), children: "Open for review" }), _jsx("button", { className: "btn ghost", onClick: () => setMode("menu"), disabled: busy, children: "Back" })] }), _jsx("p", { className: "muted small", style: { marginTop: 10 }, children: "One meal opens for you to check before saving. Several meals are added together, each marked \"Check recipe\" until you approve it." })] })) : mode === "batch" ? (_jsxs("div", { children: [_jsx("label", { className: "lbl", htmlFor: "batch-urls", children: "Recipe links, one per line (up to 25)" }), _jsx("textarea", { id: "batch-urls", className: "field", style: { minHeight: 170 }, autoCapitalize: "none", maxLength: 4000, placeholder: "https://\nhttps://", value: batchText, disabled: running, onChange: (e) => setBatchText(e.target.value) }), !running ? (_jsx("button", { className: "link", onClick: () => setBatchText(DEFINED_DISH_LINKS.join("\n")), children: "Fill in 20 popular recipes from The Defined Dish" })) : null, _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [running ? (_jsx("button", { className: "btn ghost", onClick: () => { stopRef.current = true; }, children: "Stop after this one" })) : (_jsx("button", { className: "btn", onClick: importBatch, disabled: !batchText.trim(), children: "Import all" })), _jsx("button", { className: "btn ghost", onClick: () => setMode("menu"), disabled: running, children: "Back" })] }), _jsx("p", { className: "muted small", style: { marginTop: 10 }, children: "Each recipe takes about 20 seconds. Keep this screen open. Meals are saved as they finish." })] })) : (_jsxs("div", { children: [_jsx("label", { className: "lbl", htmlFor: "recipe-url", children: "Recipe link" }), _jsx("input", { id: "recipe-url", className: "field", inputMode: "url", autoCapitalize: "none", placeholder: "https://", maxLength: 300, value: url, onChange: (e) => setUrl(e.target.value), disabled: busy, onKeyDown: (e) => { if (e.key === "Enter" && !busy)
                             importLink(); } }), _jsxs("div", { className: "row-actions", style: { marginTop: 14 }, children: [_jsx("button", { className: "btn", onClick: importLink, disabled: busy || !url.trim(), children: "Import recipe" }), _jsx("button", { className: "btn ghost", onClick: () => setMode("menu"), disabled: busy, children: "Back" })] })] })), busy ? _jsx("p", { className: "note", role: "status", children: busyMsg || "Reading the recipe. This can take up to 30 seconds." }) : null, progress ? _jsx("p", { className: "note", role: "status", children: progress }) : null, failed.length ? (_jsxs("div", { className: "err", children: [_jsx("p", { children: "Couldn't read these. Try them one at a time with \"From a link\":" }), _jsx("ul", { style: { margin: "6px 0 0", paddingLeft: 18, wordBreak: "break-word" }, children: failed.map((f) => _jsx("li", { children: (() => { try {
                                 return new URL(f).pathname;
                             }
@@ -1179,7 +1373,7 @@ function MealEditor({ initial, title, banner, onSave, onDelete, onClose }) {
     }
     return (_jsxs(Sheet, { title: title, onClose: onClose, footer: _jsx("button", { className: "btn block", onClick: save, children: "Save meal" }), children: [banner ? _jsx("p", { className: "note", children: banner }) : null, _jsx("label", { className: "lbl", htmlFor: "meal-name", children: "Name" }), _jsx("input", { id: "meal-name", className: "field", value: name, maxLength: 60, onChange: (e) => setName(e.target.value), placeholder: "Lemon chicken soup" }), _jsx("label", { className: "lbl", htmlFor: "meal-servings", children: "Servings the amounts below make" }), _jsx("input", { id: "meal-servings", className: "field", inputMode: "numeric", value: servings, maxLength: 2, onChange: (e) => setServings(e.target.value.replace(/\D/g, "")), style: { maxWidth: 110 } }), _jsx("label", { className: "lbl", htmlFor: "meal-source", children: "Recipe link (optional)" }), _jsx("input", { id: "meal-source", className: "field", inputMode: "url", autoCapitalize: "none", placeholder: "https://", maxLength: 300, value: source, onChange: (e) => setSource(e.target.value) }), _jsx("label", { className: "lbl", htmlFor: "meal-photo", children: "Photo link (optional)" }), _jsxs("div", { style: { display: "flex", alignItems: "center", gap: 10 }, children: [cleanImage(image) ? _jsx(MealPhoto, { src: cleanImage(image), className: "thumb" }) : null, _jsx("input", { id: "meal-photo", className: "field", inputMode: "url", autoCapitalize: "none", placeholder: "https://", maxLength: 500, value: image, onChange: (e) => setImage(e.target.value) })] }), !cleanImage(image) && source ? (_jsx("p", { className: "muted small", style: { marginTop: 6 }, children: "No photo found yet. Paste a photo link here, or tap Find photos on the Meals page after saving." })) : null, _jsx("span", { className: "lbl", children: "Ingredients" }), rows.map((r, idx) => (_jsxs("div", { className: "ingrow", children: [_jsx("input", { className: "field", "aria-label": `Ingredient ${idx + 1} name`, placeholder: "Ingredient", maxLength: 40, value: r.name, onChange: (e) => setRow(idx, { name: e.target.value }) }), _jsxs("div", { className: "r2", children: [_jsx("input", { className: "field", "aria-label": `Ingredient ${idx + 1} amount`, inputMode: "decimal", value: r.qty, maxLength: 6, onChange: (e) => setRow(idx, { qty: e.target.value.replace(/[^0-9.]/g, "") }), style: { padding: "0 8px" } }), _jsx("select", { "aria-label": `Ingredient ${idx + 1} unit`, value: r.unit, onChange: (e) => setRow(idx, { unit: e.target.value }), style: { padding: "0 6px" }, children: UNITS.map((u) => _jsx("option", { value: u, children: UNIT_LABEL[u] ?? u }, u)) }), _jsx("select", { "aria-label": `Ingredient ${idx + 1} store section`, value: r.aisle, onChange: (e) => setRow(idx, { aisle: e.target.value }), style: { padding: "0 6px" }, children: AISLES.map((a) => _jsx("option", { value: a, children: a }, a)) }), _jsx("button", { className: "icon-btn", "aria-label": `Remove ingredient ${idx + 1}`, onClick: () => setRows((cur) => (cur.length > 1 ? cur.filter((_, i) => i !== idx) : [{ name: "", qty: "1", unit: "", aisle: "Produce" }])), children: _jsx(X, { size: 18 }) })] })] }, idx))), rows.length < 40 ? (_jsx("button", { className: "link", onClick: () => setRows((cur) => [...cur, { name: "", qty: "1", unit: "", aisle: "Produce" }]), children: "+ Add ingredient" })) : null, _jsx("label", { className: "lbl", htmlFor: "meal-steps", children: "Instructions (one step per line)" }), _jsx("textarea", { id: "meal-steps", className: "field", value: steps, maxLength: 6000, onChange: (e) => setSteps(e.target.value), placeholder: "Heat the oven to 400°F.\nRoast for 25 minutes." }), error ? _jsx("div", { className: "err", role: "alert", children: error }) : null, onDelete ? (confirmDel ? (_jsxs("div", { className: "confirm", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Delete this meal? Its ratings and history go too." }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: onDelete, children: "Yes, delete it" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirmDel(false), children: "Keep it" })] })] })) : (_jsxs("button", { className: "link", style: { color: "#A32121", marginTop: 12 }, onClick: () => setConfirmDel(true), children: [_jsx(Trash2, { size: 14, style: { verticalAlign: "-2px" } }), " Delete this meal"] }))) : null] }));
 }
-function MealDetail({ meal, kids, household, inWeek, onToggleWeek, onUpdate, onEdit, onDelete, onClose }) {
+function MealDetail({ meal, kids, household, inWeek, locked, onToggleWeek, onUpdate, onEdit, onDelete, onClose }) {
     const [confirm, setConfirm] = useState(false);
     const [linkMsg, setLinkMsg] = useState("");
     const linkTimer = useRef(null);
@@ -1210,7 +1404,7 @@ function MealDetail({ meal, kids, household, inWeek, onToggleWeek, onUpdate, onE
         : meal.portion === "little" ? "Noted. Next time this recipe makes more."
             : meal.portion === "right" ? "Noted. The amounts stay as they are."
                 : "";
-    return (_jsxs(Sheet, { title: meal.name, onClose: onClose, footer: _jsx(_Fragment, { children: _jsx("button", { className: `btn ${inWeek ? "ghost" : ""}`, onClick: onToggleWeek, children: inWeek ? _jsxs(_Fragment, { children: [_jsx(Check, { size: 18 }), " In this week"] }) : _jsxs(_Fragment, { children: [_jsx(Plus, { size: 18 }), " Add to this week"] }) }) }), children: [_jsx(MealPhoto, { src: meal.image, className: "hero" }), meal.source ? (_jsxs("div", { className: "srcbox", children: [_jsxs("a", { className: "btn ghost sm", href: meal.source, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ExternalLink, { size: 16 }), " Open original recipe"] }), _jsxs("button", { className: "btn ghost sm", onClick: copyLink, children: [_jsx(Copy, { size: 16 }), " ", linkMsg || "Copy link"] }), _jsx("p", { className: "srcurl", children: meal.source })] })) : (_jsxs("button", { className: "link", onClick: onEdit, children: [_jsx(Link2, { size: 14, style: { verticalAlign: "-2px" } }), " Add a recipe link"] })), _jsxs("div", { className: "row-actions", style: { marginTop: 14 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: onEdit, children: [_jsx(Pencil, { size: 16 }), " Edit ingredients & steps"] }), _jsxs("button", { className: "btn danger sm", onClick: () => setConfirm(true), children: [_jsx(Trash2, { size: 16 }), " Delete meal"] })] }), confirm ? (_jsxs("div", { className: "confirm", role: "alertdialog", "aria-label": "Confirm delete", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Delete this meal? Its ratings and history go too." }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: onDelete, children: "Yes, delete it" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirm(false), children: "Keep it" })] })] })) : null, meal.unreviewed ? (_jsxs("div", { className: "note", role: "status", children: [_jsx("p", { children: "Imported automatically. Compare the amounts and steps with the original recipe, then confirm." }), _jsxs("button", { className: "btn sm", style: { marginTop: 10 }, onClick: () => onUpdate({ unreviewed: false }), children: [_jsx(Check, { size: 16 }), " Looks good"] })] })) : null, _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Last made" }), _jsxs("div", { className: "lastmade", children: [_jsx("span", { style: { fontWeight: 700 }, children: madeLabel(meal.lastMade) }), _jsx("button", { className: "btn sm", disabled: meal.lastMade === today, onClick: () => onUpdate({ lastMade: today, timesMade: meal.lastMade === today ? meal.timesMade : meal.timesMade + 1 }), children: meal.lastMade === today ? "Made today" : "We made it today" })] }), _jsx("label", { className: "lbl", htmlFor: "made-date", children: "Or pick the date" }), _jsx("input", { id: "made-date", type: "date", className: "field", style: { maxWidth: 200 }, max: today, value: meal.lastMade || "", onChange: (e) => {
+    return (_jsxs(Sheet, { title: meal.name, onClose: onClose, footer: _jsx(_Fragment, { children: _jsx("button", { className: `btn ${inWeek ? "ghost" : ""}`, onClick: onToggleWeek, children: inWeek ? _jsxs(_Fragment, { children: [_jsx(Check, { size: 18 }), " In this week"] }) : _jsxs(_Fragment, { children: [_jsx(Plus, { size: 18 }), " Add to this week"] }) }) }), children: [_jsx(MealPhoto, { src: meal.image, className: "hero" }), meal.source ? (_jsxs("div", { className: "srcbox", children: [_jsxs("a", { className: "btn ghost sm", href: meal.source, target: "_blank", rel: "noopener noreferrer", children: [_jsx(ExternalLink, { size: 16 }), " Open original recipe"] }), _jsxs("button", { className: "btn ghost sm", onClick: copyLink, children: [_jsx(Copy, { size: 16 }), " ", linkMsg || "Copy link"] }), _jsx("p", { className: "srcurl", children: meal.source })] })) : locked ? null : (_jsxs("button", { className: "link", onClick: onEdit, children: [_jsx(Link2, { size: 14, style: { verticalAlign: "-2px" } }), " Add a recipe link"] })), locked ? null : (_jsxs("div", { className: "row-actions", style: { marginTop: 14 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: onEdit, children: [_jsx(Pencil, { size: 16 }), " Edit ingredients & steps"] }), _jsxs("button", { className: "btn danger sm", onClick: () => setConfirm(true), children: [_jsx(Trash2, { size: 16 }), " Delete meal"] })] })), confirm ? (_jsxs("div", { className: "confirm", role: "alertdialog", "aria-label": "Confirm delete", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Delete this meal? Its ratings and history go too." }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: onDelete, children: "Yes, delete it" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirm(false), children: "Keep it" })] })] })) : null, meal.unreviewed ? (_jsxs("div", { className: "note", role: "status", children: [_jsx("p", { children: "Imported automatically. Compare the amounts and steps with the original recipe, then confirm." }), _jsxs("button", { className: "btn sm", style: { marginTop: 10 }, onClick: () => onUpdate({ unreviewed: false }), children: [_jsx(Check, { size: 16 }), " Looks good"] })] })) : null, _jsxs("div", { className: "block", children: [_jsx("h3", { children: "Last made" }), _jsxs("div", { className: "lastmade", children: [_jsx("span", { style: { fontWeight: 700 }, children: madeLabel(meal.lastMade) }), _jsx("button", { className: "btn sm", disabled: meal.lastMade === today, onClick: () => onUpdate({ lastMade: today, timesMade: meal.lastMade === today ? meal.timesMade : meal.timesMade + 1 }), children: meal.lastMade === today ? "Made today" : "We made it today" })] }), _jsx("label", { className: "lbl", htmlFor: "made-date", children: "Or pick the date" }), _jsx("input", { id: "made-date", type: "date", className: "field", style: { maxWidth: 200 }, max: today, value: meal.lastMade || "", onChange: (e) => {
                             const v = e.target.value;
                             if (!v)
                                 onUpdate({ lastMade: null });
@@ -1251,6 +1445,7 @@ async function readSaved(key, thorough = true) {
     }
 }
 export default function FamilyMealPlanner() {
+    const recipesOk = RECIPES_STATUS.source !== "none";
     const [loaded, setLoaded] = useState(false);
     const [meals, setMeals] = useState([]);
     const [kids, setKids] = useState(KID_IDS.map((id, i) => ({ id, name: DEFAULT_KIDS[i] })));
@@ -1284,11 +1479,12 @@ export default function FamilyMealPlanner() {
     /* ---- load ---- */
     const applyData = (data) => {
         let count = 0;
-        if (data.meals) {
+        {
             // Remove untouched copies of the old built-in meals; keep anything you rated, made or edited.
-            const kept = data.meals.map(withKnownImage).filter((m) => !(m.id.startsWith("s_") && !Object.keys(m.ratings).length && !m.lastMade && m.timesMade === 0 && m.scale === 1));
-            count = kept.length;
-            setMeals(kept);
+            const kept = (data.meals || []).map(withKnownImage).filter((m) => !(m.id.startsWith("s_") && !Object.keys(m.ratings).length && !m.lastMade && m.timesMade === 0 && m.scale === 1));
+            const merged = mergeLibrary(kept);
+            count = merged.length;
+            setMeals(merged);
         }
         setKids(data.kids);
         setSelected(data.selected);
@@ -1307,6 +1503,9 @@ export default function FamilyMealPlanner() {
             loadedCount = applyData(out.data);
             lastSaved.current = { json: out.raw, count: loadedCount };
         }
+        else if (out.status === "empty") {
+            setMeals(mergeLibrary([]));
+        }
         setLoadFailed(out.status === "failed");
         setLoaded(true);
         // Is there a safety copy with more meals than what we just loaded?
@@ -1323,7 +1522,7 @@ export default function FamilyMealPlanner() {
     }, []);
     /* ---- save (debounced). Paused whenever the saved data could not be read. ---- */
     useEffect(() => {
-        if (!loaded || loadFailed)
+        if (!loaded || loadFailed || !recipesOk)
             return undefined;
         const t = setTimeout(async () => {
             try {
@@ -1381,11 +1580,11 @@ export default function FamilyMealPlanner() {
     const readyRef = useRef(false);
     stRef.current = { meals, kids, selected, household, checked, storeMap, extras };
     cfgRef.current = syncCfg;
-    readyRef.current = loaded && !loadFailed;
+    readyRef.current = loaded && !loadFailed && recipesOk;
     const applyLeaves = (merged, cols) => {
         const st = leavesToState(merged);
         selAtRef.current = st.selAt;
-        if (cols.has("meals"))
+        if (cols.has("meals") || cols.has("stats"))
             setMeals(st.meals);
         if (cols.has("kids"))
             setKids(st.kids);
@@ -1414,9 +1613,10 @@ export default function FamilyMealPlanner() {
             const local = stateToLeaves(stRef.current, selAtRef.current);
             const merged = mergeLeaves(local, baseRef.current, remote);
             const patches = diffPatches(merged, remote);
-            const cols = changedCols(merged, local);
+            const view = dropOrphans(merged);
+            const cols = changedCols(view, local);
             if (cols.size)
-                applyLeaves(merged, cols);
+                applyLeaves(view, cols);
             // Until our own changes are confirmed, those entries keep the shared value as their baseline.
             const nextBase = { ...merged };
             for (const col of Object.keys(patches)) {
@@ -1458,14 +1658,14 @@ export default function FamilyMealPlanner() {
     };
     // Sync shortly after any change here...
     useEffect(() => {
-        if (!syncCfg || !loaded || loadFailed)
+        if (!syncCfg || !loaded || loadFailed || !recipesOk)
             return undefined;
         const t = setTimeout(() => syncNow(), 700);
         return () => clearTimeout(t);
     }, [syncCfg, loaded, loadFailed, meals, kids, selected, household, checked, storeMap, extras]);
     // ...and keep checking for changes made on the other phone.
     useEffect(() => {
-        if (!syncCfg || !loaded || loadFailed)
+        if (!syncCfg || !loaded || loadFailed || !recipesOk)
             return undefined;
         const tick = () => { if (document.visibilityState === "visible")
             syncNow(); };
@@ -1526,7 +1726,7 @@ export default function FamilyMealPlanner() {
     const mealById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
     const weekMeals = useMemo(() => selected.map((id) => mealById.get(id)).filter(Boolean), [selected, mealById]);
     const weekIds = useMemo(() => new Set(weekMeals.map((m) => m.id)), [weekMeals]);
-    const needPhotos = meals.filter((m) => m.source && !m.image);
+    const needPhotos = ALLOW_ADDING ? meals.filter((m) => m.source && !m.image) : [];
     const shownMeals = useMemo(() => {
         const q = query.trim().toLowerCase();
         const days = (m) => daysSince(m.lastMade) ?? 99999;
@@ -1731,7 +1931,7 @@ export default function FamilyMealPlanner() {
     const viewMeal = viewId ? mealById.get(viewId) : null;
     const today = todayStr();
     const metaLine = (m) => (_jsxs("span", { className: "meta", children: [_jsx("span", { children: madeLabel(m.lastMade) }), _jsx(RatingBadge, { info: ratingInfo(m, kids) }), m.scale !== 1 ? _jsxs("span", { children: ["Recipe at ", Math.round(m.scale * 100), "%"] }) : null, m.unreviewed ? _jsx("span", { className: "pill", children: "Check recipe" }) : null] }));
-    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, syncCfg ? (_jsx("p", { className: `syncpill ${syncStatus}`, role: "status", children: syncStatus === "ok" ? "Shared · up to date" : syncStatus === "error" ? "Can't reach the shared list · will retry" : "Connecting…" })) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap the circle on a photo to add it to this week" })] }), _jsxs("div", { className: "acts", children: [_jsx("button", { className: "icon-btn", "aria-label": "Settings", onClick: () => setFamilyOpen(true), children: _jsx(Users, { size: 22 }) }), _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] })] })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
+    return (_jsxs("div", { className: "mp", children: [_jsx("style", { children: CSS }), _jsxs("main", { className: "main", children: [loadFailed ? (_jsxs("div", { className: "warn", role: "alert", children: [_jsx("p", { children: "We couldn't load your saved meals, so saving is paused to protect them." }), _jsx("button", { className: "btn sm", style: { marginTop: 8 }, onClick: () => runLoad(() => false), children: "Try again" })] })) : null, !recipesOk ? (_jsx("div", { className: "warn", role: "alert", children: _jsxs("p", { children: ["We couldn't load the recipe list (", RECIPES_STATUS.error || "no connection", "), so saving is paused to protect your data. Check your connection and reload."] }) })) : null, backup ? (_jsxs("div", { className: "warn", role: "status", children: [_jsxs("p", { children: ["A backup with ", backup.meals.length, " meals is available."] }), _jsxs("div", { className: "row-actions", style: { marginTop: 8 }, children: [_jsx("button", { className: "btn sm", onClick: () => { applyData(backup); setBackup(null); showToast("Backup restored"); }, children: "Restore backup" }), _jsx("button", { className: "btn ghost sm", onClick: () => setBackup(null), children: "Dismiss" })] })] })) : null, saveFailed ? _jsx("div", { className: "warn", role: "status", children: "Changes aren't being saved on this device right now." }) : null, syncCfg ? (_jsx("p", { className: `syncpill ${syncStatus}`, role: "status", children: syncStatus === "ok" ? "Shared · up to date" : syncStatus === "error" ? "Can't reach the shared list · will retry" : "Connecting…" })) : null, tab === "meals" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "Meals" }), _jsx("p", { className: "sub", children: "Tap the circle on a photo to add it to this week" })] }), _jsxs("div", { className: "acts", children: [_jsx("button", { className: "icon-btn", "aria-label": "Settings", onClick: () => setFamilyOpen(true), children: _jsx(Users, { size: 22 }) }), ALLOW_ADDING ? _jsxs("button", { className: "btn sm", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add"] }) : null] })] }), _jsxs("div", { className: "searchbox", children: [_jsx(Search, { size: 18 }), _jsx("input", { className: "field", "aria-label": "Search meals", placeholder: "Search meals", maxLength: 60, value: query, onChange: (e) => setQuery(e.target.value) })] }), _jsxs("div", { className: "chips scroll", role: "group", "aria-label": "Filters", children: [_jsx("button", { className: "chip", "aria-pressed": staleOnly, onClick: () => setStaleOnly((v) => !v), children: "Not made in 2+ weeks" }), _jsx("button", { className: "chip", "aria-pressed": lovedOnly, onClick: () => setLovedOnly((v) => !v), children: "Kid favorites (4+)" })] }), photoJob || needPhotos.length > 0 ? (_jsx("div", { className: "note photobar", role: "status", children: photoJob ? (_jsxs(_Fragment, { children: [_jsx("p", { children: photoJob.finished
                                                 ? `Found ${photoJob.found} of ${photoJob.total} photos.` +
                                                     (photoJob.unloadable
                                                         ? ` ${photoJob.unloadable} ${photoJob.unloadable === 1 ? "address was" : "addresses were"} found but wouldn't load here.`
@@ -1740,11 +1940,11 @@ export default function FamilyMealPlanner() {
                                     const sel = weekIds.has(m.id);
                                     const info = ratingInfo(m, kids);
                                     return (_jsxs("div", { className: `tile${sel ? " sel" : ""}`, children: [_jsxs("div", { className: "shotwrap", children: [_jsx("button", { className: "shot", onClick: () => setViewId(m.id), "aria-label": `Open ${m.name}`, children: _jsx(TilePhoto, { meal: m }) }), m.unreviewed ? _jsx("span", { className: "pill flag", children: "Check recipe" }) : null, _jsx("button", { className: "tick", "aria-pressed": sel, "aria-label": `${sel ? "Remove" : "Add"} ${m.name} ${sel ? "from" : "to"} this week`, onClick: () => toggleSelect(m.id), children: _jsx("span", { className: "ring", children: sel ? _jsx(Check, { size: 18, strokeWidth: 3 }) : null }) })] }), _jsx("button", { className: "cap", onClick: () => setViewId(m.id), children: m.name }), _jsx("p", { className: "tsub", children: madeLabel(m.lastMade) }), info ? (_jsxs("p", { className: "tsub stars2", children: [_jsx(Star, { size: 12, style: { color: "#8A6D00", fill: "#F1D24A" } }), " ", info.avg.toFixed(1)] })) : null] }, m.id));
-                                }) })) : null, meals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals yet" }), _jsx("p", { children: "Add your first meal from a recipe link, a photo, or by typing it in." }), _jsxs("button", { className: "btn", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add a meal"] })] })) : shownMeals.length === 0 ? (_jsx("p", { className: "muted", style: { marginTop: 20 }, children: "No meals match those filters. Clear a filter, or add a new meal." })) : null] })) : null, tab === "week" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "This week" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] })] }), _jsxs("div", { className: "stepper-wrap", children: [_jsx("span", { id: "hh-label", children: "Cooking for" }), _jsxs("div", { className: "stepper", role: "group", "aria-labelledby": "hh-label", children: [_jsx("button", { "aria-label": "Fewer people", disabled: household <= 1, onClick: () => setHousehold((h) => Math.max(1, h - 1)), children: _jsx(Minus, { size: 18 }) }), _jsx("output", { "aria-live": "polite", children: household }), _jsx("button", { "aria-label": "More people", disabled: household >= 12, onClick: () => setHousehold((h) => Math.min(12, h + 1)), children: _jsx(Plus, { size: 18 }) })] })] })] }), weekMeals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals picked yet" }), _jsx("p", { children: "Choose a few from your meal list and this page fills in with the plan and the grocery list." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] })) : (_jsxs(_Fragment, { children: [_jsx("div", { className: "stack", style: { marginTop: 18 }, children: weekMeals.map((m) => (_jsxs("div", { className: "card", children: [_jsxs("button", { className: "open", onClick: () => setViewId(m.id), children: [_jsx(MealPhoto, { src: m.image, className: "thumb" }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: m.name }), metaLine(m), m.lastMade === today ? _jsxs("span", { className: "pill ok", style: { marginTop: 6 }, children: [_jsx(Check, { size: 12, strokeWidth: 3 }), " Made today"] }) : null] }), _jsx(ChevronRight, { size: 20, color: "#5A6B62" })] }), _jsx("button", { className: "icon-btn", "aria-label": `Remove ${m.name} from this week`, onClick: () => toggleSelect(m.id), children: _jsx(X, { size: 18 }) })] }, m.id))) }), _jsxs("div", { className: "tailnav", children: [_jsxs("button", { className: "btn", onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 18 }), " Open grocery list (", totalItems, ")"] }), confirmWeek ? (_jsxs("div", { className: "confirm", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Clear this week's meals and checkmarks?" }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: startNewWeek, children: "Start new week" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirmWeek(false), children: "Cancel" })] })] })) : (_jsx("button", { className: "link", onClick: () => setConfirmWeek(true), children: "Start a new week" }))] })] }))] })) : null, tab === "groceries" ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "head", children: _jsxs("div", { children: [_jsx("h1", { children: "Groceries" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", ", scaled for ", household] })] }) }), _jsxs("div", { className: "seg", role: "group", "aria-label": "Group list by", children: [_jsx("button", { "aria-pressed": groceryView === "section", onClick: () => setGroceryView("section"), children: "By section" }), _jsx("button", { "aria-pressed": groceryView === "store", onClick: () => setGroceryView("store"), children: "By store" })] }), _jsx("p", { className: "legend", children: "TJ Trader Joe's \u00B7 WF Whole Foods \u00B7 SW Safeway. Tap the circle on an item to set its store." }), totalItems > 0 ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "progress", role: "progressbar", "aria-label": "Items in cart", "aria-valuemin": 0, "aria-valuemax": totalItems, "aria-valuenow": doneItems, children: _jsx("div", { style: { width: `${(doneItems / totalItems) * 100}%` } }) }), _jsxs("p", { className: "small muted", children: [doneItems, " of ", totalItems, " in the cart"] })] })) : null, _jsxs("div", { className: "addbox", children: [_jsx("input", { className: "field name", "aria-label": "Add an item", placeholder: "Add an item", maxLength: 60, value: extraName, onChange: (e) => setExtraName(e.target.value), onKeyDown: (e) => { if (e.key === "Enter")
+                                }) })) : null, meals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals yet" }), _jsx("p", { children: ALLOW_ADDING ? "Add your first meal from a recipe link, a photo, or by typing it in." : "No meals have been added to the library yet." }), ALLOW_ADDING ? _jsxs("button", { className: "btn", onClick: () => setAddOpen(true), children: [_jsx(Plus, { size: 18 }), " Add a meal"] }) : null] })) : shownMeals.length === 0 ? (_jsx("p", { className: "muted", style: { marginTop: 20 }, children: "No meals match those filters. Clear a filter, or add a new meal." })) : null] })) : null, tab === "week" ? (_jsxs(_Fragment, { children: [_jsxs("div", { className: "head", children: [_jsxs("div", { children: [_jsx("h1", { children: "This week" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] })] }), _jsxs("div", { className: "stepper-wrap", children: [_jsx("span", { id: "hh-label", children: "Cooking for" }), _jsxs("div", { className: "stepper", role: "group", "aria-labelledby": "hh-label", children: [_jsx("button", { "aria-label": "Fewer people", disabled: household <= 1, onClick: () => setHousehold((h) => Math.max(1, h - 1)), children: _jsx(Minus, { size: 18 }) }), _jsx("output", { "aria-live": "polite", children: household }), _jsx("button", { "aria-label": "More people", disabled: household >= 12, onClick: () => setHousehold((h) => Math.min(12, h + 1)), children: _jsx(Plus, { size: 18 }) })] })] })] }), weekMeals.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "No meals picked yet" }), _jsx("p", { children: "Choose a few from your meal list and this page fills in with the plan and the grocery list." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] })) : (_jsxs(_Fragment, { children: [_jsx("div", { className: "stack", style: { marginTop: 18 }, children: weekMeals.map((m) => (_jsxs("div", { className: "card", children: [_jsxs("button", { className: "open", onClick: () => setViewId(m.id), children: [_jsx(MealPhoto, { src: m.image, className: "thumb" }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: m.name }), metaLine(m), m.lastMade === today ? _jsxs("span", { className: "pill ok", style: { marginTop: 6 }, children: [_jsx(Check, { size: 12, strokeWidth: 3 }), " Made today"] }) : null] }), _jsx(ChevronRight, { size: 20, color: "#5A6B62" })] }), _jsx("button", { className: "icon-btn", "aria-label": `Remove ${m.name} from this week`, onClick: () => toggleSelect(m.id), children: _jsx(X, { size: 18 }) })] }, m.id))) }), _jsxs("div", { className: "tailnav", children: [_jsxs("button", { className: "btn", onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 18 }), " Open grocery list (", totalItems, ")"] }), confirmWeek ? (_jsxs("div", { className: "confirm", children: [_jsx("p", { style: { fontWeight: 700 }, children: "Clear this week's meals and checkmarks?" }), _jsxs("div", { className: "row-actions", children: [_jsx("button", { className: "btn danger sm", onClick: startNewWeek, children: "Start new week" }), _jsx("button", { className: "btn ghost sm", onClick: () => setConfirmWeek(false), children: "Cancel" })] })] })) : (_jsx("button", { className: "link", onClick: () => setConfirmWeek(true), children: "Start a new week" }))] })] }))] })) : null, tab === "groceries" ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "head", children: _jsxs("div", { children: [_jsx("h1", { children: "Groceries" }), _jsxs("p", { className: "sub", children: [weekMeals.length, " ", weekMeals.length === 1 ? "meal" : "meals", ", scaled for ", household] })] }) }), _jsxs("div", { className: "seg", role: "group", "aria-label": "Group list by", children: [_jsx("button", { "aria-pressed": groceryView === "section", onClick: () => setGroceryView("section"), children: "By section" }), _jsx("button", { "aria-pressed": groceryView === "store", onClick: () => setGroceryView("store"), children: "By store" })] }), _jsx("p", { className: "legend", children: "TJ Trader Joe's \u00B7 WF Whole Foods \u00B7 SW Safeway. Tap the circle on an item to set its store." }), totalItems > 0 ? (_jsxs(_Fragment, { children: [_jsx("div", { className: "progress", role: "progressbar", "aria-label": "Items in cart", "aria-valuemin": 0, "aria-valuemax": totalItems, "aria-valuenow": doneItems, children: _jsx("div", { style: { width: `${(doneItems / totalItems) * 100}%` } }) }), _jsxs("p", { className: "small muted", children: [doneItems, " of ", totalItems, " in the cart"] })] })) : null, _jsxs("div", { className: "addbox", children: [_jsx("input", { className: "field name", "aria-label": "Add an item", placeholder: "Add an item", maxLength: 60, value: extraName, onChange: (e) => setExtraName(e.target.value), onKeyDown: (e) => { if (e.key === "Enter")
                                             addExtra(); } }), _jsx("button", { className: "btn", "aria-label": "Add item", onClick: addExtra, children: _jsx(Plus, { size: 22 }) }), _jsx("select", { "aria-label": "Store section for new item", value: extraAisle, onChange: (e) => setExtraAisle(e.target.value), style: { padding: "0 6px" }, children: AISLES.map((a) => _jsx("option", { value: a, children: a }, a)) }), _jsxs("select", { "aria-label": "Store for new item", value: extraStore, onChange: (e) => setExtraStore(e.target.value), style: { padding: "0 6px" }, children: [_jsx("option", { value: "", children: "Any store" }), STORES.map((s) => _jsx("option", { value: s, children: s }, s))] })] }), groups.length === 0 ? (_jsxs("div", { className: "empty-state", children: [_jsx("h2", { children: "Nothing to buy yet" }), _jsx("p", { children: "Pick meals for the week and the list fills in. You can also add your own items above." }), _jsx("button", { className: "btn", onClick: () => setTab("meals"), children: "Pick meals" })] })) : (_jsxs(_Fragment, { children: [groups.map((g) => (_jsxs("section", { className: "aisle", "aria-label": g.label, children: [_jsxs("h3", { children: [g.label, _jsx("span", { children: g.items.length })] }), g.items.map((i) => {
                                                 const sub = [groceryView === "store" ? i.aisle : null, ...i.from].filter(Boolean).join(" · ");
                                                 return (_jsxs("div", { className: "row", children: [_jsxs("button", { className: "item", "aria-pressed": i.done, onClick: () => toggleItem(i), children: [_jsx("span", { className: "box", children: i.done ? _jsx(Check, { size: 16, strokeWidth: 3 }) : null }), _jsxs("span", { className: "mid", children: [_jsx("span", { className: "nm", children: i.name }), sub ? _jsx("span", { className: "from", children: sub }) : null] }), i.kind === "plan" ? _jsx("span", { className: "qty", children: fmtQty(i.qty, i.unit) }) : null] }), _jsx("button", { className: `storebtn${i.store ? "" : " none"}`, "aria-label": `Store for ${i.name}: ${i.store || "any"}. Change`, onClick: () => setStoreFor(i), children: i.store ? STORE_ABBR[i.store] : _jsx(Store, { size: 18 }) }), i.kind === "extra" ? (_jsx("button", { className: "icon-btn", "aria-label": `Remove ${i.name}`, onClick: () => setExtras((cur) => cur.filter((x) => x.id !== i.id)), children: _jsx(X, { size: 18 }) })) : null] }, `${i.kind}:${i.id}`));
-                                            })] }, g.label))), _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 16 }), " Uncheck all"] })] })] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, household: household, inWeek: weekIds.has(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
+                                            })] }, g.label))), _jsxs("div", { className: "row-actions", style: { marginTop: 24 }, children: [_jsxs("button", { className: "btn ghost sm", onClick: copyList, children: [_jsx(Copy, { size: 16 }), " Copy list"] }), _jsxs("button", { className: "btn ghost sm", onClick: resetChecks, children: [_jsx(RotateCcw, { size: 16 }), " Uncheck all"] })] })] }))] })) : null] }), tab === "meals" && weekMeals.length > 0 ? (_jsxs("div", { className: "pickbar", children: [_jsxs("span", { children: [_jsx("b", { children: weekMeals.length }), " ", weekMeals.length === 1 ? "meal" : "meals", " picked"] }), _jsxs("button", { className: "btn sm", onClick: () => setTab("week"), children: ["Build my week ", _jsx(ChevronRight, { size: 16 })] })] })) : null, _jsxs("nav", { className: "nav", "aria-label": "Main", children: [_jsxs("button", { "aria-current": tab === "meals" ? "page" : undefined, onClick: () => setTab("meals"), children: [_jsx(UtensilsCrossed, { size: 22 }), "Meals"] }), _jsxs("button", { "aria-current": tab === "week" ? "page" : undefined, onClick: () => setTab("week"), children: [_jsx(ClipboardList, { size: 22 }), "This week", weekMeals.length > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: weekMeals.length }) : null] }), _jsxs("button", { "aria-current": tab === "groceries" ? "page" : undefined, onClick: () => setTab("groceries"), children: [_jsx(ShoppingCart, { size: 22 }), "Groceries", remaining > 0 ? _jsx("span", { className: "badge", "aria-hidden": "true", children: remaining }) : null] })] }), viewMeal && !editor ? (_jsx(MealDetail, { meal: viewMeal, kids: kids, household: household, inWeek: weekIds.has(viewMeal.id), locked: isLib(viewMeal.id), onToggleWeek: () => toggleSelect(viewMeal.id), onUpdate: (patch) => updateMeal(viewMeal.id, patch), onEdit: () => openEditor(viewMeal), onDelete: () => deleteMeal(viewMeal.id), onClose: () => setViewId(null) })) : null, addOpen ? (_jsx(AddMealSheet, { onClose: () => setAddOpen(false), knownSources: meals.map((m) => m.source).filter(Boolean), onImported: (draft) => setMeals((cur) => (cur.length >= 300 ? cur : [...cur, newMeal({ ...draft, unreviewed: true })])), onManual: () => { setAddOpen(false); setEditor({ id: null, draft: null, title: "New meal", banner: "" }); }, onDraft: (draft) => {
                     setAddOpen(false);
                     setEditor({ id: null, draft, title: "Review meal", banner: "Imported recipes can contain mistakes. Check the amounts and steps, then save." });
                 } })) : null, editor ? (_jsx(MealEditor, { initial: editor.draft, title: editor.title, banner: editor.banner, onSave: saveEditor, onClose: () => setEditor(null), onDelete: editor.id && mealById.has(editor.id) ? () => { deleteMeal(editor.id); setEditor(null); } : undefined })) : null, familyOpen ? _jsx(FamilySheet, { kids: kids, onChange: setKids, onClose: () => setFamilyOpen(false), onExport: exportData, onRestore: importData, sync: { cfg: syncCfg, status: syncStatus, error: syncError, onOn: turnOnSharing, onOff: turnOffSharing, onInvite: copyInvite } }) : null, storeFor ? _jsx(StoreSheet, { item: storeFor, onPick: pickStore, onClose: () => setStoreFor(null) }) : null, _jsx("div", { "aria-live": "polite", children: toast ? _jsx("div", { className: "toast", children: toast }) : null })] }));

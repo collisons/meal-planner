@@ -44,6 +44,40 @@
     })();
   </script>
 
+  <!-- RECIPE-LOADER-START -->
+  <!-- Loads recipes.json (the meal library). If it can't be reached, the last copy is used. -->
+  <script>
+    (function () {
+      var CACHE_KEY = "mealplan-recipes-cache";
+      window.__recipesReady = (async function () {
+        var status = { source: "none", error: "" };
+        var list = [];
+        try {
+          var res = await fetch("recipes.json", { cache: "no-cache" });
+          if (!res.ok) throw new Error("recipes.json " + res.status);
+          var data = await res.json();
+          var arr = Array.isArray(data) ? data : data && data.recipes;
+          if (!Array.isArray(arr)) throw new Error("recipes.json isn't a list of recipes");
+          list = arr;
+          status = { source: "network", error: "" };
+          try { localStorage.setItem(CACHE_KEY, JSON.stringify(arr)); } catch (e) { /* storage full or blocked */ }
+        } catch (e) {
+          var why = String((e && e.message) || e);
+          try {
+            var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+            if (Array.isArray(cached)) { list = cached; status = { source: "cache", error: why }; }
+            else status = { source: "none", error: why };
+          } catch (e2) {
+            status = { source: "none", error: why };
+          }
+        }
+        window.__RECIPES__ = list;
+        window.__RECIPES_STATUS__ = status;
+      })();
+    })();
+  </script>
+  <!-- RECIPE-LOADER-END -->
+
   <!-- Loads React and the icons from a public CDN. No build step needed. -->
   <script type="importmap">
   {
@@ -60,9 +94,12 @@
   <div id="root"><div class="boot">Loading your meals…</div></div>
   <noscript>This app needs JavaScript turned on.</noscript>
   <script type="module">
-    import { createElement } from "react";
-    import { createRoot } from "react-dom/client";
-    import App from "./app.js";
+    await window.__recipesReady;
+    const [{ createElement }, { createRoot }, { default: App }] = await Promise.all([
+      import("react"),
+      import("react-dom/client"),
+      import("./app.js"),
+    ]);
     createRoot(document.getElementById("root")).render(createElement(App));
   </script>
 </body>

@@ -1,0 +1,118 @@
+{
+  "recipes": [
+    {
+      "name": "Chicken and Rice Taco Skillet",
+      "servings": 4,
+      "source": "https://thedefineddish.com/chicken-and-rice-taco-skillet/",
+      "ingredients": [
+        {
+          "name": "Boneless, skinless chicken thighs",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.25,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Taco seasoning",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Green bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "White jasmine rice",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 1.5,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Guacamole (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Sour cream (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Tortilla chips (optional)",
+          "qty": 1,
+          "unit": "pkg",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Jalapeño (optional)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 350°F.",
+        "Pat the chicken dry and season it with the salt and 2 tablespoons of the taco seasoning.",
+        "In a large oven-safe skillet over medium-high heat, brown the chicken in the oil, about 3 minutes per side. It doesn't need to cook through. Set it aside.",
+        "Lower the heat to medium and cook the peppers, onion and garlic until tender, about 4 minutes.",
+        "Stir in the rice with a pinch of salt and the remaining tablespoon of taco seasoning. Toast for about 2 minutes.",
+        "Add the lime zest and juice, the broth and the cilantro, and bring to a simmer. Nestle the chicken back into the pan.",
+        "Cover and bake for 25 minutes, then uncover and bake 7 to 9 minutes more, until the rice is tender and the chicken is cooked through.",
+        "Fluff the rice with a fork and serve with guacamole, sour cream, chips and sliced jalapeño."
+      ],
+      "id": "chicken-and-rice-taco-skillet"
+    }
+  ]
+}
