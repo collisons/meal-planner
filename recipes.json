@@ -3357,109 +3357,127 @@
           "name": "Boneless, skinless chicken thighs",
           "qty": 2,
           "unit": "lb",
-          "aisle": "Meat & seafood"
+          "aisle": "Meat & seafood",
+          "prep": "breasts or thighs, cubed"
         },
         {
           "name": "Yellow onion",
           "qty": 1,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "chopped"
         },
         {
           "name": "Shallot",
           "qty": 1,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "chopped"
         },
         {
           "name": "Garlic",
           "qty": 2,
           "unit": "clove",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "chopped"
         },
         {
           "name": "Fresh ginger (1-inch piece)",
           "qty": 1,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "1 tbsp, freshly grated"
         },
         {
           "name": "Garam masala",
           "qty": 2,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": ""
         },
         {
           "name": "Turmeric",
           "qty": 1.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "ground"
         },
         {
           "name": "Kosher salt",
           "qty": 1,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 tsp in the pot, plus more to taste"
         },
         {
           "name": "Plain Greek yogurt",
           "qty": 4,
           "unit": "tbsp",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": "full-fat (¼ cup)"
         },
         {
           "name": "Tomato paste",
           "qty": 12,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "6-ounce can"
         },
         {
           "name": "Coconut milk",
           "qty": 1,
           "unit": "can",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "14-ounce can, full-fat unsweetened"
         },
         {
           "name": "Cilantro",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "⅓ cup, chopped"
         },
         {
           "name": "Salted butter",
           "qty": 6,
           "unit": "tbsp",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": ""
         },
         {
           "name": "Toasted sesame seeds",
           "qty": 2,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "plain sesame seeds, for the chili butter"
         },
         {
           "name": "Crushed red pepper flakes",
           "qty": 1.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "chili flakes, 1 to 2 tsp (a pinch in the pot, the rest in the chili butter)"
         },
         {
           "name": "Paprika",
           "qty": 0.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": ""
         },
         {
           "name": "Basmati rice, uncooked (for serving)",
           "qty": 1.5,
           "unit": "cup",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": ""
         },
         {
           "name": "Naan (optional)",
           "qty": 1,
           "unit": "pkg",
-          "aisle": "Bakery"
+          "aisle": "Bakery",
+          "prep": ""
         }
       ],
       "instructions": [
@@ -3481,91 +3499,106 @@
           "name": "Olive oil",
           "qty": 1,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "extra virgin"
         },
         {
           "name": "Cubed butternut squash",
           "qty": 2,
           "unit": "cup",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "2 cups, cubed"
         },
         {
           "name": "Garlic",
           "qty": 8,
           "unit": "clove",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "6 to 10 cloves (a halved whole bulb works too)"
         },
         {
           "name": "Fresh thyme",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "2 tbsp leaves"
         },
         {
           "name": "Fresh rosemary",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "2 tbsp chopped (1 tbsp on the squash, 1 tbsp in the butter)"
         },
         {
           "name": "Crushed red pepper flakes",
           "qty": 0.25,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "a pinch"
         },
         {
           "name": "Kosher salt",
           "qty": 1,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "to taste; the page gives no amount, so 1 tsp is an estimate"
         },
         {
           "name": "Black pepper",
           "qty": 0.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "to taste; the page gives no amount, so ½ tsp is an estimate"
         },
         {
           "name": "Prosciutto",
           "qty": 8,
           "unit": "slice",
-          "aisle": "Meat & seafood"
+          "aisle": "Meat & seafood",
+          "prep": ""
         },
         {
           "name": "Ricotta cheese",
           "qty": 0.5,
           "unit": "cup",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": ""
         },
         {
           "name": "Long or short pasta",
           "qty": 1,
           "unit": "lb",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "long or short cut"
         },
         {
           "name": "Salted butter",
           "qty": 2,
           "unit": "tbsp",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": ""
         },
         {
           "name": "Fresh sage",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "1 tbsp, chopped"
         },
         {
           "name": "Shredded gouda",
           "qty": 0.5,
           "unit": "cup",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": "shredded"
         },
         {
           "name": "Parmesan",
           "qty": 0.33,
           "unit": "cup",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": "grated (⅓ cup), plus more for serving"
         }
       ],
       "instructions": [
@@ -3588,115 +3621,134 @@
           "name": "Boneless, skinless chicken thighs",
           "qty": 2,
           "unit": "lb",
-          "aisle": "Meat & seafood"
+          "aisle": "Meat & seafood",
+          "prep": "breasts or thighs, cut into bite-size chunks"
         },
         {
           "name": "Plain Greek yogurt",
           "qty": 4,
           "unit": "tbsp",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": "¼ cup"
         },
         {
           "name": "Garlic",
           "qty": 6,
           "unit": "clove",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "6 cloves, minced or grated (half in the marinade, half in the sauce)"
         },
         {
           "name": "Fresh ginger (1-inch piece)",
           "qty": 2,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "2 tbsp, freshly grated"
         },
         {
           "name": "Garam masala",
           "qty": 1.67,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "2 tsp for the chicken plus 1 tbsp for the sauce"
         },
         {
           "name": "Ground cumin",
           "qty": 2,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 tsp for the chicken, 1 tsp for the sauce"
         },
         {
           "name": "Turmeric",
           "qty": 1,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "½ tsp for the chicken, ½ tsp for the sauce"
         },
         {
           "name": "Cayenne pepper",
           "qty": 1.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 to 2 tsp, to your taste (half in the marinade, half in the sauce)"
         },
         {
           "name": "Kosher salt",
           "qty": 1.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 tsp on the chicken, plus more to taste"
         },
         {
           "name": "Black pepper",
           "qty": 0.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "to taste; the page gives no amount, so ½ tsp is an estimate"
         },
         {
           "name": "Olive oil",
           "qty": 2,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "extra virgin"
         },
         {
           "name": "Salted butter",
           "qty": 4,
           "unit": "tbsp",
-          "aisle": "Dairy & eggs"
+          "aisle": "Dairy & eggs",
+          "prep": ""
         },
         {
           "name": "Yellow onion",
           "qty": 1,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "large, chopped"
         },
         {
           "name": "Crushed red pepper flakes",
           "qty": 1.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 to 2 tsp, to your taste"
         },
         {
           "name": "Tomato paste",
           "qty": 8,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "½ cup"
         },
         {
           "name": "Coconut milk",
           "qty": 1,
           "unit": "can",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "14-ounce can, full-fat (or 1 cup cream)"
         },
         {
           "name": "Cilantro",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "½ cup, roughly chopped"
         },
         {
           "name": "Basmati rice, uncooked (for serving)",
           "qty": 1.5,
           "unit": "cup",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "steamed, for serving"
         },
         {
           "name": "Naan (optional)",
           "qty": 1,
           "unit": "pkg",
-          "aisle": "Bakery"
+          "aisle": "Bakery",
+          "prep": "fresh, for serving"
         }
       ],
       "instructions": [
@@ -3719,97 +3771,113 @@
           "name": "Toasted sesame oil",
           "qty": 7.33,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "⅓ cup for the chili oil, plus 2 tbsp for browning the chicken"
         },
         {
           "name": "Garlic",
           "qty": 6,
           "unit": "clove",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "6 cloves, thinly sliced or smashed"
         },
         {
           "name": "Crushed red pepper flakes",
           "qty": 4.5,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "1 to 2 tbsp, to taste"
         },
         {
           "name": "Tamari or soy sauce",
           "qty": 8,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "low-sodium (½ cup)"
         },
         {
           "name": "Hoisin sauce",
           "qty": 4,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "¼ cup (gluten-free if needed)"
         },
         {
           "name": "Honey",
           "qty": 1,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": ""
         },
         {
           "name": "Rice vinegar",
           "qty": 2,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": ""
         },
         {
           "name": "Creamy peanut butter",
           "qty": 3,
           "unit": "tbsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "or tahini (3 tbsp)"
         },
         {
           "name": "Chinese egg noodles",
           "qty": 8,
           "unit": "oz",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "Chinese-style egg noodles, or rice noodles (8 oz)"
         },
         {
           "name": "Chicken broth",
           "qty": 2.5,
           "unit": "cup",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "low-sodium (2½ cups)"
         },
         {
           "name": "Baby spinach",
           "qty": 2,
           "unit": "cup",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "fresh, roughly chopped (2 cups)"
         },
         {
           "name": "Ground chicken or pork",
           "qty": 0.5,
           "unit": "lb",
-          "aisle": "Meat & seafood"
+          "aisle": "Meat & seafood",
+          "prep": "½ pound"
         },
         {
           "name": "Mixed mushrooms",
           "qty": 8,
           "unit": "oz",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "2 cups, finely chopped"
         },
         {
           "name": "Black pepper",
           "qty": 0.25,
           "unit": "tsp",
-          "aisle": "Pantry"
+          "aisle": "Pantry",
+          "prep": "to taste; the page gives no amount, so ¼ tsp is an estimate"
         },
         {
           "name": "Shallot",
           "qty": 1,
           "unit": "",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "medium, chopped"
         },
         {
           "name": "Green onions",
           "qty": 1,
           "unit": "bunch",
-          "aisle": "Produce"
+          "aisle": "Produce",
+          "prep": "4, chopped"
         }
       ],
       "instructions": [
