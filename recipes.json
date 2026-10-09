@@ -3400,6 +3400,115 @@
         "Heat the 2 remaining tablespoons of sesame oil in the empty skillet over medium-high. Brown the chicken with a little pepper, breaking it up, about 5 minutes. Add the mushrooms and shallot and cook 2 to 3 minutes. Pour in the rest of the sauce and simmer about 5 minutes, until it coats the meat and the edges crisp. Stir in 2 to 4 tablespoons of the chili oil.",
         "Ladle the broth into bowls, add the noodles and toss. Top with the meat, more chili oil and green onions. Serve right away."
       ]
+    },
+    {
+      "id": "skillet-baked-ziti-with-sausage-and-ricotta",
+      "name": "Skillet-Baked Ziti with Sausage and Ricotta",
+      "servings": 6,
+      "source": "",
+      "image": "",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Bulk Italian sausage",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce"
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Marinara sauce",
+          "qty": 1,
+          "unit": "jar",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Other"
+        },
+        {
+          "name": "Low-sodium beef broth",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Ricotta cheese",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Ziti or penne",
+          "qty": 8,
+          "unit": "oz",
+          "aisle": "Pantry"
+        },
+        {
+          "name": "Fresh mozzarella",
+          "qty": 5,
+          "unit": "oz",
+          "aisle": "Dairy & eggs"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce"
+        }
+      ],
+      "instructions": [
+        "Put a rack in the center of the oven and heat it to 375°F.",
+        "Heat the oil in a large, deep oven-safe skillet or a 3.5-quart braiser with a lid over medium-high. Add the sausage and cook, breaking it up with a spoon, until it's cooked through and no longer pink, about 7 minutes.",
+        "Add the onion and garlic and cook until tender, about 4 minutes. Pour off the excess fat and put the sausage and vegetables back in the pan.",
+        "Lower the heat to medium-low. Stir in the Italian seasoning, salt, pepper, marinara, wine, broth, ricotta and Parmesan until well combined. Add the ziti and toss until it's coated, then spread everything in an even layer.",
+        "Tear the mozzarella into 1-inch pieces and scatter it over the top. Cover the skillet, move it to the oven, and bake 20 minutes.",
+        "Take off the lid and bake about 15 minutes more, until the mozzarella is bubbly and the pasta is tender.",
+        "Top with torn basil and let it cool slightly before serving. Leftovers keep up to 4 days in the fridge. Reheat in the microwave or a 350°F oven with a splash of broth.",
+        "Pasta note: regular pasta works. If you use gluten-free, the cookbook recommends brown rice pasta only, because it helps thicken the sauce. From your cookbook, page 105 (Pasta and Noodles)."
+      ]
     }
   ]
 }
