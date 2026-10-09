@@ -42,7 +42,8 @@ list, ratings and last-made dates automatically, through this Firebase Realtime 
 
 The household code (the folder name inside the database) is the first 20 characters of the SHA-256 of
 `family-meal-planner-v1|https://collison-meal-planner-default-rtdb.firebaseio.com`, which is `85cfe0d597f72a2576d8`. It is built into `app.js`, so rebuilding the app always
-gives the same one. Keep the database rules locked to that one folder:
+gives the same one. Keep the database rules locked to that one folder (and the matching `photos` folder, which
+holds photos people have changed):
 
 ```json
 {
@@ -50,6 +51,9 @@ gives the same one. Keep the database rules locked to that one folder:
     ".read": false,
     ".write": false,
     "households": {
+      "85cfe0d597f72a2576d8": { ".read": true, ".write": true }
+    },
+    "photos": {
       "85cfe0d597f72a2576d8": { ".read": true, ".write": true }
     }
   }
@@ -68,6 +72,9 @@ notice. It catches up on its own when the connection returns.
 - **Shopping.** Check items off and they're crossed out and drop to the bottom of their section. **Done
   shopping** at the top of the Groceries page removes everything that's checked. An **Undo** button shows for
   about 10 seconds, and **Bring back** stays on the page afterwards. **Start a new week** resets it all.
+- **Changing a meal's photo.** Open a meal and tap **Change photo** to pick one from the phone or take a new
+  one. It is shrunk, saved on that phone, and shared with every device. **Use the original photo** puts the
+  recipe's own photo back.
 - **Works on any screen.** Bottom tabs on a phone; a side menu and wider layouts on a laptop or desktop.
 - **Offline is fine.** Changes are saved on the phone first and sync when the connection is back.
 - The page loads React and the icons from `esm.sh`, so it needs an internet connection.
