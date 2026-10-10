@@ -175,9 +175,11 @@ function stateToLeaves(st, selAt) {
     const L = {};
     for (const m of st.meals) {
         if (isLib(m.id)) {
-            const stats = pickStats(m);
+            const { photo, ...stats } = pickStats(m); // the photo marker travels in its own entry, so a rating can never overwrite it
             if (hasStats(stats))
                 L[`stats/${encKey(m.id)}`] = JSON.stringify(stats);
+            if (photo)
+                L[`photo/${encKey(m.id)}`] = photo;
             continue;
         }
         const c = cleanMeal(m);
@@ -210,6 +212,7 @@ function stateToLeaves(st, selAt) {
 function leavesToState(L) {
     const meals = [];
     const statsById = {};
+    const photoById = {};
     const extras = [];
     const checked = {};
     const cleared = {};
@@ -229,6 +232,11 @@ function leavesToState(L) {
             }
             else if (col === "stats") {
                 statsById[decKey(key)] = JSON.parse(val);
+            }
+            else if (col === "photo") {
+                const pv = clampStr(val, 20);
+                if (pv)
+                    photoById[decKey(key)] = pv;
             }
             else if (col === "selected") {
                 sel.push([decKey(key), Number(val) || 0]);
@@ -261,7 +269,7 @@ function leavesToState(L) {
         }
     }
     sel.sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
-    const allMeals = [...LIBRARY.map((lib) => libMeal(lib, statsById[lib.id])), ...meals.filter((m) => !isLib(m.id) && !String(m.id).startsWith("lib_"))];
+    const allMeals = [...LIBRARY.map((lib) => libMeal(lib, photoById[lib.id] ? { ...(statsById[lib.id] || {}), photo: photoById[lib.id] } : statsById[lib.id])), ...meals.filter((m) => !isLib(m.id) && !String(m.id).startsWith("lib_"))];
     return { meals: allMeals, kids, selected: sel.map((q) => q[0]), household, checked, storeMap, extras, cleared, selAt: Object.fromEntries(sel) };
 }
 // For each entry: if this device changed it, keep ours; otherwise take what's shared.
@@ -721,7 +729,47 @@ const hasStats = (st) => Object.keys(st.ratings).length > 0 || !!st.lastMade || 
 const PHOTO_PREFIX = "mealplan-photo:";
 const PHOTO_STORE = new Map(); // meal id -> { v: version, d: data address }
 const validPhoto = (d) => typeof d === "string" && d.length < 450000 && /^data:image\/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(d);
+// Photos live in the browser's IndexedDB (plenty of room); localStorage is only a fallback.
+const photoLoadListeners = new Set();
+let photosLoaded = false;
+let photoDbPromise = null;
+function photoDb() {
+    if (!photoDbPromise) {
+        photoDbPromise = new Promise((resolve, reject) => {
+            try {
+                const r = indexedDB.open("mealplan-photos", 1);
+                r.onupgradeneeded = () => r.result.createObjectStore("p");
+                r.onsuccess = () => resolve(r.result);
+                r.onerror = () => reject(r.error);
+            }
+            catch (e) {
+                reject(e);
+            }
+        });
+    }
+    return photoDbPromise;
+}
+const idbRun = (mode, fn) => photoDb().then((db) => new Promise((resolve, reject) => {
+    const tx = db.transaction("p", mode);
+    fn(tx.objectStore("p"));
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error);
+}));
+const loadIdbPhotos = () => photoDb().then((db) => new Promise((resolve) => {
+    const items = [];
+    const tx = db.transaction("p", "readonly");
+    const req = tx.objectStore("p").openCursor();
+    req.onsuccess = () => { const c = req.result; if (c) {
+        items.push([c.key, c.value]);
+        c.continue();
+    } };
+    tx.oncomplete = () => resolve(items);
+    tx.onerror = () => resolve(items);
+}));
 (function loadPhotoCache() {
+    // Older versions kept photos in localStorage: use them now, then move them into IndexedDB.
+    const legacy = [];
     try {
         for (let i = 0; i < localStorage.length; i++) {
             const k = localStorage.key(i);
@@ -729,20 +777,51 @@ const validPhoto = (d) => typeof d === "string" && d.length < 450000 && /^data:i
                 continue;
             const o = JSON.parse(localStorage.getItem(k));
             if (o && typeof o.v === "string" && validPhoto(o.d))
-                PHOTO_STORE.set(k.slice(PHOTO_PREFIX.length), { v: o.v, d: o.d });
+                legacy.push([k.slice(PHOTO_PREFIX.length), { v: o.v, d: o.d }]);
         }
     }
-    catch (e) { /* no stored photos */ }
+    catch (e) { /* no older photos */ }
+    for (const [id, o] of legacy)
+        PHOTO_STORE.set(id, o);
+    const finish = () => {
+        photosLoaded = true;
+        photoLoadListeners.forEach((f) => { try {
+            f();
+        }
+        catch (e) { /* ignore */ } });
+    };
+    loadIdbPhotos().then((items) => {
+        for (const [id, o] of items)
+            if (o && typeof o.v === "string" && validPhoto(o.d))
+                PHOTO_STORE.set(id, { v: o.v, d: o.d });
+        for (const [id, o] of legacy) {
+            if (items.some((q) => q[0] === id)) {
+                try {
+                    localStorage.removeItem(PHOTO_PREFIX + id);
+                }
+                catch (e) { /* ignore */ }
+                continue;
+            }
+            idbRun("readwrite", (st) => st.put(o, id)).then(() => { try {
+                localStorage.removeItem(PHOTO_PREFIX + id);
+            }
+            catch (e) { /* ignore */ } }).catch(() => { });
+        }
+        finish();
+    }).catch(finish);
 })();
 const savePhoto = (id, v, d) => {
     PHOTO_STORE.set(id, { v, d });
-    try {
-        localStorage.setItem(PHOTO_PREFIX + id, JSON.stringify({ v, d }));
-    }
-    catch (e) { /* the photo still shows until the page closes */ }
+    idbRun("readwrite", (st) => st.put({ v, d }, id)).catch(() => {
+        try {
+            localStorage.setItem(PHOTO_PREFIX + id, JSON.stringify({ v, d }));
+        }
+        catch (e) { /* still shown until the page closes, and fetched again from the shared list */ }
+    });
 };
 const dropPhoto = (id) => {
     PHOTO_STORE.delete(id);
+    idbRun("readwrite", (st) => st.delete(id)).catch(() => { });
     try {
         localStorage.removeItem(PHOTO_PREFIX + id);
     }
@@ -1739,7 +1818,7 @@ export default function FamilyMealPlanner() {
     const applyLeaves = (merged, cols) => {
         const st = leavesToState(merged);
         selAtRef.current = st.selAt;
-        if (cols.has("meals") || cols.has("stats"))
+        if (cols.has("meals") || cols.has("stats") || cols.has("photo"))
             setMeals(st.meals);
         if (cols.has("kids"))
             setKids(st.kids);
@@ -1855,7 +1934,7 @@ export default function FamilyMealPlanner() {
         let d = "";
         try {
             // A very detailed picture gets a smaller, lighter version until it fits.
-            for (const [side, q] of [[900, 0.8], [720, 0.7], [560, 0.6]]) {
+            for (const [side, q] of [[800, 0.75], [640, 0.65], [520, 0.55]]) {
                 d = `data:image/jpeg;base64,${await photoToJpegBase64(file, side, q)}`;
                 if (validPhoto(d))
                     break;
@@ -1929,6 +2008,33 @@ export default function FamilyMealPlanner() {
         })();
         return () => { stop = true; };
     }, [meals, loaded, loadFailed, recipesOk, photoTick]);
+    // Once this device's saved photos have loaded, show them.
+    useEffect(() => {
+        const refresh = () => setMeals((cur) => cur.map((m) => { const lib = LIB_BY_ID.get(m.id); return lib ? libMeal(lib, m) : m; }));
+        photoLoadListeners.add(refresh);
+        if (photosLoaded)
+            refresh();
+        return () => { photoLoadListeners.delete(refresh); };
+    }, []);
+    // If the shared marker for a photo this device holds has gone missing, put it back; free photos that were reset.
+    useEffect(() => {
+        if (!loaded || loadFailed || !recipesOk || !photosLoaded || syncStatus !== "ok")
+            return;
+        const heal = new Map();
+        for (const m of meals) {
+            if (!LIB_BY_ID.has(m.id))
+                continue;
+            const c = PHOTO_STORE.get(m.id);
+            if (!c)
+                continue;
+            if (!m.photo)
+                heal.set(m.id, c.v);
+            else if (m.photo === "-")
+                dropPhoto(m.id);
+        }
+        if (heal.size)
+            setMeals((cur) => cur.map((x) => (heal.has(x.id) && !x.photo ? libMeal(LIB_BY_ID.get(x.id), { ...x, photo: heal.get(x.id) }) : x)));
+    }, [meals, loaded, loadFailed, recipesOk, syncStatus, photoTick]);
     /* ---- derived ---- */
     const mealById = useMemo(() => new Map(meals.map((m) => [m.id, m])), [meals]);
     const weekMeals = useMemo(() => selected.map((id) => mealById.get(id)).filter(Boolean), [selected, mealById]);
