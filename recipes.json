@@ -10991,6 +10991,579 @@
         "Lower the heat to medium and add the green onions, drained noodles, and beef with any juices. Toss to combine, then pour in the sauce and the remaining pasta water and toss constantly until the noodles are coated and the sauce starts to thicken, about 2 more minutes.",
         "Divide among four bowls and top with the toasted sesame seeds. From a cookbook page you photographed (the book's title and page number aren't visible in the photo)."
       ]
+    },
+    {
+      "id": "sheet-pan-salmon-and-veggies-with-creamy-zhoug",
+      "name": "Sheet Pan Salmon and Veggies with Creamy Zhoug",
+      "servings": 4,
+      "source": "https://thedefineddish.com/sheet-pan-salmon-and-veggies-with-creamy-zhoug/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2023/02/Sheet-Pan-Za_atar-Salmon-with-Creamy-Zhoug-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Jalapeño pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "seeds removed and roughly chopped"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "1 cup packed, roughly chopped leaves and tender stems"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Ground cardamom",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "½ tsp in the zhoug, 1 tsp divided on the sheet pan"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Aleppo pepper flakes",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "or crushed red pepper flakes"
+        },
+        {
+          "name": "Olive oil",
+          "qty": 11,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra virgin: ½ cup in the zhoug, plus 3 tbsp divided on the sheet pan"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "½ cup (omit for dairy-free)"
+        },
+        {
+          "name": "Lemon",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (from about ½ lemon)"
+        },
+        {
+          "name": "Sweet potato",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "medium, halved lengthwise and thinly sliced into half moons"
+        },
+        {
+          "name": "Broccoli florets",
+          "qty": 4,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "from about 1 large head"
+        },
+        {
+          "name": "Salmon fillets",
+          "qty": 4,
+          "unit": "",
+          "aisle": "Meat & seafood",
+          "prep": "6- to 8-ounce, pin bones removed"
+        },
+        {
+          "name": "Za'atar seasoning",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 425°F and line a large baking sheet with parchment paper.",
+        "Zhoug: blend all the zhoug ingredients in a food processor, or in a wide-mouth jar with an immersion blender, until mostly smooth, scraping down the sides as needed. Set aside.",
+        "Put the sweet potatoes on the baking sheet, drizzle with 1 tablespoon olive oil, and sprinkle with ½ teaspoon of the salt. Toss, spread into a single layer, and roast until tender and golden on the edges, about 15 minutes.",
+        "Push the potatoes to the edges of the pan. Toss the broccoli with 1 tablespoon olive oil and ½ teaspoon salt in a medium bowl, then add it around the pan, leaving space in the center for the salmon.",
+        "Put the salmon in the center and brush the flesh with the remaining tablespoon of olive oil. Season with the za'atar. Bake until the salmon is cooked through and flakes easily with a fork, 12 to 15 more minutes.",
+        "Divide among four plates and serve with the creamy zhoug. For dairy-free, leave out the yogurt."
+      ]
+    },
+    {
+      "id": "italian-sausage-and-shells-soup",
+      "name": "Creamy Italian Sausage and Shells Soup",
+      "servings": 6,
+      "source": "https://thedefineddish.com/italian-sausage-and-shells-soup/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2026/10/Creamy-Italian-Sausage-and-Shells-Soup-6-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Olive oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "extra virgin"
+        },
+        {
+          "name": "Bulk Italian sausage",
+          "qty": 1,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "mild or hot"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "finely diced"
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Sun-dried tomatoes",
+          "qty": 0.333333,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "in olive oil, drained and chopped"
+        },
+        {
+          "name": "Tomato paste",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dry white wine",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 8,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Diced tomatoes",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "14.5-ounce can"
+        },
+        {
+          "name": "Garlic powder",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Italian seasoning",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "plus more to taste"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground, plus more to taste"
+        },
+        {
+          "name": "Small pasta shells",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "uncooked (use gluten-free noodles for gluten-free)"
+        },
+        {
+          "name": "Baby spinach",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": ""
+        },
+        {
+          "name": "Heavy cream",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "or unsweetened full-fat coconut milk for dairy-free"
+        },
+        {
+          "name": "Parmesan",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "grated, plus more for serving (omit for dairy-free)"
+        },
+        {
+          "name": "Fresh basil",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "½ cup roughly chopped leaves, plus more for garnish"
+        }
+      ],
+      "instructions": [
+        "Heat the oil in a large Dutch oven or soup pot over medium-high. Add the sausage and cook, breaking it into small pieces with a wooden spoon, until browned and cooked through, 6 to 8 minutes. Drain off all but about 2 tablespoons of the fat.",
+        "Lower the heat to medium. Cook the onions, stirring now and then, until softened and translucent, 4 to 5 minutes.",
+        "Add the garlic, sun-dried tomatoes and tomato paste. Cook, stirring constantly, until fragrant and the tomato paste has darkened to a deep brick red, 1 to 2 minutes.",
+        "Pour in the wine, scraping up the browned bits, and simmer until reduced by about half, about 2 minutes.",
+        "Stir in the broth, the diced tomatoes with their juices, garlic powder, Italian seasoning, salt and pepper. Raise the heat to high and bring to a boil, 7 to 9 minutes.",
+        "Lower the heat to a rapid simmer, add the pasta shells, and cook, stirring now and then so nothing sticks, until al dente, about 10 minutes or as the package says.",
+        "Turn the heat to low, add the spinach, and stir until wilted, about 1 minute.",
+        "Take the pot off the heat. Stir in the cream, then add the Parmesan a small handful at a time, stirring until melted and smooth. Stir in the basil.",
+        "Taste and adjust with more salt and pepper. Ladle into bowls and finish with extra Parmesan and torn basil. The shells soak up broth as it sits, so add a generous splash of broth when reheating leftovers."
+      ]
+    },
+    {
+      "id": "skillet-king-ranch-casserole",
+      "name": "Skillet King Ranch Casserole",
+      "servings": 4,
+      "source": "https://thedefineddish.com/skillet-king-ranch-casserole/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2025/08/Skillet-King-Ranch-Chicken-Casserole-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Red bell pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "finely diced (1 cup)"
+        },
+        {
+          "name": "Yellow onion",
+          "qty": 0.5,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "finely diced (1 cup)"
+        },
+        {
+          "name": "Poblano pepper",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "seeded and finely diced (1 cup)"
+        },
+        {
+          "name": "Jalapeño pepper",
+          "qty": 0.25,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "seeded and finely diced"
+        },
+        {
+          "name": "Baby bella mushrooms",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Produce",
+          "prep": "finely diced"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Black pepper",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Cooked chicken",
+          "qty": 4,
+          "unit": "cup",
+          "aisle": "Meat & seafood",
+          "prep": "chopped (rotisserie chicken works well)"
+        },
+        {
+          "name": "Garlic",
+          "qty": 2,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Ground cumin",
+          "qty": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Dried oregano",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Cayenne pepper",
+          "qty": 0.25,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "ground"
+        },
+        {
+          "name": "Cassava or all-purpose flour",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "cassava flour"
+        },
+        {
+          "name": "Chicken broth",
+          "qty": 1,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Diced tomatoes and green chiles",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "10-ounce can, such as Rotel"
+        },
+        {
+          "name": "Diced green chiles",
+          "qty": 1,
+          "unit": "can",
+          "aisle": "Pantry",
+          "prep": "4-ounce can"
+        },
+        {
+          "name": "Plain Greek yogurt",
+          "qty": 8,
+          "unit": "tbsp",
+          "aisle": "Dairy & eggs",
+          "prep": "whole milk (½ cup)"
+        },
+        {
+          "name": "Corn tortillas",
+          "qty": 6,
+          "unit": "",
+          "aisle": "Bakery",
+          "prep": "6-inch round, halved and sliced into ½-inch strips"
+        },
+        {
+          "name": "Lime",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "2 tbsp freshly squeezed juice (from about 1 lime)"
+        },
+        {
+          "name": "Shredded cheddar cheese",
+          "qty": 2,
+          "unit": "cup",
+          "aisle": "Dairy & eggs",
+          "prep": "divided: 1 cup in the filling, 1 cup on top"
+        },
+        {
+          "name": "Cilantro",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "chopped, to garnish"
+        }
+      ],
+      "instructions": [
+        "Heat the oven to 400°F.",
+        "Heat the oil in a large, deep oven-safe skillet (or 3.5-quart braiser) over medium-high. Cook the bell pepper, onion, poblano, jalapeño, mushrooms, salt and pepper, stirring, until the vegetables are tender, about 5 minutes.",
+        "Add the chicken, garlic, cumin, oregano and cayenne and stir. Sprinkle in the cassava flour and stir until combined, lightly toasting the flour, about 2 minutes.",
+        "While stirring, slowly pour in the broth until well incorporated. The mixture should be very thick. Lower the heat to low.",
+        "Stir in the diced tomatoes and green chiles, the diced green chiles and the yogurt. Add the tortilla strips, lime juice and 1 cup of the cheese and gently fold in. Spread into an even layer and sprinkle the remaining 1 cup cheese over the top.",
+        "Bake until the cheese is melty, bubbly and lightly browned, about 20 minutes.",
+        "Let it rest 5 to 10 minutes so the sauce settles. Garnish with cilantro. Leave out the jalapeño if your kids are sensitive to spice."
+      ]
+    },
+    {
+      "id": "hoisin-glazed-grilled-pork-tenderloin-bowls",
+      "name": "Hoisin-Glazed Grilled Pork Tenderloin Bowls",
+      "servings": 4,
+      "source": "https://thedefineddish.com/hoisin-glazed-grilled-pork-tenderloin-bowls/",
+      "image": "https://thedefineddish.com/wp-content/uploads/2026/04/Hoisin-Glazed-Grilled-Pork-Tenderloin-4-scaled.jpg",
+      "ingredients": [
+        {
+          "name": "Hoisin sauce",
+          "qty": 0.5,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Coconut sugar",
+          "qty": 9,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "3 tbsp"
+        },
+        {
+          "name": "Tamari",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Sriracha",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Rice vinegar",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Avocado oil",
+          "qty": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "1 tbsp in the marinade (plus more for oiling the grill), 1 tbsp on the broccolini"
+        },
+        {
+          "name": "Toasted sesame oil",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": ""
+        },
+        {
+          "name": "Garlic",
+          "qty": 3,
+          "unit": "clove",
+          "aisle": "Produce",
+          "prep": "minced"
+        },
+        {
+          "name": "Fresh ginger (1-inch piece)",
+          "qty": 1,
+          "unit": "",
+          "aisle": "Produce",
+          "prep": "1 tsp, grated"
+        },
+        {
+          "name": "Pork tenderloin",
+          "qty": 2,
+          "unit": "lb",
+          "aisle": "Meat & seafood",
+          "prep": "2 tenderloins, about 1 pound each, silver skin removed"
+        },
+        {
+          "name": "Kosher salt",
+          "qty": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "1 tsp on the pork, ½ tsp on the broccolini"
+        },
+        {
+          "name": "Black pepper",
+          "qty": 0.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "prep": "freshly ground"
+        },
+        {
+          "name": "Broccolini",
+          "qty": 2,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "about 8 ounces, trimmed"
+        },
+        {
+          "name": "Jasmine rice",
+          "qty": 3,
+          "unit": "cup",
+          "aisle": "Pantry",
+          "prep": "prepared, for serving"
+        },
+        {
+          "name": "Toasted sesame seeds",
+          "qty": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "prep": "optional, for serving; the page gives no amount, so 1 tbsp is my estimate"
+        },
+        {
+          "name": "Green onions",
+          "qty": 1,
+          "unit": "bunch",
+          "aisle": "Produce",
+          "prep": "2 scallions, thinly sliced, optional, for serving"
+        }
+      ],
+      "instructions": [
+        "Marinade: whisk the hoisin, coconut sugar, tamari, sriracha, rice vinegar, 1 tablespoon avocado oil, sesame oil, garlic and ginger in a medium bowl until smooth. Spoon ½ cup of the sauce into a small bowl and keep it for glazing and drizzling later.",
+        "Put the pork tenderloins in a zip-top bag or shallow dish, pour the rest of the marinade over them, and turn to coat. Cover and refrigerate at least 4 hours, or up to 24 hours.",
+        "Take the pork out of the marinade, shaking off the excess, put it on a clean platter, and sprinkle all over with 1 teaspoon salt and the pepper.",
+        "Heat a grill to medium-high (350°F to 400°F) and oil the grates by wiping them with a wadded paper towel dipped in a little oil, using tongs. Don't use too much oil, which can cause flare-ups.",
+        "Put the pork on the grill, close the lid, and cook 5 to 7 minutes, then flip.",
+        "Meanwhile, toss the broccolini with 1 tablespoon avocado oil and ½ teaspoon salt (a pinch is enough per the page). Grill, turning now and then, until tender and lightly charred, 4 to 6 minutes. Move it to a platter.",
+        "During the last few minutes, brush the pork with about ⅓ cup of the reserved hoisin sauce, turning once or twice so it caramelizes evenly. Keep the rest for drizzling. Cook, covered, until a meat thermometer in the thickest part reads 145°F to 150°F, 5 to 8 more minutes.",
+        "Meanwhile, warm the remaining reserved sauce in a small saucepan over medium-low.",
+        "Let the pork rest 5 minutes on a cutting board, then slice into rounds. Serve over bowls of rice with the grilled broccolini, drizzle with the warm hoisin sauce, and garnish with scallions and sesame seeds if you like.",
+        "No grill? The author suggests searing the pork in an oven-safe skillet over medium-high, then roasting at 425°F for about 12 to 18 minutes until it reaches 145°F, brushing with the reserved sauce near the end."
+      ]
     }
   ]
 }
