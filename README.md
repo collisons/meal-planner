@@ -71,7 +71,7 @@ notice. It catches up on its own when the connection returns.
   to prepare each ingredient next to its name. The grocery list adds the recipes up exactly as written.
 - **Shopping.** Check items off and they're crossed out and drop to the bottom of their section. **Done
   shopping** at the top of the Groceries page removes everything that's checked. An **Undo** button shows for
-  about 10 seconds, and **Bring back** stays on the page afterwards. **Start a new week** resets it all.
+  about 10 seconds, and **Bring back** stays on the page afterwards. If you add a meal after shopping, its ingredients are added to the list with only that meal's amounts. **Start new week** (top of This week) clears the meals and checkmarks, and can mark the week's meals as made at the same time.
 - **Changing a meal's photo.** Open a meal and tap **Change photo** to pick one from the phone or take a new
   one. It is shrunk, saved on that phone, and shared with every device. **Use the original photo** puts the
   recipe's own photo back.
